@@ -3,7 +3,9 @@ package com.example.fh.eddy;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,18 +15,34 @@ import android.os.Build;
 
 
 public class MainScreenActivity extends Activity {
+    ActionBar.Tab tab1, tab2, tab3;
+    Fragment fragmentTab1 = new FragmentTab1();
+    Fragment fragmentTab2 = new FragmentTab2();
+    Fragment fragmentTab3= new SettingsFragment();
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-    }
 
+
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        tab1 = actionBar.newTab().setText(R.string.Eintrag);
+        tab2 = actionBar.newTab().setText(R.string.Grafik);
+        tab3 = actionBar.newTab().setText(R.string.Einstellungen);
+
+        tab1.setTabListener(new MyTabListener(fragmentTab1));
+        tab2.setTabListener(new MyTabListener(fragmentTab2));
+        tab3.setTabListener(new MyTabListener(fragmentTab3));
+
+
+        actionBar.addTab(tab1);
+        actionBar.addTab(tab2);
+        actionBar.addTab(tab3);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,19 +66,8 @@ public class MainScreenActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main_screen, container, false);
-            return rootView;
-        }
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, EintragFormular.class);
+        startActivity(intent);
     }
 }
