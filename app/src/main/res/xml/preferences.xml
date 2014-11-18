@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference android:title="Aktivitäten"
+        android:summary="Verwalten Sie Ihre Aktivitäten">
+        <intent android:targetPackage="com.example.fh.eddy"
+            android:targetClass="com.example.fh.eddy.EintragFormular"
+            />
+    </Preference>
+    <PreferenceScreen
+        android:title="Person"
+        android:summary="Geben Sie Daten zu Ihrer Person an">
+
+        <EditTextPreference
+            android:title="Name"
+            android:summary="Geben Sie Ihren Namen an"
+            android:key="user_name" />
+
+        <ListPreference
+            android:title="Mahlzeit Angabe"
+            android:summary="Angabe der Mahlzeit in KH oder BE"
+            android:key="mahlzeit_angabe"
+            android:dialogTitle="Angabe"
+            android:entries="@array/mahlzeit_angabe"
+            android:entryValues="@array/mahlzeit_angabe"
+            android:defaultValue="KH"/>
+    </PreferenceScreen>
+    <Preference
+        android:title="Reset"
+        android:summary="Löschen sie alle angegebenen Daten">
+        <intent
+            android:targetPackage="com.example.fh.eddy"
+            android:targetClass="com.example.fh.eddy.EintragFormular"/>
+    </Preference>
+
+
+</PreferenceScreen>

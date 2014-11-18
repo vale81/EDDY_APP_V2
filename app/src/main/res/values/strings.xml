@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="meta_fh_eddy_MainScreenActivity">com.example.fh.eddy.MainScreenActivity</string>
+    <string name="app_name">Eddy</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Eintrag">Einträge</string>
+    <string name="Grafik">Grafik</string>
+    <string name="Einstellungen">Einstellungen</string>
+    <string name="Button_AddNew">Neuer Eintrag</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bz_wert_textview">BZ Wert</string>
+    <string name="eintrag_textview">Eintrag</string>
+    <string name="bz_wert_hint">Ihr BZ Wert</string>
+    <string name="save_button">SAVE</string>
+    <string name="bz_data_textview">BZ DATA</string>
+
+</resources>
