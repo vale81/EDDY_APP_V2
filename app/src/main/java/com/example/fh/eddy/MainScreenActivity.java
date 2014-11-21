@@ -60,6 +60,7 @@ public class MainScreenActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            tab3.select();
             return true;
         }
 

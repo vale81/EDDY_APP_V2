@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
     <Preference android:title="Aktivitäten"
         android:summary="Verwalten Sie Ihre Aktivitäten">
-        <intent android:targetPackage="com.example.fh.eddy"
-            android:targetClass="com.example.fh.eddy.EintragFormular"
-            />
+        <intent
+            android:targetPackage="com.example.fh.eddy"
+            android:targetClass="com.example.fh.eddy.EintragFormular"/>
     </Preference>
+
     <PreferenceScreen
         android:title="Person"
         android:summary="Geben Sie Daten zu Ihrer Person an">
@@ -23,7 +25,41 @@
             android:entries="@array/mahlzeit_angabe"
             android:entryValues="@array/mahlzeit_angabe"
             android:defaultValue="KH"/>
+
+        <PreferenceScreen
+            android:title="Blutzuckergrenzwerte"
+            android:summary="Angabe oberer/unterer Blutzuckergrenze">
+
+            <EditTextPreference
+                android:title="Obere Blutzuckergrenze"
+                android:key="obere_blutzuckergrenze"
+                android:inputType="number"
+                android:numeric="integer"/>
+
+            <EditTextPreference
+                android:title="Untere Blutzuckergrenze"
+                android:key="untere_blutzuckergrenze"
+                android:inputType="number"
+                android:numeric="integer"/>
+
+            </PreferenceScreen>
+
+        <EditTextPreference
+            android:title="Korrekturfaktor"
+            android:summary="Geben Sie Ihren Korrekturfaktor an"
+            android:key="korrektur_factor"
+            android:inputType="numberDecimal"
+            android:numeric="decimal"/>
+
+        <EditTextPreference
+            android:title="BE-Faktor(Work in Progress)"
+            android:summary="Geben Sie Ihren BE-Faktor an"
+            android:key="be_factor"
+            android:inputType="numberDecimal"
+            android:numeric="decimal"/>
+
     </PreferenceScreen>
+
     <Preference
         android:title="Reset"
         android:summary="Löschen sie alle angegebenen Daten">
