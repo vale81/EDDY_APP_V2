@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 /**
  * Created by Tim on 18.11.2014.
  */
@@ -26,6 +30,14 @@ public class FragmentTab2 extends Fragment {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         StringBuilder builder = new StringBuilder();
+
+        Set<String> s = sharedPrefs.getStringSet("activities", new HashSet<String>());
+
+        Iterator it= s.iterator();
+        while(it.hasNext()) {
+            String item=(String)it.next();
+            builder.append(item+", ");
+        }
 
         builder.append("\n Mahlzeit Angabe "
                 + sharedPrefs.getString("mahlzeit_angabe", "NULL"));

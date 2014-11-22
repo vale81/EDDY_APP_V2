@@ -5,7 +5,7 @@
         android:summary="Verwalten Sie Ihre Aktivitäten">
         <intent
             android:targetPackage="com.example.fh.eddy"
-            android:targetClass="com.example.fh.eddy.EintragFormular"/>
+            android:targetClass="com.example.fh.eddy.AktivitaetenVerwaltung"/>
     </Preference>
 
     <PreferenceScreen
