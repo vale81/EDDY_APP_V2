@@ -134,9 +134,6 @@ public class DataHandler {
         return eintrag;
     }
 
-
-
-
     //  Anfang innere Klasse
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
