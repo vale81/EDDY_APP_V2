@@ -9,6 +9,12 @@
         android:layout_height="0dp"
         android:layout_weight=".75"
         android:id="@+id/listView"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".10"
+        android:text="Neue Aktivität angeben:"
+        android:textSize="20sp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -23,7 +29,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Neue Aktivität"
+        android:text="Aktivität speichern"
         android:id="@+id/new_activity"
         android:onClick="saveActivity"
         android:textColor="#ffffffff"
