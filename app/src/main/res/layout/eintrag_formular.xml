@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
- <RelativeLayout
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content">
+ <ScrollView
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:layout_alignParentBottom="true"
+     android:layout_alignParentTop="true">
+     <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -213,25 +218,26 @@
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:id="@+id/imageButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText6"
-        android:layout_alignEnd="@+id/editText6"
+        android:adjustViewBounds="false"
+        android:layout_toEndOf="@+id/textView10"
         android:layout_below="@+id/editText8"
         android:layout_alignLeft="@+id/editText8"
-        android:layout_alignStart="@+id/editText8" />
+        android:layout_alignStart="@+id/editText8"
+        android:layout_alignRight="@+id/editText8"
+        android:layout_alignEnd="@+id/editText8"
+        android:layout_alignParentBottom="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:id="@+id/imageButton2"
-        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/editText8"
+        android:layout_below="@+id/editText8"
+        android:layout_toRightOf="@+id/editText8"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/editText6"
-        android:layout_toEndOf="@+id/editText6"
-        android:layout_alignTop="@+id/imageButton" />
+        android:layout_alignParentEnd="true" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -288,11 +294,9 @@
         android:id="@+id/editText8"
         android:background="#ffffffff"
         android:layout_below="@+id/textView12"
-        android:layout_alignRight="@+id/textView11"
-        android:layout_alignEnd="@+id/textView11"
         android:layout_alignLeft="@+id/textView12"
-        android:layout_alignStart="@+id/textView12"
-        android:layout_marginTop="5dp" />
+        android:layout_alignStart="@+id/textView12" />
 
- </RelativeLayout>
-</ScrollView>
+     </RelativeLayout>
+    </ScrollView>
+   </RelativeLayout>
