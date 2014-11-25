@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Calendar;
 
 /**
  * Created by Fabian on 09.11.2014.
@@ -18,11 +19,25 @@ public class EintragFormular extends Activity {
     private Button save_Button;
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.eintrag_formular);
         // The activity is being created.
+        // Kalender Objekt für Datum und Uhrzeit Voreinstellung
+        Calendar c = Calendar.getInstance();
+        int currentHour = c.get(Calendar.HOUR);
+        int currentMinute = c.get(Calendar.MINUTE);
+        // Voreingestellte Uhrzeit
+        EditText the_time = (EditText) findViewById(R.id.time_editText);
+        the_time.setText(currentHour + ":" + currentMinute);
+        // Voreingestelltes Datum im Datum Edittext
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);
+        int currentMonth = c.get(Calendar.MONTH);
+        int currentYear = c.get(Calendar.YEAR);
+        EditText the_date = (EditText)findViewById(R.id.date_editText);
+        the_date.setText(currentDay + "." + currentMonth + "." + currentYear);
     }
 
     @Override

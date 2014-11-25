@@ -15,8 +15,9 @@
     <string name="bz_wert_hint">Ihr BZ Wert</string>
     <string name="save_button">SAVE</string>
     <string name="bz_data_textview">BZ DATA</string>
-    <string name="zeit_text_view">Zeit</string>
-    <string name="datum_text_view">Datum</string>
     <string name="blutzucker_text_view">Blutzucker</string>
+    <string name="time_textview">Zeit</string>
+    <string name="date_textview">Datum</string>
+
 
 </resources>
