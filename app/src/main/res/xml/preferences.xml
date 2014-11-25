@@ -51,12 +51,21 @@
             android:inputType="numberDecimal"
             android:numeric="decimal"/>
 
-        <EditTextPreference
-            android:title="BE-Faktor(Work in Progress)"
-            android:summary="Geben Sie Ihren BE-Faktor an"
-            android:key="be_factor"
-            android:inputType="numberDecimal"
-            android:numeric="decimal"/>
+        <Preference
+            android:title="BE-Faktor"
+            android:summary="Geben Sie Ihren BE-Faktor an">
+            <intent
+                android:targetPackage="com.example.fh.eddy"
+                android:targetClass="com.example.fh.eddy.BEFaktorVerwaltung"/>
+        </Preference>
+
+        <Preference
+            android:title="Medikamente"
+            android:summary="Tragen Sie Ihre Medizin ein">
+            <intent
+                android:targetPackage="com.example.fh.eddy"
+                android:targetClass="com.example.fh.eddy.MedizinVerwaltung"/>
+        </Preference>
 
     </PreferenceScreen>
 

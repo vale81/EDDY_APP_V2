@@ -21,7 +21,7 @@ import java.util.Set;
 /**
  * Created by Fabian on 21.11.2014.
  */
-public class AktivitaetenVerwaltung extends Activity {
+public class BEFaktorVerwaltung extends Activity {
 
     SharedPreferences sharedPrefs;
     SharedPreferences.Editor editor;
@@ -35,12 +35,12 @@ public class AktivitaetenVerwaltung extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.aktivitaets_verwaltung);
+        setContentView(R.layout.befaktor_verwaltung);
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPrefs.edit();
 
-        s = new HashSet<String>(sharedPrefs.getStringSet("activities", new HashSet<String>()));
+        s = new HashSet<String>(sharedPrefs.getStringSet("be_factor", new HashSet<String>()));
         listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
 
@@ -61,11 +61,11 @@ public class AktivitaetenVerwaltung extends Activity {
                 String text= (String)parent.getItemAtPosition(position);
                 list.remove(text);
                 s.remove(text);
-                editor.putStringSet("activities",s);
+                editor.putStringSet("be_factor",s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(),
-                        "Aktivität "+text+" gelöscht", Toast.LENGTH_LONG)
+                        "BE-Faktor "+text+" gelöscht", Toast.LENGTH_LONG)
                         .show();
             }
         });
@@ -102,9 +102,9 @@ public class AktivitaetenVerwaltung extends Activity {
     }
 
 
-    public void saveActivity(View view) {
+    public void saveBEFactor(View view) {
 
-        EditText textfield= (EditText)findViewById(R.id.textfield_activity);
+        EditText textfield= (EditText)findViewById(R.id.textfield_BeFactor);
         String activity=textfield.getText().toString();
 
         s.add(activity);
@@ -115,7 +115,7 @@ public class AktivitaetenVerwaltung extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("activities",s);
+        editor.putStringSet("be_factor",s);
         editor.commit();
         adapter.notifyDataSetChanged();
     }
@@ -129,7 +129,7 @@ public class AktivitaetenVerwaltung extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("activities",s);
+        editor.putStringSet("be_factor",s);
         editor.commit();
         adapter.notifyDataSetChanged();
 
