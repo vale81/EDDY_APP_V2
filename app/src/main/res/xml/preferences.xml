@@ -44,6 +44,23 @@
 
             </PreferenceScreen>
 
+        <PreferenceScreen
+            android:title="Insulin Sorten"
+            android:summary="Geben Sie Ihre Insulin Sorten an">
+
+            <EditTextPreference
+                android:title="Basis Insulin"
+                android:summary=""
+                android:key="basis_insulin"
+                android:inputType="text"/>
+
+            <EditTextPreference
+                android:title="Bolus Insulin"
+                android:key="bolus_insulin"
+                android:inputType="text"/>
+
+        </PreferenceScreen>
+
         <EditTextPreference
             android:title="Korrekturfaktor"
             android:summary="Geben Sie Ihren Korrekturfaktor an"
