@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="X"
         android:textSize="20sp"
-        android:id="@+id/textView"
+        android:id="@+id/delete_sign"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
