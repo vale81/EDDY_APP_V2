@@ -5,11 +5,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -35,7 +39,14 @@ public class BEFaktorVerwaltung extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.befaktor_verwaltung);
+        setContentView(R.layout.verwaltungs_layout);
+        TextView txtview = (TextView) findViewById(R.id.textview_verwaltung);
+        txtview.setText("Neuen BE-Faktor angeben");
+        Button button=(Button)findViewById(R.id.new_Item);
+        button.setText("BE-Faktor speichern");
+        EditText txtfield=(EditText) findViewById(R.id.textfield_verwaltung);
+        txtfield.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPrefs.edit();
@@ -64,9 +75,9 @@ public class BEFaktorVerwaltung extends Activity {
                 editor.putStringSet("be_factor",s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(),
-                        "BE-Faktor "+text+" gelöscht", Toast.LENGTH_LONG)
-                        .show();
+                Toast toast=Toast.makeText(getApplicationContext(),"BE-Faktor "+text+" gelöscht", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+                toast.show();
             }
         });
 
@@ -102,9 +113,9 @@ public class BEFaktorVerwaltung extends Activity {
     }
 
 
-    public void saveBEFactor(View view) {
+    public void saveItem(View view) {
 
-        EditText textfield= (EditText)findViewById(R.id.textfield_BeFactor);
+        EditText textfield= (EditText)findViewById(R.id.textfield_verwaltung);
         String activity=textfield.getText().toString();
 
         s.add(activity);
@@ -118,6 +129,10 @@ public class BEFaktorVerwaltung extends Activity {
         editor.putStringSet("be_factor",s);
         editor.commit();
         adapter.notifyDataSetChanged();
+
+        Toast toast=Toast.makeText(getApplicationContext(), "Be-Faktor " + activity + " gespeichert", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+        toast.show();
     }
 
     @Override

@@ -39,6 +39,24 @@ public class FragmentTab2 extends Fragment {
             builder.append(item+", ");
         }
 
+        builder.append("\n");
+        s = sharedPrefs.getStringSet("medicines", new HashSet<String>());
+
+        it= s.iterator();
+        while(it.hasNext()) {
+            String item=(String)it.next();
+            builder.append(item+", ");
+        }
+
+        builder.append("\n");
+        s = sharedPrefs.getStringSet("be_factor", new HashSet<String>());
+
+        it= s.iterator();
+        while(it.hasNext()) {
+            String item=(String)it.next();
+            builder.append(item+", ");
+        }
+
         builder.append("\n Mahlzeit Angabe "
                 + sharedPrefs.getString("mahlzeit_angabe", "NULL"));
 

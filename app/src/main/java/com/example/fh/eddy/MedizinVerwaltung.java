@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -35,7 +38,11 @@ public class MedizinVerwaltung extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.medizin_verwaltung);
+        setContentView(R.layout.verwaltungs_layout);
+        TextView txtview = (TextView) findViewById(R.id.textview_verwaltung);
+        txtview.setText("Neue Medizin angeben");
+        Button button=(Button)findViewById(R.id.new_Item);
+        button.setText("Medizin speichern");
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPrefs.edit();
@@ -64,9 +71,9 @@ public class MedizinVerwaltung extends Activity {
                 editor.putStringSet("medicines",s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(),
-                        "Medizin "+text+" gelöscht", Toast.LENGTH_LONG)
-                        .show();
+                Toast toast= Toast.makeText(getApplicationContext(),"Medizin "+text+" gelöscht", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+                toast.show();
             }
         });
 
@@ -102,9 +109,9 @@ public class MedizinVerwaltung extends Activity {
     }
 
 
-    public void saveMedicin(View view) {
+    public void saveItem(View view) {
 
-        EditText textfield= (EditText)findViewById(R.id.textfield_medicin);
+        EditText textfield= (EditText)findViewById(R.id.textfield_verwaltung);
         String activity=textfield.getText().toString();
 
         s.add(activity);
@@ -118,6 +125,10 @@ public class MedizinVerwaltung extends Activity {
         editor.putStringSet("medicines",s);
         editor.commit();
         adapter.notifyDataSetChanged();
+
+        Toast toast=Toast.makeText(getApplicationContext(), "Medizin " + activity + " gespeichert", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+        toast.show();
     }
 
     @Override

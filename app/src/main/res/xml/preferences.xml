@@ -70,7 +70,7 @@
 
         <Preference
             android:title="BE-Faktor"
-            android:summary="Geben Sie Ihren BE-Faktor an">
+            android:summary="Geben Sie Ihre BE-Faktoren an">
             <intent
                 android:targetPackage="com.example.fh.eddy"
                 android:targetClass="com.example.fh.eddy.BEFaktorVerwaltung"/>
