@@ -26,7 +26,6 @@
                 android:textSize="25sp"
                 android:layout_weight="10.20" />
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,35 +49,211 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginRight="100dp"/>
 
-
-
-            <EditText
+            <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="time"
                 android:ems="10"
-                android:id="@+id/time_editText"
-                android:layout_alignParentTop="true"
+                android:id="@+id/time_currentTime_textView"
+                android:layout_below="@id/zeit_textView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="9dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:textColor="#ff000000"
                 android:background="#ffffffff" />
 
-            <EditText
+            <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="date"
                 android:ems="10"
-                android:id="@+id/date_editText"
-                android:layout_alignBaseline="@+id/time_editText"
-                android:layout_alignBottom="@+id/time_editText"
+                android:id="@+id/date_currentDate_textView"
+                android:layout_alignBaseline="@+id/time_currentTime_textView"
+                android:layout_alignBottom="@+id/time_currentTime_textView"
                 android:layout_alignLeft="@+id/date_textView"
                 android:layout_alignStart="@+id/date_textView"
                 android:background="#ffffffff"
                 android:textColor="#ff000000" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/blutzucker_textView"
+                android:id="@+id/BZ_textView"
+                android:layout_marginTop="10dp"
+                android:layout_alignLeft="@id/zeit_textView"
+                android:layout_below="@id/time_currentTime_textView"
+                android:layout_marginLeft="10dp" />
+
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/BZ_editText"
+                android:inputType="number"
+                android:layout_below="@id/BZ_textView"
+                android:layout_marginLeft="10dp"
+                android:background="#ffffffff"
+                android:textColor="#ff000000"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/mgDL_textview_text"
+                android:id="@+id/mgDL_textView"
+                android:layout_alignBaseline="@id/BZ_editText"
+                android:layout_toRightOf="@id/BZ_editText"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/mahlzeit_textView_text"
+                android:id="@+id/mahlzeit_textView"
+                android:layout_below="@id/BZ_editText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/mahlzeit_EditText"
+                android:inputType="number"
+                android:layout_below="@id/mahlzeit_textView"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#ffffffff"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/kh_textView"
+                android:id="@+id/kohlenhydratMenge_textView"
+                android:layout_toRightOf="@id/mahlzeit_EditText"
+                android:layout_alignBaseline="@id/mahlzeit_EditText"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/insulin_textView"
+                android:id="@+id/insulin_textView"
+                android:layout_below="@id/mahlzeit_EditText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/bolus_editText"
+                android:inputType="number"
+                android:layout_below="@id/insulin_textView"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#ffffffff"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/bolus_textView"
+                android:id="@+id/bolus_textView"
+                android:layout_toRightOf="@id/bolus_editText"
+                android:layout_alignBaseline="@id/bolus_editText"
+                android:paddingLeft="10dp" />
+
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/basis_editText"
+                android:inputType="number"
+                android:layout_toRightOf="@id/bolus_textView"
+                android:layout_alignBaseline="@id/bolus_editText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#ffffffff"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/basis_textView"
+                android:id="@+id/basis_textView"
+                android:layout_toRightOf="@id/basis_editText"
+                android:layout_alignBaseline="@id/basis_editText"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/aktivitaet_textView"
+                android:id="@+id/aktivitaet_textView"
+                android:layout_below="@id/bolus_editText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp" />
+
+
+            <Spinner
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/aktivitaet_spinner"
+                android:layout_below="@id/aktivitaet_textView"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/notiz_textView"
+                android:id="@+id/notiz_textView"
+                android:layout_below="@id/aktivitaet_spinner"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="15"
+                android:id="@+id/notiz_editText"
+                android:inputType="text"
+                android:layout_below="@id/notiz_textView"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#ffffffff"
+                android:textColor="#ff000000" />
+
+            <ImageButton
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/save_Button"
+                android:onClick="saveEntry"
+                android:layout_below="@id/notiz_editText"
+                android:layout_marginLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/fdisk"/>
+
+            <ImageButton
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/cancel_Button"
+                android:onClick="cancelEntry"
+                android:layout_below="@id/notiz_editText"
+                android:layout_toRightOf="@id/save_Button"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/gcan"/>
 
         </RelativeLayout>
     </ScrollView>

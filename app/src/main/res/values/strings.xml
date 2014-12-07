@@ -18,6 +18,15 @@
     <string name="blutzucker_text_view">Blutzucker</string>
     <string name="time_textview">Zeit</string>
     <string name="date_textview">Datum</string>
+    <string name="blutzucker_textView">Blutzucker</string>
+    <string name="mgDL_textview_text">mg / dl</string>
+    <string name="mahlzeit_textView_text">Mahlzeit</string>
+    <string name="insulin_textView">Insulin</string>
+    <string name="bolus_textView">BOLUS</string>
+    <string name="kh_textView">KH</string>
+    <string name="basis_textView">BASIS</string>
+    <string name="notiz_textView">Notiz</string>
+    <string name="aktivitaet_textView">Aktivität</string>
 
 
 </resources>
