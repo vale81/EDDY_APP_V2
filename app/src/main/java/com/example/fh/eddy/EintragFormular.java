@@ -84,6 +84,9 @@ public class EintragFormular extends Activity {
                 Toast toast=Toast.makeText(getApplicationContext(),"Eintrag gespeichert.", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
+                Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         }); // End onClick saveButton
         cancelNewEntry = (ImageButton) findViewById(R.id.cancel_Button);
