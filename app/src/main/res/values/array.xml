@@ -5,4 +5,9 @@
         <item>BE</item>
     </array>
 
+    <array name="default_activities">
+        <item>Kraftsport</item>
+        <item>Ausdauersport</item>
+    </array>
+
 </resources>
