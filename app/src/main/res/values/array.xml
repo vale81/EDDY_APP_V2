@@ -6,6 +6,7 @@
     </array>
 
     <array name="default_activities">
+        <item></item>
         <item>Kraftsport</item>
         <item>Ausdauersport</item>
     </array>
