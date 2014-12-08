@@ -33,8 +33,8 @@ public class DataHandler {
     public static final String DATABASE_NAME = "eddydb";
     public static final String DATABASE_TABLE_NAME = "eddy_table";
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_CREATE_TABLE = "create table eddy_table (_id integer primary key autoincrement, blutzuckerwert text not null," +
-            "bolus text, basis text, kohlenhydratmenge numeric, notiz text, uhrzeit text, datum text, aktivitaet text);";
+    public static final String DATABASE_CREATE_TABLE = "create table eddy_table (_id integer primary key autoincrement, blutzuckerwert numeric not null," +
+            "bolus text, basis text, kohlenhydratmenge numeric, notiz text, uhrzeit numeric, datum numeric, aktivitaet text);";
 
     // String Array zum halten aller Spalten der DB
     private String[] allColumns = {ROW_ID, BLUTZUCKERWERT, BOLUSINSULIN, BASISINSULIN, KOHLENHYDRATMENGE,
@@ -68,7 +68,7 @@ public class DataHandler {
     }
 
     // Methode zum Einfuegen von Daten
-    public EintragDaten insertNewData(String blutzuckerwert, String bolus, String basis, String kohlenhydratmenge,
+    public EintragDaten insertNewData(int blutzuckerwert, String bolus, String basis, String kohlenhydratmenge,
                                       String aktvitaet, String notiz, String datum, String uhrzeit )
     {
         ContentValues content = new ContentValues();
@@ -81,6 +81,7 @@ public class DataHandler {
         content.put(DAS_DATUM, datum);
         content.put(AKTIVITAET, aktvitaet);
 
+
         // Einfuege ID
         long eintragID = eddy_db.insert(DATABASE_TABLE_NAME, null, content);
 
@@ -91,7 +92,7 @@ public class DataHandler {
         EintragDaten neuerEintrag = cursorToValues(cursor);
         cursor.close();
         return neuerEintrag;
-        //return eddy_db.insert(DATABASE_TABLE_NAME, null, content);
+
     }
     // Loescht einzelne Eintraege
     public void deleteEintrag(EintragDaten eintrag)
@@ -122,15 +123,17 @@ public class DataHandler {
     private EintragDaten cursorToValues(Cursor cursor)
     {
         EintragDaten eintrag = new EintragDaten();
+
         eintrag.setId(cursor.getLong(0));
-        eintrag.setBzWert(cursor.getString(1));
+        eintrag.setBloodSugarValue(cursor.getInt(1));
         eintrag.setBolus(cursor.getString(2));
-        eintrag.setBasis(cursor.getString(3));
-        eintrag.setKohlenhydratmenge(cursor.getString(4));
-        eintrag.setAktivitaet(cursor.getString(5));
-        eintrag.setNotiz(cursor.getString(6));
-        eintrag.setDatum(cursor.getString(7));
-        eintrag.setUhrzeit(cursor.getString(8));
+        eintrag.setBaseInsulin(cursor.getString(3));
+        eintrag.setCarbAmount(cursor.getString(4));
+        eintrag.setActivity(cursor.getString(5));
+        eintrag.setNote(cursor.getString(6));
+        eintrag.setTheDate(cursor.getString(7));
+        eintrag.setDaytime(cursor.getString(8));
+
         return eintrag;
     }
 

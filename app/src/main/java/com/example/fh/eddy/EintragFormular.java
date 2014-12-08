@@ -1,14 +1,14 @@
 package com.example.fh.eddy;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -21,15 +21,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Set;
-import java.util.StringTokenizer;
+
 
 /**
  * Created by Tim  Nov. 2014.
  */
 public class EintragFormular extends Activity {
 
-    // EintragDaten Objekt
-    private EintragDaten newEntry;
     // Database Objekt mit Helper
     private DataHandler myDataHandler;
     // Kalendar anlegen
@@ -47,13 +45,13 @@ public class EintragFormular extends Activity {
     // Buttons anlegen
     ImageButton saveNewEntry;
     ImageButton cancelNewEntry;
+    EintragDaten eintrag;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.eintrag_formular);
         // The activity is being created.
-        // Init alle EditTexts nach Reihenfolge auf Bildschirm, Spinner separat
         the_date = (TextView)findViewById(R.id.date_currentDate_textView);
         the_time = (TextView) findViewById(R.id.time_currentTime_textView);
         currentBloodsugarlevel = (EditText) findViewById(R.id.BZ_editText);
@@ -63,11 +61,46 @@ public class EintragFormular extends Activity {
         currentNote = (EditText) findViewById(R.id.notiz_editText);
         // Init Buttons
         saveNewEntry = (ImageButton) findViewById(R.id.save_Button);
+        saveNewEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int bloodSugarValue = Integer.valueOf(currentBloodsugarlevel.getText().toString());
+                String currentBolus = currentBolusInsulin.getText().toString();
+                String baseInsulin = currentBaseInsulin.getText().toString();
+                String mealCarbAmount = currentMealCarbAmount.getText().toString();
+                String neueNotiz = currentNote.getText().toString();
+                String dieUhrzeit = the_time.getText().toString();
+                String dasDatum = the_date.getText().toString();
+                // Spinner Get Selected Value
+                String spinnerSelectedValue = ((Spinner)findViewById(
+                        R.id.aktivitaet_spinner)).getSelectedItem().toString();
+
+                myDataHandler = new DataHandler(getBaseContext());
+                myDataHandler.open();
+                eintrag = myDataHandler.insertNewData(bloodSugarValue,currentBolus,
+                        baseInsulin,mealCarbAmount, spinnerSelectedValue, neueNotiz, dasDatum,dieUhrzeit);
+                myDataHandler.closeDatabase();
+                Toast toast=Toast.makeText(getApplicationContext(),"Eintrag gespeichert.", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+                toast.show();
+            }
+        }); // End onClick saveButton
         cancelNewEntry = (ImageButton) findViewById(R.id.cancel_Button);
+        cancelNewEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+
+            }
+        });
         // Spinner mit Aktivitaeten fuellen
         fillActivitySpinner();
         // Listener zu Spinner hinzufuegen
         addListenerToaktivitaetSpinner();
+
 
         // Für voreingestelltes Datum im Datum Edittext
         int currentDay = c.get(Calendar.DAY_OF_MONTH);
@@ -123,7 +156,7 @@ public class EintragFormular extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-               String activitySpinnerItemPicked = parent.getItemAtPosition(position).toString();
+              // String activitySpinnerItemPicked = activitySpinner.getSelectedItem().toString();
 
             }
 
@@ -146,6 +179,16 @@ public class EintragFormular extends Activity {
         {
             return "0"+ String.valueOf(timeDateInput);
         }
+    }
+
+    public void saveEntry()
+    {
+
+    }
+
+    public void cancelEntry()
+    {
+
     }
 
     @Override

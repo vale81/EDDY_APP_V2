@@ -8,16 +8,16 @@ public class EintragDaten {
     //Row-ID
     private long id;
     //Blutzuckerwert
-    private String bzWert;
+    private int bloodSugarValue;
     //Menge Bolusinsulin
     private String bolus;
     //Menge Basisinsulin
-    private String basis;
-    private String notiz;
-    private String aktivitaet;
-    private String datum;
-    private String uhrzeit;
-    private String kohlenhydratmenge;
+    private String baseInsulin;
+    private String note;
+    private String activity;
+    private String theDate;
+    private String daytime;
+    private String carbAmount;
 
     public long getId()
     {
@@ -29,14 +29,14 @@ public class EintragDaten {
         this.id = id;
     }
 
-    public String getBzWert()
+    public int getBloodSugarValue()
     {
-        return bzWert;
+        return bloodSugarValue;
     }
 
-    public void setBzWert(String bzWert)
+    public void setBloodSugarValue(int bloodSugarValue)
     {
-        this.bzWert = bzWert;
+        this.bloodSugarValue = bloodSugarValue;
     }
 
     public String getBolus()
@@ -49,64 +49,70 @@ public class EintragDaten {
         this.bolus = bolus;
     }
 
-    public String getBasis()
+    public String getBaseInsulin()
     {
-        return basis;
+        return baseInsulin;
     }
 
-    public void setBasis(String basis)
+    public void setBaseInsulin(String baseInsulin)
     {
-        this.basis = basis;
+        this.baseInsulin = baseInsulin;
     }
 
-    public String getNotiz()
+    public String getNote()
     {
-        return notiz;
+        return note;
     }
 
-    public void setNotiz(String notiz)
+    public void setNote(String note)
     {
-        this.notiz = notiz;
+        this.note = note;
     }
 
-    public String getAktivitaet()
+    public String getActivity()
     {
-        return aktivitaet;
+        return activity;
     }
 
-    public void setAktivitaet(String aktivitaet)
+    public void setActivity(String activity)
     {
-        this.aktivitaet = aktivitaet;
+        this.activity = activity;
     }
 
-    public String getDatum()
+    public String getTheDate()
     {
-        return datum;
+        return theDate;
     }
 
-    public void setDatum(String datum)
+    public void setTheDate(String theDate)
     {
-        this.datum = datum;
+        this.theDate = theDate;
     }
 
-    public String getUhrzeit()
+    public String getDaytime()
     {
-        return uhrzeit;
+        return daytime;
     }
 
-    public void setUhrzeit(String uhrzeit)
+    public void setDaytime(String daytime)
     {
-        this.uhrzeit = uhrzeit;
+        this.daytime = daytime;
     }
 
-    public String getKohlenhydratmenge()
+    public String getCarbAmount()
     {
-        return kohlenhydratmenge;
+        return carbAmount;
     }
 
-    public void setKohlenhydratmenge(String kohlenhydratmenge)
+    public void setCarbAmount(String carbAmount)
     {
-        this.kohlenhydratmenge = kohlenhydratmenge;
+        this.carbAmount = carbAmount;
+    }
+
+    // Von Adapter fuer View genutzt
+    public String toString()
+    {
+        return Integer.toString(bloodSugarValue) + "   " + theDate + "     " + daytime;
     }
 
 } // Ende Klasse EintragDaten

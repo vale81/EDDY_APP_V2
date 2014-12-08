@@ -1,5 +1,5 @@
 package com.example.fh.eddy;
-
+import android.app.ListActivity;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -12,9 +12,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.ArrayAdapter;
+
+import java.util.List;
 
 
-public class MainScreenActivity extends Activity {
+
+public class MainScreenActivity extends ListActivity {
+    private DataHandler myDataHandler;
+
     ActionBar.Tab tab1, tab2, tab3;
     Fragment fragmentTab1 = new FragmentTab1();
     Fragment fragmentTab2 = new FragmentTab2();
@@ -24,6 +30,13 @@ public class MainScreenActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
+        // Alles fuer den Listview aus der Datenbank
+        myDataHandler = new DataHandler(this);
+        myDataHandler.open();
+        List<EintragDaten> eintragList = myDataHandler.getJedenEintrag();
+        ArrayAdapter<EintragDaten> adapter = new ArrayAdapter<EintragDaten>(this,
+                android.R.layout.simple_list_item_1, eintragList);
+        setListAdapter(adapter);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
@@ -70,5 +83,11 @@ public class MainScreenActivity extends Activity {
     public void sendMessage(View view) {
         Intent intent = new Intent(this, EintragFormular.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        myDataHandler.closeDatabase();
+        super.onPause();
     }
 }
