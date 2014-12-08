@@ -29,15 +29,24 @@ import java.util.StringTokenizer;
 public class EintragFormular extends Activity {
 
     // EintragDaten Objekt
-    private EintragDaten neuerEintrag;
+    private EintragDaten newEntry;
     // Database Objekt mit Helper
     private DataHandler myDataHandler;
     // Kalendar anlegen
     private final Calendar c = Calendar.getInstance();
     // Spinner anlegen
     private Spinner activitySpinner;
-    // Edittextfelder anlegen
-
+    // Felder anlegen
+    TextView the_date;
+    TextView the_time;
+    EditText currentBloodsugarlevel;
+    EditText currentMealCarbAmount;
+    EditText currentBolusInsulin;
+    EditText currentBaseInsulin;
+    EditText currentNote;
+    // Buttons anlegen
+    ImageButton saveNewEntry;
+    ImageButton cancelNewEntry;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,17 +54,16 @@ public class EintragFormular extends Activity {
         setContentView(R.layout.eintrag_formular);
         // The activity is being created.
         // Init alle EditTexts nach Reihenfolge auf Bildschirm, Spinner separat
-        TextView the_date = (TextView)findViewById(R.id.date_currentDate_textView);
-        TextView the_time = (TextView) findViewById(R.id.time_currentTime_textView);
-        EditText currentBlutzucker = (EditText) findViewById(R.id.BZ_editText);
-        EditText currentMahlzeit = (EditText) findViewById(R.id.mahlzeit_EditText);
-        EditText currentBolus =(EditText) findViewById(R.id.bolus_editText);
-        EditText currentBasis = (EditText) findViewById(R.id.basis_editText);
-        EditText currentNotiz = (EditText) findViewById(R.id.notiz_editText);
+        the_date = (TextView)findViewById(R.id.date_currentDate_textView);
+        the_time = (TextView) findViewById(R.id.time_currentTime_textView);
+        currentBloodsugarlevel = (EditText) findViewById(R.id.BZ_editText);
+        currentMealCarbAmount = (EditText) findViewById(R.id.mahlzeit_EditText);
+        currentBolusInsulin =(EditText) findViewById(R.id.bolus_editText);
+        currentBaseInsulin = (EditText) findViewById(R.id.basis_editText);
+        currentNote = (EditText) findViewById(R.id.notiz_editText);
         // Init Buttons
-        ImageButton saveButton = (ImageButton) findViewById(R.id.save_Button);
-        ImageButton cancelButton = (ImageButton) findViewById(R.id.cancel_Button);
-
+        saveNewEntry = (ImageButton) findViewById(R.id.save_Button);
+        cancelNewEntry = (ImageButton) findViewById(R.id.cancel_Button);
         // Spinner mit Aktivitaeten fuellen
         fillActivitySpinner();
         // Listener zu Spinner hinzufuegen
@@ -73,7 +81,7 @@ public class EintragFormular extends Activity {
         int currentMinute = c.get(Calendar.MINUTE);
         the_time.setText(nullPad(currentHour) + ":" + nullPad(currentMinute));
 
-    } // end onCreate
+    } // end onCreate()
 
     // Methode zum Befuellen des Spinners
     public void fillActivitySpinner()
@@ -96,18 +104,16 @@ public class EintragFormular extends Activity {
             String item=(String)it.next();
             list.add(item);
         }
-
-
         // Adapter fuer Spinner Inhalt
         ArrayAdapter<String> activitySpinnerAdapter =
                 new ArrayAdapter<String>(this,
                         android.R.layout.simple_spinner_item, list);
         activitySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         // Set Adapter
         activitySpinner.setAdapter(activitySpinnerAdapter);
 
-    }
+    } // End fillActivitySpinner()
+
     // Spinner Listener
     public void addListenerToaktivitaetSpinner()
     {
@@ -117,7 +123,7 @@ public class EintragFormular extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-               String aktivitaetGeweahlt = parent.getItemAtPosition(position).toString();
+               String activitySpinnerItemPicked = parent.getItemAtPosition(position).toString();
 
             }
 
@@ -141,9 +147,6 @@ public class EintragFormular extends Activity {
             return "0"+ String.valueOf(timeDateInput);
         }
     }
-
-
-
 
     @Override
     protected void onStart() {
