@@ -18,7 +18,7 @@ import java.util.List;
 
 
 
-public class MainScreenActivity extends ListActivity {
+public class MainScreenActivity extends Activity {
     private DataHandler myDataHandler;
 
     ActionBar.Tab tab1, tab2, tab3;
@@ -30,13 +30,6 @@ public class MainScreenActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        // Alles fuer den Listview aus der Datenbank
-        myDataHandler = new DataHandler(this);
-        myDataHandler.open();
-        List<EintragDaten> eintragList = myDataHandler.getJedenEintrag();
-        ArrayAdapter<EintragDaten> adapter = new ArrayAdapter<EintragDaten>(this,
-                android.R.layout.simple_list_item_1, eintragList);
-        setListAdapter(adapter);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
@@ -87,7 +80,7 @@ public class MainScreenActivity extends ListActivity {
 
     @Override
     protected void onPause() {
-        myDataHandler.closeDatabase();
+       // myDataHandler.closeDatabase();
         super.onPause();
     }
 }

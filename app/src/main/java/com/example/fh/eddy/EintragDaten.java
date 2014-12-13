@@ -3,6 +3,7 @@ package com.example.fh.eddy;
 /**
  * Created by Tim on 21.11.2014.
  * Klasse zur modellierung der Eintraege.
+ * Haelt Eintragsdaten
  */
 public class EintragDaten {
     //Row-ID
@@ -112,7 +113,7 @@ public class EintragDaten {
     // Von Adapter fuer View genutzt
     public String toString()
     {
-        return Integer.toString(bloodSugarValue) + "   " + theDate + "     " + daytime;
+        return Integer.toString(bloodSugarValue) + "   " + theDate + "     " + daytime + " " + activity;
     }
 
 } // Ende Klasse EintragDaten

@@ -68,6 +68,7 @@ public class DataHandler {
     }
 
     // Methode zum Einfuegen von Daten
+    // Content = KeyValue Pairs Key = Spalte Value = Inhalt in Spalte
     public EintragDaten insertNewData(int blutzuckerwert, String bolus, String basis, String kohlenhydratmenge,
                                       String aktvitaet, String notiz, String datum, String uhrzeit )
     {
@@ -82,13 +83,16 @@ public class DataHandler {
         content.put(AKTIVITAET, aktvitaet);
 
 
-        // Einfuege ID
+        // Einfuege ID erstellen und Content-insert
         long eintragID = eddy_db.insert(DATABASE_TABLE_NAME, null, content);
-
+        // Alle Spalten in Cursorobjekt geladen, Cursor dann uebergeben
+        // Jeder neue Eintrag bekommt eigene ID
+        // EintragID an Cursorstelle 0
         Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME,
                 allColumns, ROW_ID + " = " + eintragID, null,
                 null, null, null);
         cursor.moveToFirst();
+        // Daten in das EintragDatenobjekt geschrieben ueber cursorToValues und ein neuer Eintrag returned
         EintragDaten neuerEintrag = cursorToValues(cursor);
         cursor.close();
         return neuerEintrag;
@@ -102,7 +106,7 @@ public class DataHandler {
         eddy_db.delete(DATABASE_TABLE_NAME, ROW_ID + " = " + id, null);
     }
 
-    // Alle Eintraege holen und in Liste packen
+    // Alle Eintraege holen und in Liste packen von Adapter fuer ListView genutzt
     public List<EintragDaten> getJedenEintrag() {
         List<EintragDaten> alleEintraege = new ArrayList<EintragDaten>();
 
@@ -119,7 +123,7 @@ public class DataHandler {
         cursor.close();
         return alleEintraege;
     }
-    // Eintragsdaten setzen
+    // Methode um Werte an der Stelle des Cursors zu holen und damit Eintragsdaten setzen
     private EintragDaten cursorToValues(Cursor cursor)
     {
         EintragDaten eintrag = new EintragDaten();
