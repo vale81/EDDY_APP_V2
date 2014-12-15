@@ -41,9 +41,9 @@ public class AktivitaetenVerwaltung extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.verwaltungs_layout);
         TextView txtview = (TextView) findViewById(R.id.textview_verwaltung);
-        txtview.setText("Neue Aktivität angeben");
+        txtview.setText(R.string.activity_verwaltung_text);
         Button button=(Button)findViewById(R.id.new_Item);
-        button.setText("Aktivität speichern");
+        button.setText(R.string.activity_verwaltung_button);
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPrefs.edit();
@@ -72,7 +72,7 @@ public class AktivitaetenVerwaltung extends Activity {
                 editor.putStringSet("activities",s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
-                Toast toast=Toast.makeText(getApplicationContext(),"Aktivität "+text+" gelöscht", Toast.LENGTH_LONG);
+                Toast toast=Toast.makeText(getApplicationContext(),getString(R.string.activity)+" "+text+" "+getString(R.string.deleted), Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
             }
@@ -126,7 +126,7 @@ public class AktivitaetenVerwaltung extends Activity {
         editor.putStringSet("activities",s);
         editor.commit();
         adapter.notifyDataSetChanged();
-        Toast toast=Toast.makeText(getApplicationContext(), "Aktivität " + activity + " gespeichert", Toast.LENGTH_SHORT);
+        Toast toast=Toast.makeText(getApplicationContext(), getString(R.string.activity)+" " + activity + " "+getString(R.string.saved), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
         toast.show();
 

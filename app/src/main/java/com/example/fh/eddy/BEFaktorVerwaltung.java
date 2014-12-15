@@ -34,16 +34,15 @@ public class BEFaktorVerwaltung extends Activity {
     ListView listview;
     ArrayList<String> list;
     ArrayAdapter adapter;
-    //StableArrayAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.verwaltungs_layout);
         TextView txtview = (TextView) findViewById(R.id.textview_verwaltung);
-        txtview.setText("Neuen BE-Faktor angeben");
+        txtview.setText(R.string.be_verwaltung_text);
         Button button=(Button)findViewById(R.id.new_Item);
-        button.setText("BE-Faktor speichern");
+        button.setText(R.string.be_verwaltung_button);
         EditText txtfield=(EditText) findViewById(R.id.textfield_verwaltung);
         txtfield.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
@@ -55,12 +54,6 @@ public class BEFaktorVerwaltung extends Activity {
         listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
 
-        //Iterator it= s.iterator();
-        //while(it.hasNext()) {
-        //    list.add((String)it.next());
-        //}
-
-        //adapter = new StableArrayAdapter(this,android.R.layout.simple_list_item_1, list);
         adapter = new ArrayAdapter<String>(this,
                 R.layout.aktivitaeten_listview_layout, R.id.firstLine, list);
         listview.setAdapter(adapter);
@@ -75,40 +68,11 @@ public class BEFaktorVerwaltung extends Activity {
                 editor.putStringSet("be_factor",s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
-                Toast toast=Toast.makeText(getApplicationContext(),"BE-Faktor "+text+" gelöscht", Toast.LENGTH_LONG);
+                Toast toast=Toast.makeText(getApplicationContext(),getString(R.string.be_factor)+" "+text+" "+getString(R.string.deleted), Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
             }
         });
-
-    }
-
-    private class StableArrayAdapter extends ArrayAdapter<String> {
-
-        public StableArrayAdapter(Context context, int textViewResourceId,
-                                  List<String> objects) {
-            super(context, textViewResourceId, objects);
-        }
-        /*HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
-
-        public StableArrayAdapter(Context context, int textViewResourceId,
-                                  List<String> objects) {
-            super(context, textViewResourceId, objects);
-            for (int i = 0; i < objects.size(); ++i) {
-                mIdMap.put(objects.get(i), i);
-            }
-        }
-
-        @Override
-        public long getItemId(int position) {
-            String item = getItem(position);
-            return mIdMap.get(item);
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return true;
-        }*/
 
     }
 
@@ -130,7 +94,7 @@ public class BEFaktorVerwaltung extends Activity {
         editor.commit();
         adapter.notifyDataSetChanged();
 
-        Toast toast=Toast.makeText(getApplicationContext(), "Be-Faktor " + activity + " gespeichert", Toast.LENGTH_SHORT);
+        Toast toast=Toast.makeText(getApplicationContext(), getString(R.string.be_factor)+" " + activity + " "+getString(R.string.saved), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
         toast.show();
     }

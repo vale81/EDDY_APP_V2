@@ -28,5 +28,17 @@
     <string name="notiz_textView">Notiz</string>
     <string name="aktivitaet_textView">Aktivität</string>
 
+    <string name="saved">gespeichert</string>
+    <string name="deleted">gelöscht</string>
+    <string name="activity">Aktivität</string>
+    <string name="medicin">Medizin</string>
+    <string name="be_factor">Be-Faktor</string>
+    <string name="be_verwaltung_button">BE-Faktor speichern</string>
+    <string name="be_verwaltung_text">Neuen BE-Faktor angeben</string>
+    <string name="activity_verwaltung_button">Aktivität speichern</string>
+    <string name="activity_verwaltung_text">Neue Aktivität angeben</string>
+    <string name="medizin_verwaltung_button">Medizin speichern</string>
+    <string name="medizin_verwaltung_text">Neue Medizin angeben</string>
+
 
 </resources>

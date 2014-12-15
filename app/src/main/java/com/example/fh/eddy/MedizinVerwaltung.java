@@ -33,16 +33,15 @@ public class MedizinVerwaltung extends Activity {
     ListView listview;
     ArrayList<String> list;
     ArrayAdapter adapter;
-    //StableArrayAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.verwaltungs_layout);
         TextView txtview = (TextView) findViewById(R.id.textview_verwaltung);
-        txtview.setText("Neue Medizin angeben");
+        txtview.setText(R.string.medizin_verwaltung_text);
         Button button=(Button)findViewById(R.id.new_Item);
-        button.setText("Medizin speichern");
+        button.setText(R.string.medizin_verwaltung_button);
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPrefs.edit();
@@ -51,12 +50,7 @@ public class MedizinVerwaltung extends Activity {
         listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
 
-        //Iterator it= s.iterator();
-        //while(it.hasNext()) {
-        //    list.add((String)it.next());
-        //}
 
-        //adapter = new StableArrayAdapter(this,android.R.layout.simple_list_item_1, list);
         adapter = new ArrayAdapter<String>(this,
                 R.layout.aktivitaeten_listview_layout, R.id.firstLine, list);
         listview.setAdapter(adapter);
@@ -71,40 +65,11 @@ public class MedizinVerwaltung extends Activity {
                 editor.putStringSet("medicines",s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
-                Toast toast= Toast.makeText(getApplicationContext(),"Medizin "+text+" gelöscht", Toast.LENGTH_LONG);
+                Toast toast= Toast.makeText(getApplicationContext(),getString(R.string.medicin)+ " " +text+" "+getString(R.string.deleted), Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
             }
         });
-
-    }
-
-    private class StableArrayAdapter extends ArrayAdapter<String> {
-
-        public StableArrayAdapter(Context context, int textViewResourceId,
-                                  List<String> objects) {
-            super(context, textViewResourceId, objects);
-        }
-        /*HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
-
-        public StableArrayAdapter(Context context, int textViewResourceId,
-                                  List<String> objects) {
-            super(context, textViewResourceId, objects);
-            for (int i = 0; i < objects.size(); ++i) {
-                mIdMap.put(objects.get(i), i);
-            }
-        }
-
-        @Override
-        public long getItemId(int position) {
-            String item = getItem(position);
-            return mIdMap.get(item);
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return true;
-        }*/
 
     }
 
@@ -126,7 +91,7 @@ public class MedizinVerwaltung extends Activity {
         editor.commit();
         adapter.notifyDataSetChanged();
 
-        Toast toast=Toast.makeText(getApplicationContext(), "Medizin " + activity + " gespeichert", Toast.LENGTH_SHORT);
+        Toast toast=Toast.makeText(getApplicationContext(), getString(R.string.medicin)+ " " + activity + " " +getString(R.string.saved), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
         toast.show();
     }
