@@ -19,6 +19,7 @@ public class EintragDaten {
     private String theDate;
     private String daytime;
     private String carbAmount;
+    private String theDateTime;
 
     public long getId()
     {
@@ -109,6 +110,7 @@ public class EintragDaten {
     {
         this.carbAmount = carbAmount;
     }
+
 
     // Von Adapter fuer View genutzt
     public String toString()

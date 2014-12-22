@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.Set;
 
 
+
 /**
  * Created by Tim  Nov. 2014.
  */
@@ -59,7 +60,8 @@ public class EintragFormular extends Activity {
         currentBolusInsulin =(EditText) findViewById(R.id.bolus_editText);
         currentBaseInsulin = (EditText) findViewById(R.id.basis_editText);
         currentNote = (EditText) findViewById(R.id.notiz_editText);
-        // Init Buttons
+
+        // Init the save-button and setting save-button Listener
         saveNewEntry = (ImageButton) findViewById(R.id.save_Button);
         saveNewEntry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,23 +74,31 @@ public class EintragFormular extends Activity {
                 String neueNotiz = currentNote.getText().toString();
                 String dieUhrzeit = the_time.getText().toString();
                 String dasDatum = the_date.getText().toString();
-                // Spinner Get Selected Value
+
+
+                // Get the Spinner Value for the activity spinner
                 String spinnerSelectedValue = ((Spinner)findViewById(
                         R.id.aktivitaet_spinner)).getSelectedItem().toString();
 
+                // Database Operations
                 myDataHandler = new DataHandler(getBaseContext());
                 myDataHandler.open();
                 eintrag = myDataHandler.insertNewData(bloodSugarValue,currentBolus,
-                        baseInsulin,mealCarbAmount, spinnerSelectedValue, neueNotiz, dasDatum,dieUhrzeit);
+                        baseInsulin,mealCarbAmount, spinnerSelectedValue, neueNotiz, dasDatum, dieUhrzeit);
                 myDataHandler.closeDatabase();
+
+                // Toast for User-Feedback
                 Toast toast=Toast.makeText(getApplicationContext(),"Eintrag gespeichert.", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
+                // Return to main screen and clear stack via flag
                 Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         }); // End onClick saveButton
+
+        // Init Cancel-Button and setting Cancel-Button Listener
         cancelNewEntry = (ImageButton) findViewById(R.id.cancel_Button);
         cancelNewEntry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,28 +108,30 @@ public class EintragFormular extends Activity {
                 startActivity(intent);
 
             }
-        });
-        // Spinner mit Aktivitaeten fuellen
+        }); // End onClick CancelButton
+
+        // Filling the activity spinner with selectable activities
         fillActivitySpinner();
-        // Listener zu Spinner hinzufuegen
+        // Adding Listener to the activity spinner
         addListenerToaktivitaetSpinner();
 
 
-        // Für voreingestelltes Datum im Datum Edittext
+
+        // Operations for setting the date
         int currentDay = c.get(Calendar.DAY_OF_MONTH);
-        // Java Monat Januar = 0 , daher + 1
+        // Java month starts at 0, thus need for adding 1 to values
         int currentMonth = c.get(Calendar.MONTH)+1;
         int currentYear = c.get(Calendar.YEAR);
         the_date.setText(currentDay + "." + currentMonth + "." + currentYear);
-        // Voreinstellung Uhrzeit, muss angepasst werden für Nullstellen
-        // 24 Std. Uhr
+        // Preset current time, needs to be adjusted with 0-padding for correct 24-Hour format
         int currentHour = c.get(Calendar.HOUR_OF_DAY);
         int currentMinute = c.get(Calendar.MINUTE);
+        // Calling helper method to correctly set 0-padding
         the_time.setText(nullPad(currentHour) + ":" + nullPad(currentMinute));
 
     } // end onCreate()
 
-    // Methode zum Befuellen des Spinners
+    // Method for filling the activity spinner with activities
     public void fillActivitySpinner()
     {
         SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -145,7 +157,7 @@ public class EintragFormular extends Activity {
                 new ArrayAdapter<String>(this,
                         android.R.layout.simple_spinner_item, list);
         activitySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Set Adapter
+        // Set the spinner's adapter
         activitySpinner.setAdapter(activitySpinnerAdapter);
 
     } // End fillActivitySpinner()
@@ -171,7 +183,7 @@ public class EintragFormular extends Activity {
         });
     }
 
-    //Hilfsfunktion Uhrzeit, Datum um Nullstellen richtig anzuzeigen
+    // Helper method for correctly setting 0-padding in 24-Hour format
     public String nullPad(int timeDateInput)
     {
         if(timeDateInput > 10)
@@ -183,6 +195,9 @@ public class EintragFormular extends Activity {
             return "0"+ String.valueOf(timeDateInput);
         }
     }
+
+
+
 
     public void saveEntry()
     {

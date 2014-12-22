@@ -8,8 +8,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by Tim on 17.11.2014.
@@ -27,18 +31,21 @@ public class DataHandler {
     public static final String NOTIZ = "notiz";
     public static final String DAS_DATUM = "datum";
     public static final String DIE_UHRZEIT = "uhrzeit";
+    public static final String DATE_TIME = "datetime";
+
+
     public static final String ROW_ID = "_id";
 
     // Variablen fuer die Datenbank
     public static final String DATABASE_NAME = "eddydb";
     public static final String DATABASE_TABLE_NAME = "eddy_table";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_CREATE_TABLE = "create table eddy_table (_id integer primary key autoincrement, blutzuckerwert numeric not null," +
-            "bolus text, basis text, kohlenhydratmenge numeric, notiz text, uhrzeit numeric, datum numeric, aktivitaet text);";
+            "bolus text, basis text, kohlenhydratmenge numeric, notiz text, uhrzeit numeric, datum numeric, aktivitaet text, datetime DEFAULT CURRENT_TIMESTAMP);";
 
     // String Array zum halten aller Spalten der DB
     private String[] allColumns = {ROW_ID, BLUTZUCKERWERT, BOLUSINSULIN, BASISINSULIN, KOHLENHYDRATMENGE,
-            AKTIVITAET, NOTIZ, DAS_DATUM, DIE_UHRZEIT};
+            AKTIVITAET, NOTIZ, DAS_DATUM, DIE_UHRZEIT, DATE_TIME};
 
 
     // Noetigen Objekte anlegen
@@ -70,7 +77,7 @@ public class DataHandler {
     // Methode zum Einfuegen von Daten
     // Content = KeyValue Pairs Key = Spalte Value = Inhalt in Spalte
     public EintragDaten insertNewData(int blutzuckerwert, String bolus, String basis, String kohlenhydratmenge,
-                                      String aktvitaet, String notiz, String datum, String uhrzeit )
+                                      String aktvitaet, String notiz, String datum, String uhrzeit)
     {
         ContentValues content = new ContentValues();
         content.put(BLUTZUCKERWERT, blutzuckerwert);
@@ -111,7 +118,7 @@ public class DataHandler {
         List<EintragDaten> alleEintraege = new ArrayList<EintragDaten>();
 
         Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME,
-                allColumns, null, null, null, null, null);
+                allColumns, null, null, null, null, DATE_TIME + " DESC");
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -173,5 +180,6 @@ public class DataHandler {
         }
 
     } // Ende innere Klasse DataBaseHelper
+
 
 } // Ende Klasse DataHandler
