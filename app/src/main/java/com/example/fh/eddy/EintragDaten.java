@@ -114,7 +114,7 @@ public class EintragDaten {
     // Used by adapter in ListView to display items
     public String toString()
     {
-        return Integer.toString(bloodSugarValue) + "   " + theDate + "     " + daytime + " " + activity;
+        return Integer.toString(bloodSugarValue) + " " + theDate + " " + daytime;
     }
 
 } // Ende Klasse EintragDaten
