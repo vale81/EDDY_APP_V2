@@ -23,7 +23,8 @@ public class MainScreenActivity extends Activity {
 
     ActionBar.Tab tab1, tab2, tab3;
     Fragment fragmentTab1 = new FragmentTab1();
-    Fragment fragmentTab2 = new FragmentTab2();
+    //Fragment fragmentTab2 = new FragmentTab2();
+    Fragment fragmentTab2 = new GraphicFragment();
     Fragment fragmentTab3= new SettingsFragment();
 
     protected void onCreate(Bundle savedInstanceState) {

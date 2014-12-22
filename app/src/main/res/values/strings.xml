@@ -40,5 +40,9 @@
     <string name="medizin_verwaltung_button">Medizin speichern</string>
     <string name="medizin_verwaltung_text">Neue Medizin angeben</string>
 
+    <string name="week">1 Woche</string>
+    <string name="month">1 Monat</string>
+    <string name="months">3 Monate</string>
+
 
 </resources>
