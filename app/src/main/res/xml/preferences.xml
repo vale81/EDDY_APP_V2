@@ -8,6 +8,13 @@
             android:targetClass="com.example.fh.eddy.AktivitaetenVerwaltung"/>
     </Preference>
 
+    <Preference android:title="Events"
+        android:summary="Verwalten Sie Ihre Events">
+        <intent
+            android:targetPackage="com.example.fh.eddy"
+            android:targetClass="com.example.fh.eddy.EventVerwaltung"/>
+    </Preference>
+
     <PreferenceScreen
         android:title="Person"
         android:summary="Geben Sie Daten zu Ihrer Person an">

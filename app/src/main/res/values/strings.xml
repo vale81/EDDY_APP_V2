@@ -31,12 +31,15 @@
     <string name="saved">gespeichert</string>
     <string name="deleted">gelöscht</string>
     <string name="activity">Aktivität</string>
+    <string name="event">Event</string>
     <string name="medicin">Medizin</string>
     <string name="be_factor">Be-Faktor</string>
     <string name="be_verwaltung_button">BE-Faktor speichern</string>
     <string name="be_verwaltung_text">Neuen BE-Faktor angeben</string>
     <string name="activity_verwaltung_button">Aktivität speichern</string>
     <string name="activity_verwaltung_text">Neue Aktivität angeben</string>
+    <string name="event_verwaltung_button">Event speichern</string>
+    <string name="event_verwaltung_text">Neues Event angeben</string>
     <string name="medizin_verwaltung_button">Medizin speichern</string>
     <string name="medizin_verwaltung_text">Neue Medizin angeben</string>
 
