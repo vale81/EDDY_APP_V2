@@ -14,7 +14,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Spinner;
-import org.w3c.dom.Text;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -29,24 +28,25 @@ import java.util.Set;
  */
 public class EintragFormular extends Activity {
 
-    // Database Objekt mit Helper
+    // Database object with helper
     private DataHandler myDataHandler;
-    // Kalendar anlegen
+    // Init calendar
     private final Calendar c = Calendar.getInstance();
-    // Spinner anlegen
+    // Init spinners
+    private Spinner eventSpinner;
     private Spinner activitySpinner;
-    // Felder anlegen
+    // Init fields globally so they can be manipulated
     TextView the_date;
     TextView the_time;
     EditText currentBloodsugarlevel;
     EditText currentMealCarbAmount;
     EditText currentBolusInsulin;
     EditText currentBaseInsulin;
-    EditText currentNote;
-    // Buttons anlegen
+
+    // Init buttons
     ImageButton saveNewEntry;
     ImageButton cancelNewEntry;
-    EintragDaten eintrag;
+    EintragDaten entry;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,9 +59,9 @@ public class EintragFormular extends Activity {
         currentMealCarbAmount = (EditText) findViewById(R.id.mahlzeit_EditText);
         currentBolusInsulin =(EditText) findViewById(R.id.bolus_editText);
         currentBaseInsulin = (EditText) findViewById(R.id.basis_editText);
-        currentNote = (EditText) findViewById(R.id.notiz_editText);
 
-        // Init the save-button and setting save-button Listener
+
+        // Init the save button and setting save button listener
         saveNewEntry = (ImageButton) findViewById(R.id.save_Button);
         saveNewEntry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,26 +71,30 @@ public class EintragFormular extends Activity {
                 String currentBolus = currentBolusInsulin.getText().toString();
                 String baseInsulin = currentBaseInsulin.getText().toString();
                 String mealCarbAmount = currentMealCarbAmount.getText().toString();
-                String neueNotiz = currentNote.getText().toString();
-                String dieUhrzeit = the_time.getText().toString();
-                String dasDatum = the_date.getText().toString();
+                String currTime = the_time.getText().toString();
+                String currDate = the_date.getText().toString();
 
 
-                // Get the Spinner Value for the activity spinner
+                // Get the spinner value for the activity spinner
                 String spinnerSelectedValue = ((Spinner)findViewById(
                         R.id.aktivitaet_spinner)).getSelectedItem().toString();
 
-                // Database Operations
+                // Get the spinner value for the event spinner
+                String eventSpinnerSelectedValue = ((Spinner)findViewById(
+                        R.id.event_spinner)).getSelectedItem().toString();
+
+                // Database operations
                 myDataHandler = new DataHandler(getBaseContext());
                 myDataHandler.open();
-                eintrag = myDataHandler.insertNewData(bloodSugarValue,currentBolus,
-                        baseInsulin,mealCarbAmount, spinnerSelectedValue, neueNotiz, dasDatum, dieUhrzeit);
+                entry = myDataHandler.insertNewData(bloodSugarValue,currentBolus,
+                        baseInsulin,mealCarbAmount, spinnerSelectedValue, eventSpinnerSelectedValue, currDate, currTime);
                 myDataHandler.closeDatabase();
 
-                // Toast for User-Feedback
+                // Toast for user feedback
                 Toast toast=Toast.makeText(getApplicationContext(),"Eintrag gespeichert.", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
+
                 // Return to main screen and clear stack via flag
                 Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -98,7 +102,7 @@ public class EintragFormular extends Activity {
             }
         }); // End onClick saveButton
 
-        // Init Cancel-Button and setting Cancel-Button Listener
+        // Init cancel button and setting cancel button listener
         cancelNewEntry = (ImageButton) findViewById(R.id.cancel_Button);
         cancelNewEntry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,14 +114,16 @@ public class EintragFormular extends Activity {
             }
         }); // End onClick CancelButton
 
-        // Filling the activity spinner with selectable activities
+        // Filling the activity spinner with selectable activities and adding listener
         fillActivitySpinner();
-        // Adding Listener to the activity spinner
-        addListenerToaktivitaetSpinner();
+        addListenerToActivitySpinner();
+
+        // Filling the event spinner with events and adding listener
+        fillEventSpinner();
+        addListenerToEventSpinner();
 
 
-
-        // Operations for setting the date
+        // Setting the date in the textviews
         int currentDay = c.get(Calendar.DAY_OF_MONTH);
         // Java month starts at 0, thus need for adding 1 to values
         int currentMonth = c.get(Calendar.MONTH)+1;
@@ -152,7 +158,7 @@ public class EintragFormular extends Activity {
             String item=(String)it.next();
             list.add(item);
         }
-        // Adapter fuer Spinner Inhalt
+        // Adapter for spinner contents
         ArrayAdapter<String> activitySpinnerAdapter =
                 new ArrayAdapter<String>(this,
                         android.R.layout.simple_spinner_item, list);
@@ -162,8 +168,39 @@ public class EintragFormular extends Activity {
 
     } // End fillActivitySpinner()
 
-    // Spinner Listener
-    public void addListenerToaktivitaetSpinner()
+    // Method for filling the event spinner with events
+    public void fillEventSpinner()
+    {
+        SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        eventSpinner = (Spinner) findViewById(R.id.event_spinner);
+
+        List<String> list = new ArrayList<String>();
+
+        Set<String> s = myPrefs.getStringSet("events", new HashSet<String>());
+
+        Iterator it= s.iterator();
+
+        String[] array= getResources().getStringArray(R.array.default_events);
+        for (String item :array) {
+            list.add(item);
+        }
+        while(it.hasNext()) {
+            String item=(String)it.next();
+            list.add(item);
+        }
+        // Adapter for spinner contents
+        ArrayAdapter<String> eventSpinnerAdapter =
+                new ArrayAdapter<String>(this,
+                        android.R.layout.simple_spinner_item, list);
+        eventSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Set the spinner's adapter
+        eventSpinner.setAdapter(eventSpinnerAdapter);
+
+    } // End fillEventSpinner()
+
+    // Method to add listener to activity spinner
+    public void addListenerToActivitySpinner()
     {
         activitySpinner = (Spinner) findViewById(R.id.aktivitaet_spinner);
 
@@ -181,7 +218,28 @@ public class EintragFormular extends Activity {
                 // TODO Auto-generated
             }
         });
-    }
+    } // End add listener to activity spinner
+
+    // Method to add listener to event spinner
+    public void addListenerToEventSpinner()
+    {
+        eventSpinner = (Spinner) findViewById(R.id.aktivitaet_spinner);
+
+        eventSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                // String eventSpinnerItemPicked = eventSpinner.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+                // Add something later maybe
+            }
+        });
+    } // End add listener to event spinner
 
     // Helper method for correctly setting 0-padding in 24-Hour format
     public String nullPad(int timeDateInput)
@@ -195,9 +253,6 @@ public class EintragFormular extends Activity {
             return "0"+ String.valueOf(timeDateInput);
         }
     }
-
-
-
 
     public void saveEntry()
     {

@@ -46,6 +46,7 @@
     <string name="week">1 Woche</string>
     <string name="month">1 Monat</string>
     <string name="months">3 Monate</string>
+    <string name="event_spinner_textView">Ereignis</string>
 
 
 </resources>

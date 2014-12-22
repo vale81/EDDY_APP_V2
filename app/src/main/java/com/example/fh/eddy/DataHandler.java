@@ -17,50 +17,53 @@ import java.util.Locale;
 
 /**
  * Created by Tim on 17.11.2014.
- * Diese Klasse implementiert die Datenbank für die Speicherung der Daten
- * aus dem Eintragsformular.
+ * This class handles database creation as well as providing a helper
+ * for database manipulation. Since the helper is only needed when a
+ * database is needed it is included in this class. Only a
+ * Datahandler object needs to be instantiated.
+ * A separate helper object is not needed.
  */
 public class DataHandler {
 
-    // Variablen fuer den Table
-    public static final String BLUTZUCKERWERT = "blutzuckerwert";
+    // Table fields
+    public static final String BLOODSUGAR = "blood_sugar_value";
     public static final String BOLUSINSULIN = "bolus";
-    public static final String BASISINSULIN = "basis";
-    public static final String KOHLENHYDRATMENGE = "kohlenhydratmenge";
-    public static final String AKTIVITAET = "aktivitaet";
-    public static final String NOTIZ = "notiz";
-    public static final String DAS_DATUM = "datum";
-    public static final String DIE_UHRZEIT = "uhrzeit";
-    public static final String DATE_TIME = "datetime";
+    public static final String BASEINSULIN = "base";
+    public static final String CARBAMOUNT = "carb_amount";
+    public static final String ACTIVITY = "activity";
+    public static final String EVENT = "event";
+    public static final String THE_DATE = "current_Date";
+    public static final String THE_TIME = "current_Time";
+    public static final String CREATED_TIME = "created_time";
 
 
     public static final String ROW_ID = "_id";
 
-    // Variablen fuer die Datenbank
+    // Database creation fields
     public static final String DATABASE_NAME = "eddydb";
     public static final String DATABASE_TABLE_NAME = "eddy_table";
-    public static final int DATABASE_VERSION = 2;
-    public static final String DATABASE_CREATE_TABLE = "create table eddy_table (_id integer primary key autoincrement, blutzuckerwert numeric not null," +
-            "bolus text, basis text, kohlenhydratmenge numeric, notiz text, uhrzeit numeric, datum numeric, aktivitaet text, datetime DEFAULT CURRENT_TIMESTAMP);";
+    public static final int DATABASE_VERSION = 5;
+    public static final String DATABASE_CREATE_TABLE = "create table eddy_table (_id integer primary key autoincrement, blood_sugar_value numeric not null," +
+            "bolus text, base text, carb_amount numeric, event text, current_Time numeric, current_Date numeric, activity text, created_time DEFAULT CURRENT_TIMESTAMP);";
 
-    // String Array zum halten aller Spalten der DB
-    private String[] allColumns = {ROW_ID, BLUTZUCKERWERT, BOLUSINSULIN, BASISINSULIN, KOHLENHYDRATMENGE,
-            AKTIVITAET, NOTIZ, DAS_DATUM, DIE_UHRZEIT, DATE_TIME};
+    // String-array holds columns of table
+    private String[] allColumns = {ROW_ID, BLOODSUGAR, BOLUSINSULIN, BASEINSULIN, CARBAMOUNT,
+            ACTIVITY, EVENT, THE_DATE, THE_TIME, CREATED_TIME};
 
 
-    // Noetigen Objekte anlegen
+    // Setup required objects
     private final Context ctx;
     private DatabaseHelper dbHelper;
     private SQLiteDatabase eddy_db;
 
-    // Konstruktor fuer auessere Klasse
+    // Constructor of outer class
     public DataHandler(Context ctx)
     {
         this.ctx = ctx;
         dbHelper = new DatabaseHelper(ctx);
     }
 
-    // Methode zum oeffnen der Datenbank damit Eintraege gespeichert werden koennen
+    // Method to open database
     public DataHandler open() throws SQLiteException
     {
         dbHelper = new DatabaseHelper(ctx);
@@ -68,99 +71,100 @@ public class DataHandler {
         return this;
     }
 
-    // Methode zum Schliessen der Datenbank
+    // Method for closing the database
     public void closeDatabase()
     {
         dbHelper.close();
     }
 
-    // Methode zum Einfuegen von Daten
-    // Content = KeyValue Pairs Key = Spalte Value = Inhalt in Spalte
-    public EintragDaten insertNewData(int blutzuckerwert, String bolus, String basis, String kohlenhydratmenge,
-                                      String aktvitaet, String notiz, String datum, String uhrzeit)
+    // Methode to insert new data
+    // Content = KeyValue Pairs Key = Column Value = Contents in Column
+    public EintragDaten insertNewData(int new_blood_sugar_value, String new_bolus, String new_base, String new_carb_amount,
+                                      String new_activity, String curr_event, String curr_date, String curr_time)
     {
         ContentValues content = new ContentValues();
-        content.put(BLUTZUCKERWERT, blutzuckerwert);
-        content.put(BOLUSINSULIN, bolus);
-        content.put(BASISINSULIN, basis);
-        content.put(KOHLENHYDRATMENGE, kohlenhydratmenge);
-        content.put(NOTIZ, notiz);
-        content.put(DIE_UHRZEIT, uhrzeit);
-        content.put(DAS_DATUM, datum);
-        content.put(AKTIVITAET, aktvitaet);
+        content.put(BLOODSUGAR, new_blood_sugar_value);
+        content.put(BOLUSINSULIN, new_bolus);
+        content.put(BASEINSULIN, new_base);
+        content.put(CARBAMOUNT, new_carb_amount);
+        content.put(EVENT, curr_event);
+        content.put(THE_TIME, curr_time);
+        content.put(THE_DATE, curr_date);
+        content.put(ACTIVITY, new_activity);
 
 
         // Einfuege ID erstellen und Content-insert
-        long eintragID = eddy_db.insert(DATABASE_TABLE_NAME, null, content);
+        long newEntryID = eddy_db.insert(DATABASE_TABLE_NAME, null, content);
         // Alle Spalten in Cursorobjekt geladen, Cursor dann uebergeben
         // Jeder neue Eintrag bekommt eigene ID
         // EintragID an Cursorstelle 0
         Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME,
-                allColumns, ROW_ID + " = " + eintragID, null,
+                allColumns, ROW_ID + " = " + newEntryID, null,
                 null, null, null);
         cursor.moveToFirst();
         // Daten in das EintragDatenobjekt geschrieben ueber cursorToValues und ein neuer Eintrag returned
-        EintragDaten neuerEintrag = cursorToValues(cursor);
+        EintragDaten newEntry = cursorToValues(cursor);
         cursor.close();
-        return neuerEintrag;
+        return newEntry;
 
     }
     // Loescht einzelne Eintraege
-    public void deleteEintrag(EintragDaten eintrag)
+    public void deleteSingleEntry(EintragDaten entry)
     {
-        long id = eintrag.getId();
+        long id = entry.getId();
         System.out.println("Eintrag mit ID " + id + "wurde geloescht.");
         eddy_db.delete(DATABASE_TABLE_NAME, ROW_ID + " = " + id, null);
     }
 
     // Alle Eintraege holen und in Liste packen von Adapter fuer ListView genutzt
-    public List<EintragDaten> getJedenEintrag() {
-        List<EintragDaten> alleEintraege = new ArrayList<EintragDaten>();
+    public List<EintragDaten> getEveryEntry() {
+        List<EintragDaten> everyEntry = new ArrayList<EintragDaten>();
 
         Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME,
-                allColumns, null, null, null, null, DATE_TIME + " DESC");
+                allColumns, null, null, null, null, CREATED_TIME + " DESC");
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             EintragDaten eintrag = cursorToValues(cursor);
-            alleEintraege.add(eintrag);
+            everyEntry.add(eintrag);
             cursor.moveToNext();
         }
         // make sure to close the cursor
         cursor.close();
-        return alleEintraege;
+        return everyEntry;
     }
     // Methode um Werte an der Stelle des Cursors zu holen und damit Eintragsdaten setzen
     private EintragDaten cursorToValues(Cursor cursor)
     {
-        EintragDaten eintrag = new EintragDaten();
+        EintragDaten entry = new EintragDaten();
 
-        eintrag.setId(cursor.getLong(0));
-        eintrag.setBloodSugarValue(cursor.getInt(1));
-        eintrag.setBolus(cursor.getString(2));
-        eintrag.setBaseInsulin(cursor.getString(3));
-        eintrag.setCarbAmount(cursor.getString(4));
-        eintrag.setActivity(cursor.getString(5));
-        eintrag.setNote(cursor.getString(6));
-        eintrag.setTheDate(cursor.getString(7));
-        eintrag.setDaytime(cursor.getString(8));
+        entry.setId(cursor.getLong(0));
+        entry.setBloodSugarValue(cursor.getInt(1));
+        entry.setBolus(cursor.getString(2));
+        entry.setBaseInsulin(cursor.getString(3));
+        entry.setCarbAmount(cursor.getString(4));
+        entry.setActivity(cursor.getString(5));
+        entry.setEvent(cursor.getString(6));
+        entry.setTheDate(cursor.getString(7));
+        entry.setDaytime(cursor.getString(8));
 
-        return eintrag;
+        return entry;
     }
 
-    //  Anfang innere Klasse
+    //  Begin inner class
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
 
-        //Konstructor fuer innere Klasse
-        //anlegen der Datenbank
+        //Constructor inner Class
+        //Init Database
         public DatabaseHelper(Context ctx )
         {
             super(ctx, DATABASE_NAME, null,DATABASE_VERSION);
         }
 
 
-        @Override // sobald die Datenbank angelegt wurde = Table erstellen
+        @Override
+        // Once databse is created the create table is executed
         public void onCreate(SQLiteDatabase sqLiteDatabase) {
             try
             {
@@ -179,7 +183,7 @@ public class DataHandler {
             onCreate(sqLiteDatabase);
         }
 
-    } // Ende innere Klasse DataBaseHelper
+    } // Ende inner class DataBaseHelper
 
 
-} // Ende Klasse DataHandler
+} // End class DataHandler

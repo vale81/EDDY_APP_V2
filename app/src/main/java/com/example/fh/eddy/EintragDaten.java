@@ -2,8 +2,7 @@ package com.example.fh.eddy;
 
 /**
  * Created by Tim on 21.11.2014.
- * Klasse zur modellierung der Eintraege.
- * Haelt Eintragsdaten
+ * This class models the entries made by the user.
  */
 public class EintragDaten {
     //Row-ID
@@ -14,12 +13,12 @@ public class EintragDaten {
     private String bolus;
     //Menge Basisinsulin
     private String baseInsulin;
-    private String note;
+    private String event;
     private String activity;
     private String theDate;
     private String daytime;
     private String carbAmount;
-    private String theDateTime;
+
 
     public long getId()
     {
@@ -61,14 +60,14 @@ public class EintragDaten {
         this.baseInsulin = baseInsulin;
     }
 
-    public String getNote()
+    public String getEvent()
     {
-        return note;
+        return event;
     }
 
-    public void setNote(String note)
+    public void setEvent(String event)
     {
-        this.note = note;
+        this.event = event;
     }
 
     public String getActivity()
@@ -112,7 +111,7 @@ public class EintragDaten {
     }
 
 
-    // Von Adapter fuer View genutzt
+    // Used by adapter in ListView to display items
     public String toString()
     {
         return Integer.toString(bloodSugarValue) + "   " + theDate + "     " + daytime + " " + activity;

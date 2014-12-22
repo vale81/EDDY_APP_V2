@@ -204,6 +204,18 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:text="@string/event_spinner_textView"
+                android:id="@+id/ereignis_textView"
+                android:layout_alignBaseline="@id/aktivitaet_textView"
+                android:layout_toRightOf="@id/aktivitaet_textView"
+                android:layout_alignLeft="@id/basis_editText"
+                android:layout_marginTop="10dp"
+                />
+
 
             <Spinner
                 android:layout_width="100dp"
@@ -213,34 +225,23 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Spinner
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/notiz_textView"
-                android:id="@+id/notiz_textView"
-                android:layout_below="@id/aktivitaet_spinner"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="15"
-                android:id="@+id/notiz_editText"
-                android:inputType="text"
-                android:layout_below="@id/notiz_textView"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:background="#ffffffff"
-                android:textColor="#ff000000" />
+                android:id="@+id/event_spinner"
+                android:layout_toRightOf="@id/aktivitaet_spinner"
+                android:layout_below="@id/aktivitaet_textView"
+                android:layout_alignBaseline="@id/aktivitaet_spinner"
+                android:layout_alignLeft="@id/ereignis_textView"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp" />
 
             <ImageButton
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/save_Button"
                 android:onClick="onClick"
-                android:layout_below="@id/notiz_editText"
+                android:layout_below="@id/aktivitaet_spinner"
                 android:layout_marginLeft="10dp"
                 android:paddingRight="10dp"
                 android:src="@drawable/fdisk"/>
@@ -250,7 +251,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/cancel_Button"
                 android:onClick="onClick"
-                android:layout_below="@id/notiz_editText"
+                android:layout_below="@id/event_spinner"
                 android:layout_toRightOf="@id/save_Button"
                 android:layout_marginRight="10dp"
                 android:src="@drawable/gcan"/>

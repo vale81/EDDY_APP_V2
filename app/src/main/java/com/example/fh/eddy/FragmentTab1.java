@@ -37,11 +37,11 @@ public class FragmentTab1 extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         myDataHandler = new DataHandler(getActivity().getBaseContext());
         myDataHandler.open();
-        List<EintragDaten> eintragDatenListe = new ArrayList<>(myDataHandler.getJedenEintrag());
+        List<EintragDaten> entryDataList = new ArrayList<>(myDataHandler.getEveryEntry());
 
-        ArrayAdapter<EintragDaten> eintragDatenAdapter = new ArrayAdapter<EintragDaten>(
-                getActivity(), android.R.layout.simple_list_item_1, eintragDatenListe);
-        setListAdapter(eintragDatenAdapter);
+        ArrayAdapter<EintragDaten> entryDataAdapter = new ArrayAdapter<EintragDaten>(
+                getActivity(), android.R.layout.simple_list_item_1, entryDataList);
+        setListAdapter(entryDataAdapter);
     }
 
     public void sendMessage(View view) {

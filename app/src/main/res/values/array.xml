@@ -11,4 +11,13 @@
         <item>Ausdauersport</item>
     </array>
 
+    <array name="default_events">
+        <item></item>
+        <item>Krankheit</item>
+        <item>Unterzuckerung</item>
+        <item>Unfall</item>
+        <item>Geburtstag</item>
+    </array>
+
+
 </resources>
