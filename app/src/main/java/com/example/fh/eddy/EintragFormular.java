@@ -60,6 +60,27 @@ public class EintragFormular extends Activity {
         currentBolusInsulin =(EditText) findViewById(R.id.bolus_editText);
         currentBaseInsulin = (EditText) findViewById(R.id.basis_editText);
 
+        // Setting the date in the textviews
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);
+        // Java month starts at 0, thus need for adding 1 to values
+        int currentMonth = c.get(Calendar.MONTH)+1;
+        int currentYear = c.get(Calendar.YEAR);
+        the_date.setText(currentDay + "." + currentMonth + "." + currentYear);
+        // Preset current time, needs to be adjusted with 0-padding for correct 24-Hour format
+        int currentHour = c.get(Calendar.HOUR_OF_DAY);
+        int currentMinute = c.get(Calendar.MINUTE);
+        // Calling helper method to correctly set 0-padding
+        the_time.setText(nullPad(currentHour) + ":" + nullPad(currentMinute));
+
+
+        // Filling the activity spinner with selectable activities and adding listener
+        fillActivitySpinner();
+        addListenerToActivitySpinner();
+
+        // Filling the event spinner with events and adding listener
+        fillEventSpinner();
+        addListenerToEventSpinner();
+
 
         // Init the save button and setting save button listener
         saveNewEntry = (ImageButton) findViewById(R.id.save_Button);
@@ -114,26 +135,7 @@ public class EintragFormular extends Activity {
             }
         }); // End onClick CancelButton
 
-        // Filling the activity spinner with selectable activities and adding listener
-        fillActivitySpinner();
-        addListenerToActivitySpinner();
 
-        // Filling the event spinner with events and adding listener
-        fillEventSpinner();
-        addListenerToEventSpinner();
-
-
-        // Setting the date in the textviews
-        int currentDay = c.get(Calendar.DAY_OF_MONTH);
-        // Java month starts at 0, thus need for adding 1 to values
-        int currentMonth = c.get(Calendar.MONTH)+1;
-        int currentYear = c.get(Calendar.YEAR);
-        the_date.setText(currentDay + "." + currentMonth + "." + currentYear);
-        // Preset current time, needs to be adjusted with 0-padding for correct 24-Hour format
-        int currentHour = c.get(Calendar.HOUR_OF_DAY);
-        int currentMinute = c.get(Calendar.MINUTE);
-        // Calling helper method to correctly set 0-padding
-        the_time.setText(nullPad(currentHour) + ":" + nullPad(currentMinute));
 
     } // end onCreate()
 
@@ -244,7 +246,7 @@ public class EintragFormular extends Activity {
     // Helper method for correctly setting 0-padding in 24-Hour format
     public String nullPad(int timeDateInput)
     {
-        if(timeDateInput > 10)
+        if(timeDateInput >= 10)
         {
             return String.valueOf(timeDateInput);
         }
@@ -254,15 +256,6 @@ public class EintragFormular extends Activity {
         }
     }
 
-    public void saveEntry()
-    {
-
-    }
-
-    public void cancelEntry()
-    {
-
-    }
 
     @Override
     protected void onStart() {

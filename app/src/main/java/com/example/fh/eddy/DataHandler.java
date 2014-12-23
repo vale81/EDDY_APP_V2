@@ -45,11 +45,11 @@ public class DataHandler {
     public static final String DATABASE_TABLE_NAME = "eddy_table";
     public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_CREATE_TABLE = "create table eddy_table (_id integer primary key autoincrement, blood_sugar_value numeric not null," +
-            "bolus text, base text, carb_amount numeric, current_Time numeric, current_Date numeric, activity text, event text, created DEFAULT CURRENT_TIMESTAMP);";
+            "bolus text, base text, carb_amount numeric, current_Date numeric, current_Time numeric, activity text, event text, created DEFAULT CURRENT_TIMESTAMP);";
 
     // String-array holds columns of table
     private String[] allColumns = {ROW_ID, BLOODSUGAR, BOLUSINSULIN, BASEINSULIN, CARBAMOUNT,
-            ACTIVITY, EVENT, THE_DATE, THE_TIME, CREATED};
+            THE_DATE, THE_TIME,ACTIVITY, EVENT, CREATED};
 
 
     // Setup required objects
@@ -81,7 +81,7 @@ public class DataHandler {
     // Methode to insert new data
     // Content = KeyValue Pairs Key = Column Value = Contents in Column
     public EintragDaten insertNewData(int new_blood_sugar_value, String new_bolus, String new_base, String new_carb_amount,
-                                       String curr_date, String curr_time, String new_activity, String curr_event)
+                                      String curr_time, String curr_date , String new_activity, String curr_event)
     {
         ContentValues content = new ContentValues();
         content.put(BLOODSUGAR, new_blood_sugar_value);
@@ -144,10 +144,10 @@ public class DataHandler {
         entry.setBolus(cursor.getString(2));
         entry.setBaseInsulin(cursor.getString(3));
         entry.setCarbAmount(cursor.getString(4));
-        entry.setDaytime(cursor.getString(5));
-        entry.setTheDate(cursor.getString(6));
-        entry.setActivity(cursor.getString(7));
-        entry.setEvent(cursor.getString(8));
+        entry.setDaytime(cursor.getString(8));
+        entry.setTheDate(cursor.getString(7));
+        entry.setActivity(cursor.getString(5));
+        entry.setEvent(cursor.getString(6));
 
         return entry;
     }
