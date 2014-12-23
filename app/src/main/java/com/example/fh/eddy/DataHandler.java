@@ -32,8 +32,8 @@ public class DataHandler {
     public static final String CARBAMOUNT = "carb_amount";
     public static final String ACTIVITY = "activity";
     public static final String EVENT = "event";
-    public static final String THE_DATE = "current_Date";
-    public static final String THE_TIME = "current_Time";
+    public static final String THE_DATE = "curr_Date";
+    public static final String THE_TIME = "curr_Time";
     public static final String CREATED = "created";
 
 
@@ -45,7 +45,7 @@ public class DataHandler {
     public static final String DATABASE_TABLE_NAME = "eddy_table";
     public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_CREATE_TABLE = "create table eddy_table (_id integer primary key autoincrement, blood_sugar_value numeric not null," +
-            "bolus text, base text, carb_amount numeric, current_Date numeric, current_Time numeric, activity text, event text, created DEFAULT CURRENT_TIMESTAMP);";
+            "bolus text, base text, carb_amount numeric, curr_Date numeric, curr_Time numeric, activity text, event text, created DEFAULT CURRENT_TIMESTAMP);";
 
     // String-array holds columns of table
     private String[] allColumns = {ROW_ID, BLOODSUGAR, BOLUSINSULIN, BASEINSULIN, CARBAMOUNT,
