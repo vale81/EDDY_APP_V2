@@ -88,10 +88,10 @@ public class DataHandler {
         content.put(BOLUSINSULIN, new_bolus);
         content.put(BASEINSULIN, new_base);
         content.put(CARBAMOUNT, new_carb_amount);
-        content.put(EVENT, curr_event);
-        content.put(THE_TIME, curr_time);
         content.put(THE_DATE, curr_date);
+        content.put(THE_TIME, curr_time);
         content.put(ACTIVITY, new_activity);
+        content.put(EVENT, curr_event);
 
 
         // Einfuege ID erstellen und Content-insert
@@ -144,10 +144,11 @@ public class DataHandler {
         entry.setBolus(cursor.getString(2));
         entry.setBaseInsulin(cursor.getString(3));
         entry.setCarbAmount(cursor.getString(4));
-        entry.setDaytime(cursor.getString(8));
-        entry.setTheDate(cursor.getString(7));
-        entry.setActivity(cursor.getString(5));
-        entry.setEvent(cursor.getString(6));
+        entry.setTheDate(cursor.getString(5));
+        entry.setDaytime(cursor.getString(6));
+        entry.setActivity(cursor.getString(7));
+        entry.setEvent(cursor.getString(8));
+
 
         return entry;
     }
