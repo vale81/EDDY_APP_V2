@@ -28,12 +28,20 @@
     <string name="notiz_textView">Notiz</string>
     <string name="aktivitaet_textView">Aktivität</string>
 
+    <string name="delete">Löschen</string>
+    <string name="abort">Abbrechen</string>
     <string name="saved">gespeichert</string>
     <string name="deleted">gelöscht</string>
     <string name="activity">Aktivität</string>
     <string name="event">Event</string>
     <string name="medicin">Medizin</string>
     <string name="be_factor">Be-Faktor</string>
+
+    <string name="delete_Activity">Möchten sie diese Aktivität wirklich löschen? </string>
+    <string name="delete_Be">Möchten sie diesen Be-Faktor wirklich löschen? </string>
+    <string name="delete_Event">Möchten sie dieses Event wirklich löschen? </string>
+    <string name="delete_Medicin">Möchten sie diese Medizin wirklich löschen? </string>
+
     <string name="be_verwaltung_button">BE-Faktor speichern</string>
     <string name="be_verwaltung_text">Neuen BE-Faktor angeben</string>
     <string name="activity_verwaltung_button">Aktivität speichern</string>

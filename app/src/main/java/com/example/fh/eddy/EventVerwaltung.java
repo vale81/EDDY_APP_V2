@@ -3,6 +3,7 @@ package com.example.fh.eddy;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -60,7 +61,25 @@ public class EventVerwaltung extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                String text= (String)parent.getItemAtPosition(position);
+
+                showDialog((String)parent.getItemAtPosition(position));
+
+            }
+        });
+
+    }
+
+    public void showDialog(final String text)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(getString(R.string.delete_Event) +" "+ text);
+
+        builder.setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
                 list.remove(text);
                 s.remove(text);
                 editor.putStringSet("events",s);
@@ -69,9 +88,21 @@ public class EventVerwaltung extends Activity {
                 Toast toast=Toast.makeText(getApplicationContext(),getString(R.string.event)+" "+text+" "+getString(R.string.deleted), Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
+
+                dialog.dismiss();
             }
         });
 
+        builder.setNegativeButton(getString(R.string.abort), new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
     }
 
     public void saveItem(View view) {
