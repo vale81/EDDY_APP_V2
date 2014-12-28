@@ -73,6 +73,8 @@ public class GraphicFragment extends PreferenceFragment {
 
     private void custom_populateGraphView(View view,String date_Format,long dateoffset) {
 
+        int maxvalue=0;
+        int minvalue=999;
         myDataHandler = new DataHandler(getActivity().getBaseContext());
         myDataHandler.open();
         //final List<EintragDaten> eintragDatenListe = new ArrayList<>(myDataHandler.getEveryEntryUnsorted());
@@ -84,6 +86,13 @@ public class GraphicFragment extends PreferenceFragment {
         GraphView.GraphViewData[] data = new GraphView.GraphViewData[num];
         for(int i=0;i<num;i++) {
             data[i]=new GraphView.GraphViewData(eintragDatenListe.get(i).getUnix_time(),eintragDatenListe.get(i).getBloodSugarValue());
+            if(eintragDatenListe.get(i).getBloodSugarValue()>maxvalue) {
+                maxvalue=eintragDatenListe.get(i).getBloodSugarValue();
+            }
+            if(eintragDatenListe.get(i).getBloodSugarValue()<minvalue) {
+                minvalue=eintragDatenListe.get(i).getBloodSugarValue();
+            }
+
         }
         GraphViewSeries exampleSeries = new GraphViewSeries(data);
 
@@ -141,7 +150,8 @@ public class GraphicFragment extends PreferenceFragment {
 
         //Set y axis values (max,min) (am besten vorher schauen was min max werte sind, statt preferences)
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        graphView.setManualYAxisBounds(Integer.parseInt(sharedPrefs.getString("obere_blutzuckergrenze","200")),Integer.parseInt(sharedPrefs.getString("untere_blutzuckergrenze","0")));
+        //graphView.setManualYAxisBounds(Integer.parseInt(sharedPrefs.getString("obere_blutzuckergrenze","200")),Integer.parseInt(sharedPrefs.getString("untere_blutzuckergrenze","0")));
+        graphView.setManualYAxisBounds(maxvalue,minvalue);
 
 
         try {
