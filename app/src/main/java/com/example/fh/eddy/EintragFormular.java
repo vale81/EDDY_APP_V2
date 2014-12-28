@@ -14,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Spinner;
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -108,11 +110,12 @@ public class EintragFormular extends Activity {
                 myDataHandler = new DataHandler(getBaseContext());
                 myDataHandler.open();
                 entry = myDataHandler.insertNewData(bloodSugarValue,currentBolus,
-                        baseInsulin,mealCarbAmount, currTime , currDate , spinnerSelectedValue, eventSpinnerSelectedValue);
+                        baseInsulin,mealCarbAmount, currTime , currDate , spinnerSelectedValue, eventSpinnerSelectedValue,new Date().getTime());
                 myDataHandler.closeDatabase();
 
+                //
                 // Toast for user feedback
-                Toast toast=Toast.makeText(getApplicationContext(),"Eintrag gespeichert."+entry.getDaytime()+" "+currTime, Toast.LENGTH_LONG);
+                Toast toast=Toast.makeText(getApplicationContext(),"Eintrag gespeichert.", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
 

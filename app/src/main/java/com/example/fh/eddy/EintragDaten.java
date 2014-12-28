@@ -18,6 +18,8 @@ public class EintragDaten {
     private String theDate;
     private String daytime;
     private String carbAmount;
+    private long unix_time;
+
 
 
     public long getId()
@@ -110,6 +112,13 @@ public class EintragDaten {
         this.carbAmount = carbAmount;
     }
 
+    public long getUnix_time() {
+        return unix_time;
+    }
+
+    public void setUnix_time(long unix_time) {
+        this.unix_time = unix_time;
+    }
 
     // Used by adapter in ListView to display items
     public String toString()

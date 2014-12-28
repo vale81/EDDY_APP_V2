@@ -1,8 +1,10 @@
 package com.example.fh.eddy;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +20,9 @@ import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.LineGraphView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -28,6 +32,7 @@ public class GraphicFragment extends PreferenceFragment {
 
     String head="";
     View view;
+    DataHandler myDataHandler;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
@@ -37,7 +42,7 @@ public class GraphicFragment extends PreferenceFragment {
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 head=getString(R.string.week);
-                populateGraphView(view);
+                custom_populateGraphView(view,"E H:m",7*60*60*24*1000);
             }
         });
 
@@ -45,7 +50,8 @@ public class GraphicFragment extends PreferenceFragment {
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 head=getString(R.string.month);
-                populateGraphView(view);
+                long offset=31*(long)(60*60*24*1000);
+                custom_populateGraphView(view,"d. H 'Uhr'",offset);
             }
         });
 
@@ -53,20 +59,36 @@ public class GraphicFragment extends PreferenceFragment {
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 head=getString(R.string.months);
-                populateGraphView(view);
+                long offset=3*31*(long)(60*60*24*1000);
+                custom_populateGraphView(view,"MMM d",offset);
             }
         });
 
 
         head=getString(R.string.week);
-        populateGraphView(view);
+        custom_populateGraphView(view,"E H:m",7*60*60*24*1000);
 
         return view;
     }
 
-    private void populateGraphView(View view) {
-        // init example series data
+    private void custom_populateGraphView(View view,String date_Format,long dateoffset) {
+
+        myDataHandler = new DataHandler(getActivity().getBaseContext());
+        myDataHandler.open();
+        //final List<EintragDaten> eintragDatenListe = new ArrayList<>(myDataHandler.getEveryEntryUnsorted());
         long now = new Date().getTime();
+        final List<EintragDaten> eintragDatenListe = new ArrayList<>(myDataHandler.getEntryUntil(now-(dateoffset)));
+        myDataHandler.closeDatabase();
+        int num = eintragDatenListe.size();
+
+        GraphView.GraphViewData[] data = new GraphView.GraphViewData[num];
+        for(int i=0;i<num;i++) {
+            data[i]=new GraphView.GraphViewData(eintragDatenListe.get(i).getUnix_time(),eintragDatenListe.get(i).getBloodSugarValue());
+        }
+        GraphViewSeries exampleSeries = new GraphViewSeries(data);
+
+        // init example series data
+        /*long now = new Date().getTime();
         GraphViewSeries exampleSeries = new GraphViewSeries(new GraphView.GraphViewData[] {
                 new GraphView.GraphViewData(now+(1*60*60*24*1000), 60)
                 , new GraphView.GraphViewData(now+(2*60*60*24*1000), 70)
@@ -81,14 +103,14 @@ public class GraphicFragment extends PreferenceFragment {
                 , new GraphView.GraphViewData(now+(11*60*60*24*1000), 60)
                 , new GraphView.GraphViewData(now+(12*60*60*24*1000), 65)
 
-        });
+        });*/
 
         LineGraphView graphView = new LineGraphView(
                 getActivity() // context
                 , head // heading
         );
 
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+        final SimpleDateFormat dateFormat = new SimpleDateFormat(date_Format);
         graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
@@ -117,8 +139,10 @@ public class GraphicFragment extends PreferenceFragment {
         graphView.setScalable(true);
         graphView.setScrollable(true);
 
-        //Set y axis values (max,min) (am besten vorher schauen was min max werte sind)
-        graphView.setManualYAxisBounds(120, 0);
+        //Set y axis values (max,min) (am besten vorher schauen was min max werte sind, statt preferences)
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        graphView.setManualYAxisBounds(Integer.parseInt(sharedPrefs.getString("obere_blutzuckergrenze","200")),Integer.parseInt(sharedPrefs.getString("untere_blutzuckergrenze","0")));
+
 
         try {
             LinearLayout layout = (LinearLayout) view.findViewById(R.id.graph1);
@@ -128,6 +152,8 @@ public class GraphicFragment extends PreferenceFragment {
             // something to handle the NPE.
         }
     }
+
+
 
 }
 

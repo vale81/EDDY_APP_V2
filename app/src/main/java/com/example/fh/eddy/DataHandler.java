@@ -45,7 +45,7 @@ public class DataHandler {
     public static final String DATABASE_TABLE_NAME = "eddy_table";
     public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_CREATE_TABLE = "create table eddy_table (_id integer primary key autoincrement, blood_sugar_value numeric not null," +
-            "bolus text, base text, carb_amount numeric, curr_Date numeric, curr_Time numeric, activity text, event text, created DEFAULT CURRENT_TIMESTAMP);";
+            "bolus text, base text, carb_amount numeric, curr_Date numeric, curr_Time numeric, activity text, event text, created long);";
 
     // String-array holds columns of table
     private String[] allColumns = {ROW_ID, BLOODSUGAR, BOLUSINSULIN, BASEINSULIN, CARBAMOUNT,
@@ -81,7 +81,7 @@ public class DataHandler {
     // Methode to insert new data
     // Content = KeyValue Pairs Key = Column Value = Contents in Column
     public EintragDaten insertNewData(int new_blood_sugar_value, String new_bolus, String new_base, String new_carb_amount,
-                                      String curr_time, String curr_date , String new_activity, String curr_event)
+                                      String curr_time, String curr_date , String new_activity, String curr_event, long created)
     {
         ContentValues content = new ContentValues();
         content.put(BLOODSUGAR, new_blood_sugar_value);
@@ -92,6 +92,7 @@ public class DataHandler {
         content.put(THE_TIME, curr_time);
         content.put(ACTIVITY, new_activity);
         content.put(EVENT, curr_event);
+        content.put(CREATED,created);
 
 
         // Einfuege ID erstellen und Content-insert
@@ -134,6 +135,44 @@ public class DataHandler {
         cursor.close();
         return everyEntry;
     }
+
+    public List<EintragDaten> getEveryEntryUnsorted() {
+        List<EintragDaten> everyEntry = new ArrayList<EintragDaten>();
+
+        Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME,
+                allColumns, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            EintragDaten eintrag = cursorToValues(cursor);
+            everyEntry.add(eintrag);
+            cursor.moveToNext();
+        }
+        // make sure to close the cursor
+        cursor.close();
+        return everyEntry;
+    }
+
+    public List<EintragDaten> getEntryUntil(long until) {
+        List<EintragDaten> everyEntry = new ArrayList<EintragDaten>();
+
+        String whereClause = "created >= ?";
+        String[] whereArgs = new String[] {String.valueOf(until)};
+
+        Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME,
+                allColumns, whereClause, whereArgs, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            EintragDaten eintrag = cursorToValues(cursor);
+            everyEntry.add(eintrag);
+            cursor.moveToNext();
+        }
+        // make sure to close the cursor
+        cursor.close();
+        return everyEntry;
+    }
+
     // Methode um Werte an der Stelle des Cursors zu holen und damit Eintragsdaten setzen
     private EintragDaten cursorToValues(Cursor cursor)
     {
@@ -148,6 +187,7 @@ public class DataHandler {
         entry.setDaytime(cursor.getString(6));
         entry.setActivity(cursor.getString(7));
         entry.setEvent(cursor.getString(8));
+        entry.setUnix_time(cursor.getLong(9));
 
 
         return entry;
