@@ -36,11 +36,14 @@
     <string name="event">Event</string>
     <string name="medicin">Medizin</string>
     <string name="be_factor">Be-Faktor</string>
+    <string name="confirm">Ja</string>
+    <string name="cancel">Nein</string>
 
-    <string name="delete_Activity">Möchten sie diese Aktivität wirklich löschen? </string>
-    <string name="delete_Be">Möchten sie diesen Be-Faktor wirklich löschen? </string>
-    <string name="delete_Event">Möchten sie dieses Event wirklich löschen? </string>
-    <string name="delete_Medicin">Möchten sie diese Medizin wirklich löschen? </string>
+    <string name="delete_Activity">Möchten Sie diese Aktivität wirklich löschen? </string>
+    <string name="delete_Be">Möchten Sie diesen Be-Faktor wirklich löschen? </string>
+    <string name="delete_Event">Möchten Sie dieses Event wirklich löschen? </string>
+    <string name="delete_Medicin">Möchten Sie diese Medizin wirklich löschen? </string>
+    <string name="cancel_Update_Entry">Wirklich abbrechen?</string>
 
     <string name="be_verwaltung_button">BE-Faktor speichern</string>
     <string name="be_verwaltung_text">Neuen BE-Faktor angeben</string>
@@ -55,6 +58,7 @@
     <string name="month">1 Monat</string>
     <string name="months">3 Monate</string>
     <string name="event_spinner_textView">Ereignis</string>
+    <string name="edit_entry_form_headerTextview">Eintrag Bearbeiten</string>
 
 
 </resources>

@@ -1,8 +1,11 @@
 package com.example.fh.eddy;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
@@ -11,50 +14,55 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Set;
 
-
-
 /**
- * Created by Tim  Nov. 2014.
+ * Created by Tim on 30.12.2014.
+ * This class is basically a copy of the EntryForm with
+ * values set accordingly from the database.
+ * The time must not be editable so the entry will retain its
+ * correct timestamp.
  */
-public class EintragFormular extends Activity {
+public class EditEntryForm extends Activity {
 
     // Database object with helper
     private DataHandler myDataHandler;
-    // Init calendar
-    private final Calendar c = Calendar.getInstance();
     // Init spinners
     private Spinner eventSpinner;
     private Spinner activitySpinner;
-    // Init fields globally so they can be manipulated
+    // Same fields as in EntryForm
     TextView the_date;
     TextView the_time;
     EditText currentBloodsugarlevel;
     EditText currentMealCarbAmount;
     EditText currentBolusInsulin;
     EditText currentBaseInsulin;
-
     // Init buttons
-    ImageButton saveNewEntry;
-    ImageButton cancelNewEntry;
-    EintragDaten entry;
+    ImageButton updateEntryButton;
+    ImageButton discardUpdateButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        //myDataHandler = new DataHandler(this);
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.eintrag_formular);
-        // The activity is being created.
+
+        setContentView(R.layout.edit_entry_form_layout);
+
+        // Get the passed extras via getIntent()
+        final EintragDaten current_Edit_Entry = (EintragDaten)getIntent().getSerializableExtra("passedVar");
+
         the_date = (TextView)findViewById(R.id.date_currentDate_textView);
         the_time = (TextView) findViewById(R.id.time_currentTime_textView);
         currentBloodsugarlevel = (EditText) findViewById(R.id.BZ_editText);
@@ -62,31 +70,27 @@ public class EintragFormular extends Activity {
         currentBolusInsulin =(EditText) findViewById(R.id.bolus_editText);
         currentBaseInsulin = (EditText) findViewById(R.id.basis_editText);
 
-        // Setting the date in the textviews
-        int currentDay = c.get(Calendar.DAY_OF_MONTH);
-        // Java month starts at 0, thus need for adding 1 to values
-        int currentMonth = c.get(Calendar.MONTH)+1;
-        int currentYear = c.get(Calendar.YEAR);
-        the_date.setText(currentDay + "." + currentMonth + "." + currentYear);
-        // Preset current time, needs to be adjusted with 0-padding for correct 24-Hour format
-        int currentHour = c.get(Calendar.HOUR_OF_DAY);
-        int currentMinute = c.get(Calendar.MINUTE);
-        // Calling helper method to correctly set 0-padding
-        the_time.setText(nullPad(currentHour) + ":" + nullPad(currentMinute));
-
+        // Preset the forms fields with values received from entry selected in ListView
+        currentBloodsugarlevel.setText(String.valueOf(current_Edit_Entry.getBloodSugarValue()));
+        currentBaseInsulin.setText(String.valueOf(current_Edit_Entry.getBaseInsulin()));
+        currentBolusInsulin.setText(String.valueOf(current_Edit_Entry.getBolus()));
+        currentMealCarbAmount.setText(String.valueOf(current_Edit_Entry.getCarbAmount()));
+        the_date.setText(String.valueOf(current_Edit_Entry.getTheDate()));
+        the_time.setText(String.valueOf(current_Edit_Entry.getDaytime()));
 
         // Filling the activity spinner with selectable activities and adding listener
         fillActivitySpinner();
         addListenerToActivitySpinner();
+        activitySpinner.setSelection(getActivitySpinnerIndex(activitySpinner, current_Edit_Entry.getActivity()));
 
         // Filling the event spinner with events and adding listener
         fillEventSpinner();
         addListenerToEventSpinner();
+        eventSpinner.setSelection(getEventSpinnerIndex(eventSpinner, current_Edit_Entry.getEvent()));
 
-
-        // Init the save button and setting save button listener
-        saveNewEntry = (ImageButton) findViewById(R.id.save_Button);
-        saveNewEntry.setOnClickListener(new View.OnClickListener() {
+        // Init the update button and setting update button listener
+        updateEntryButton = (ImageButton) findViewById(R.id.save_Button);
+        updateEntryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -99,24 +103,22 @@ public class EintragFormular extends Activity {
 
 
                 // Get the spinner value for the activity spinner
-                String spinnerSelectedValue = ((Spinner)findViewById(
+                String spinnerSelectedValue = ((Spinner) findViewById(
                         R.id.aktivitaet_spinner)).getSelectedItem().toString();
 
                 // Get the spinner value for the event spinner
-                String eventSpinnerSelectedValue = ((Spinner)findViewById(
+                String eventSpinnerSelectedValue = ((Spinner) findViewById(
                         R.id.event_spinner)).getSelectedItem().toString();
 
                 // Database operations
                 myDataHandler = new DataHandler(getBaseContext());
                 myDataHandler.open();
-                entry = myDataHandler.insertNewData(bloodSugarValue,currentBolus,
-                        baseInsulin,mealCarbAmount, currTime , currDate , spinnerSelectedValue, eventSpinnerSelectedValue,new Date().getTime());
-                myDataHandler.closeDatabase();
+                myDataHandler.updateSingleEntry(current_Edit_Entry.getId(), bloodSugarValue, currentBolus,
+                        baseInsulin, mealCarbAmount, currTime, currDate, spinnerSelectedValue, eventSpinnerSelectedValue);
 
-                //
                 // Toast for user feedback
-                Toast toast=Toast.makeText(getApplicationContext(),"Eintrag gespeichert.", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+                Toast toast = Toast.makeText(getApplicationContext(), "Eintrag geändert.", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
 
                 // Return to main screen and clear stack via flag
@@ -127,19 +129,24 @@ public class EintragFormular extends Activity {
         }); // End onClick saveButton
 
         // Init cancel button and setting cancel button listener
-        cancelNewEntry = (ImageButton) findViewById(R.id.cancel_Button);
-        cancelNewEntry.setOnClickListener(new View.OnClickListener() {
+        discardUpdateButton = (ImageButton) findViewById(R.id.cancel_Button);
+        discardUpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
+
+                showCancelButtonDialog();
+
+                // Toast for user feedback
+                Toast toast = Toast.makeText(getApplicationContext(), "Änderungen verworfen.", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
+
             }
         }); // End onClick CancelButton
-
-
-
     } // end onCreate()
 
     // Method for filling the activity spinner with activities
@@ -213,13 +220,14 @@ public class EintragFormular extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-              // String activitySpinnerItemPicked = activitySpinner.getSelectedItem().toString();
+                String activitySpinnerItemPicked = activitySpinner.getSelectedItem().toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent)
             {
+                // If nothing selected, set default to item 1
                 activitySpinner.setSelection(1);
             }
         });
@@ -228,35 +236,82 @@ public class EintragFormular extends Activity {
     // Method to add listener to event spinner
     public void addListenerToEventSpinner()
     {
-        eventSpinner = (Spinner) findViewById(R.id.aktivitaet_spinner);
+        eventSpinner = (Spinner) findViewById(R.id.event_spinner);
 
         eventSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                // String eventSpinnerItemPicked = eventSpinner.getSelectedItem().toString();
+                String eventSpinnerItemPicked = eventSpinner.getSelectedItem().toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent)
             {
-                eventSpinner.setSelection(1);            }
+                eventSpinner.setSelection(1);
+            }
         });
     } // End add listener to event spinner
 
-    // Helper method for correctly setting 0-padding in 24-Hour format
-    public String nullPad(int timeDateInput)
-    {
-        if(timeDateInput >= 10)
-        {
-            return String.valueOf(timeDateInput);
+
+
+    private int getEventSpinnerIndex(Spinner spinner, String myString){
+
+        int index = 0;
+
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).equals(myString)){
+                index = i;
+            }
         }
-        else
-        {
-            return "0"+ String.valueOf(timeDateInput);
-        }
+        return index;
     }
+
+    private int getActivitySpinnerIndex(Spinner spinner, String myString){
+
+        int index = 0;
+
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).equals(myString)){
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    public void showCancelButtonDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(getString(R.string.cancel_Update_Entry));
+
+        builder.setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+
+                Toast toast= Toast.makeText(getApplicationContext(),"Änderungen verworfen.", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+                toast.show();
+
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
+    }
+
 
     @Override
     protected void onStart() {
@@ -282,9 +337,13 @@ public class EintragFormular extends Activity {
         // The activity is no longer visible (it is now "stopped")
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // The activity is about to be destroyed.
-    }
+
+
 }
+
+
+
+
+
+
+

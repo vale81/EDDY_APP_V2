@@ -1,10 +1,12 @@
 package com.example.fh.eddy;
 
+import java.io.Serializable;
+
 /**
  * Created by Tim on 21.11.2014.
  * This class models the entries made by the user.
  */
-public class EintragDaten {
+public class EintragDaten implements Serializable{
     //Row-ID
     private long id;
     //Blutzuckerwert

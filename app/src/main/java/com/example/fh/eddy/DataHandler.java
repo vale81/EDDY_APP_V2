@@ -84,6 +84,7 @@ public class DataHandler {
                                       String curr_time, String curr_date , String new_activity, String curr_event, long created)
     {
         ContentValues content = new ContentValues();
+
         content.put(BLOODSUGAR, new_blood_sugar_value);
         content.put(BOLUSINSULIN, new_bolus);
         content.put(BASEINSULIN, new_base);
@@ -111,13 +112,57 @@ public class DataHandler {
 
     }
     // Loescht einzelne Eintraege
-    public void deleteSingleEntry(EintragDaten entry)
+    public void deleteSingleEntry(EintragDaten eintragDaten)
     {
-        long id = entry.getId();
+        long id = eintragDaten.getId();
         System.out.println("Eintrag mit ID " + id + "wurde geloescht.");
         eddy_db.delete(DATABASE_TABLE_NAME, ROW_ID + " = " + id, null);
     }
 
+
+ public EintragDaten getSingleEntry (long id)
+ {
+     EintragDaten singleEntry = new EintragDaten();
+
+     Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME, allColumns, ROW_ID + " = " + id, null, null, null, null);
+
+     if (cursor != null && cursor.moveToFirst())
+     {
+             singleEntry.setId(cursor.getLong(0));
+             singleEntry.setBloodSugarValue(cursor.getInt(1));
+             singleEntry.setBolus(cursor.getString(2));
+             singleEntry.setBaseInsulin(cursor.getString(3));
+             singleEntry.setCarbAmount(cursor.getString(4));
+             singleEntry.setTheDate(cursor.getString(5));
+             singleEntry.setDaytime(cursor.getString(6));
+             singleEntry.setActivity(cursor.getString(7));
+             singleEntry.setEvent(cursor.getString(8));
+             singleEntry.setUnix_time(cursor.getLong(9));
+             //cursor.moveToNext();
+     }
+
+     cursor.close();
+
+     return singleEntry;
+ }
+
+    public void updateSingleEntry (long id, int new_blood_sugar_value, String new_bolus, String new_base, String new_carb_amount,
+                                           String curr_time, String curr_date , String new_activity, String curr_event)
+    {
+        ContentValues updatedContent = new ContentValues();
+
+        updatedContent.put(BLOODSUGAR, new_blood_sugar_value);
+        updatedContent.put(BOLUSINSULIN, new_bolus);
+        updatedContent.put(BASEINSULIN, new_base);
+        updatedContent.put(CARBAMOUNT, new_carb_amount);
+        updatedContent.put(THE_DATE, curr_date);
+        updatedContent.put(THE_TIME, curr_time);
+        updatedContent.put(ACTIVITY, new_activity);
+        updatedContent.put(EVENT, curr_event);
+
+        eddy_db.update(DATABASE_TABLE_NAME, updatedContent, ROW_ID + " = " + id, null);
+
+    }
     // Alle Eintraege holen und in Liste packen von Adapter fuer ListView genutzt
     public List<EintragDaten> getEveryEntry() {
         List<EintragDaten> everyEntry = new ArrayList<EintragDaten>();
@@ -189,21 +234,18 @@ public class DataHandler {
         entry.setEvent(cursor.getString(8));
         entry.setUnix_time(cursor.getLong(9));
 
-
         return entry;
     }
 
     //  Begin inner class
-    private static class DatabaseHelper extends SQLiteOpenHelper {
-
-
+    private static class DatabaseHelper extends SQLiteOpenHelper
+    {
         //Constructor inner Class
         //Init Database
         public DatabaseHelper(Context ctx )
         {
             super(ctx, DATABASE_NAME, null,DATABASE_VERSION);
         }
-
 
         @Override
         // Once databse is created the create table is executed

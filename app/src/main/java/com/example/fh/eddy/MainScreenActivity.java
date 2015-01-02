@@ -19,7 +19,6 @@ import java.util.List;
 
 
 public class MainScreenActivity extends Activity {
-    private DataHandler myDataHandler;
 
     ActionBar.Tab tab1, tab2, tab3;
     Fragment fragmentTab1 = new FragmentTab1();

@@ -2,12 +2,15 @@ package com.example.fh.eddy;
 
 import android.app.ListFragment;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,10 @@ import java.util.List;
 public class FragmentTab1 extends ListFragment {
 
     DataHandler myDataHandler;
-    ListView myListView;
+
+    ArrayAdapter<EintragDaten> entryDataAdapter;
+
+    List<EintragDaten> entryDataList = new ArrayList<>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -29,23 +35,59 @@ public class FragmentTab1 extends ListFragment {
         return view;
     }
 
-
-
-  @Override
+    @Override
   public void onActivityCreated(Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
         myDataHandler = new DataHandler(getActivity().getBaseContext());
         myDataHandler.open();
-        List<EintragDaten> entryDataList = new ArrayList<>(myDataHandler.getEveryEntry());
 
-        ArrayAdapter<EintragDaten> entryDataAdapter = new ArrayAdapter<EintragDaten>(
+        entryDataList = myDataHandler.getEveryEntry();
+
+        entryDataAdapter = new ArrayAdapter<>(
                 getActivity(), android.R.layout.simple_list_item_1, entryDataList);
         setListAdapter(entryDataAdapter);
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                EintragDaten eintragDaten = (EintragDaten) getListView().getItemAtPosition(position);
+
+
+                myDataHandler.deleteSingleEntry(eintragDaten);
+                entryDataAdapter.remove(eintragDaten);
+                return true;
+            }
+        });
     }
 
-    public void sendMessage(View view) {
-        Intent intent = new Intent(getActivity(), EintragFormular.class);
-        startActivity(intent);
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id)
+    {
+       // myDataHandler = new DataHandler(getActivity().getBaseContext());
+       // myDataHandler.open();
+        EintragDaten eintragDaten = (EintragDaten)l.getItemAtPosition(position);
+        long theId = eintragDaten.getId();
+
+        EintragDaten usedEntry = myDataHandler.getSingleEntry(theId);
+        //super.onListItemClick(l, v, position, id);
+
+        Intent i = new Intent(getActivity().getBaseContext(), EditEntryForm.class);
+
+        Bundle myBundle = new Bundle();
+        myBundle.putSerializable("passedVar", usedEntry);
+        i.putExtras(myBundle);
+
+        startActivity(i);
+      //  myDataHandler.closeDatabase();
+        Toast.makeText(getActivity().getBaseContext(),
+                "Click ListItem Number " + position, Toast.LENGTH_LONG)
+                .show();
     }
-}
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        myDataHandler.closeDatabase();
+    }
+} // End ListFragment
