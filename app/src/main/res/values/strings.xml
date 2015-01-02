@@ -36,6 +36,10 @@
     <string name="event">Event</string>
     <string name="medicin">Medizin</string>
     <string name="be_factor">Be-Faktor</string>
+    <string name="activities">Aktivitäten</string>
+    <string name="events">Events</string>
+    <string name="medicins">Medikamente</string>
+    <string name="be_factors">Be-Faktoren</string>
     <string name="confirm">Ja</string>
     <string name="cancel">Nein</string>
 
@@ -57,8 +61,19 @@
     <string name="week">1 Woche</string>
     <string name="month">1 Monat</string>
     <string name="months">3 Monate</string>
+
     <string name="event_spinner_textView">Ereignis</string>
     <string name="edit_entry_form_headerTextview">Eintrag Bearbeiten</string>
+
+    <string name="overview">Übersicht</string>
+    <string name="name">Name</string>
+    <string name="meal_display">Mahlzeit Angabe</string>
+    <string name="upper_bloodsuger_bound">Obere Blutzuckergrenze</string>
+    <string name="lower_bloodsuger_bound">Untere Blutzuckergrenze</string>
+    <string name="basis_insulin">Basis Insulin</string>
+    <string name="bolus_insulin">Bolus Insulin</string>
+    <string name="compensation_factor">Korrekturfaktor</string>
+    <string name="delete_all">Möchten sie ALLE gespeicherten Einstellungen und Einträge wirklich löschen? Achtung, diese Aktion kann nicht rückgängig gemacht werden!</string>
 
 
 </resources>
