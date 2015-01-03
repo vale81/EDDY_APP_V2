@@ -151,7 +151,7 @@ public class EditEntryForm extends Activity {
 
             }
         }); // End onClick CancelButton
-    } // end onCreate()
+    } // End onCreate()
 
     // Method for filling the activity spinner with activities
     public void fillActivitySpinner()
