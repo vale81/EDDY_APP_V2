@@ -250,7 +250,7 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/cancel_Button"
-                android:onClick="onClick"
+                android:onClick="showCancelDialog"
                 android:layout_below="@id/event_spinner"
                 android:layout_toRightOf="@id/save_Button"
                 android:layout_marginRight="10dp"

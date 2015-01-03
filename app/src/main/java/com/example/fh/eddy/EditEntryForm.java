@@ -29,9 +29,7 @@ import java.util.Set;
 /**
  * Created by Tim on 30.12.2014.
  * This class is basically a copy of the EntryForm with
- * values set accordingly from the database.
- * The time must not be editable so the entry will retain its
- * correct timestamp.
+ * values set according to the database.
  */
 public class EditEntryForm extends Activity {
 
@@ -54,7 +52,11 @@ public class EditEntryForm extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-        //myDataHandler = new DataHandler(this);
+        // Database operation on start of activity
+        // Only open database once -- expensive
+        // Kernel closes database automatically
+        myDataHandler = new DataHandler(this);
+        myDataHandler.open();
 
         super.onCreate(savedInstanceState);
 
@@ -101,7 +103,6 @@ public class EditEntryForm extends Activity {
                 String currTime = the_time.getText().toString();
                 String currDate = the_date.getText().toString();
 
-
                 // Get the spinner value for the activity spinner
                 String spinnerSelectedValue = ((Spinner) findViewById(
                         R.id.aktivitaet_spinner)).getSelectedItem().toString();
@@ -110,9 +111,7 @@ public class EditEntryForm extends Activity {
                 String eventSpinnerSelectedValue = ((Spinner) findViewById(
                         R.id.event_spinner)).getSelectedItem().toString();
 
-                // Database operations
-                myDataHandler = new DataHandler(getBaseContext());
-                myDataHandler.open();
+                // Database update
                 myDataHandler.updateSingleEntry(current_Edit_Entry.getId(), bloodSugarValue, currentBolus,
                         baseInsulin, mealCarbAmount, currTime, currDate, spinnerSelectedValue, eventSpinnerSelectedValue);
 
@@ -133,17 +132,8 @@ public class EditEntryForm extends Activity {
         discardUpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
 
-
-                showCancelButtonDialog();
-
-                // Toast for user feedback
-                Toast toast = Toast.makeText(getApplicationContext(), "Änderungen verworfen.", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                toast.show();
+                showCancelDialog();
 
             }
         }); // End onClick CancelButton
@@ -255,7 +245,7 @@ public class EditEntryForm extends Activity {
     } // End add listener to event spinner
 
 
-
+    // Helper method to correctly set event spinner entry based on entry in database
     private int getEventSpinnerIndex(Spinner spinner, String myString){
 
         int index = 0;
@@ -268,8 +258,9 @@ public class EditEntryForm extends Activity {
         return index;
     }
 
-    private int getActivitySpinnerIndex(Spinner spinner, String myString){
-
+    // Helper method to correctly set activity spinner entry based on entry in database
+    private int getActivitySpinnerIndex(Spinner spinner, String myString)
+    {
         int index = 0;
 
         for (int i=0;i<spinner.getCount();i++){
@@ -280,7 +271,8 @@ public class EditEntryForm extends Activity {
         return index;
     }
 
-    public void showCancelButtonDialog()
+    // Method to show AlertDialog when user hits cancel button in EditEntryForm
+    public void showCancelDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -292,11 +284,14 @@ public class EditEntryForm extends Activity {
             public void onClick(DialogInterface dialog, int which)
             {
 
+                // Return to MainScreen if user cancels updating the entry
+                Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+
                 Toast toast= Toast.makeText(getApplicationContext(),"Änderungen verworfen.", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
-
-                dialog.dismiss();
             }
         });
 
@@ -305,40 +300,48 @@ public class EditEntryForm extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
+                // Simply dismiss the dialog on negative user choice
                 dialog.dismiss();
             }
         });
 
         builder.show();
-    }
+    } //End showCancelDialog
 
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
         // The activity is about to become visible.
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         // The activity has become visible (it is now "resumed").
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause()
+    {
         super.onPause();
         // Another activity is taking focus (this activity is about to be "paused").
     }
 
     @Override
-    protected void onStop() {
+    protected void onStop()
+    {
         super.onStop();
         // The activity is no longer visible (it is now "stopped")
     }
 
-
-
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+    }
 }
 
 

@@ -1,9 +1,12 @@
 package com.example.fh.eddy;
 
+import android.app.AlertDialog;
 import android.app.ListFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,23 +42,27 @@ public class FragmentTab1 extends ListFragment {
   public void onActivityCreated(Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
+        // Database operation -- only open Database once
+        // Kernel closes automatically
         myDataHandler = new DataHandler(getActivity().getBaseContext());
         myDataHandler.open();
-
+        // Getting all entries in database
         entryDataList = myDataHandler.getEveryEntry();
 
         entryDataAdapter = new ArrayAdapter<>(
                 getActivity(), android.R.layout.simple_list_item_1, entryDataList);
         setListAdapter(entryDataAdapter);
+
         getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                EintragDaten eintragDaten = (EintragDaten) getListView().getItemAtPosition(position);
 
+            EintragDaten eintragDaten = (EintragDaten) getListView().getItemAtPosition(position);
 
-                myDataHandler.deleteSingleEntry(eintragDaten);
-                entryDataAdapter.remove(eintragDaten);
-                return true;
+            showCancelDialog(eintragDaten);
+
+            return true;
+
             }
         });
     }
@@ -63,8 +70,6 @@ public class FragmentTab1 extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
-       // myDataHandler = new DataHandler(getActivity().getBaseContext());
-       // myDataHandler.open();
         EintragDaten eintragDaten = (EintragDaten)l.getItemAtPosition(position);
         long theId = eintragDaten.getId();
 
@@ -84,10 +89,36 @@ public class FragmentTab1 extends ListFragment {
                 .show();
     }
 
-    @Override
-    public void onDestroy()
+
+
+    public void showCancelDialog(final EintragDaten eintragDaten)
     {
-        super.onDestroy();
-        myDataHandler.closeDatabase();
-    }
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setMessage(getString(R.string.delete_Single_Entry_From_ListView));
+
+        builder.setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+
+                myDataHandler.deleteSingleEntry(eintragDaten);
+                entryDataAdapter.remove(eintragDaten);
+
+                Toast toast = Toast.makeText(getActivity().getBaseContext(), getString(R.string.delete_Single_Entry_Toast), Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
+            }
+        });
+        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Simply dismiss the dialog on negative user choice
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
+    } //End showCancelDialog
+
 } // End ListFragment

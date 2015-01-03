@@ -1,6 +1,8 @@
 package com.example.fh.eddy;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -111,9 +113,8 @@ public class EintragFormular extends Activity {
                 myDataHandler.open();
                 entry = myDataHandler.insertNewData(bloodSugarValue,currentBolus,
                         baseInsulin,mealCarbAmount, currTime , currDate , spinnerSelectedValue, eventSpinnerSelectedValue,new Date().getTime());
-                myDataHandler.closeDatabase();
 
-                //
+
                 // Toast for user feedback
                 Toast toast=Toast.makeText(getApplicationContext(),"Eintrag gespeichert.", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
@@ -257,6 +258,37 @@ public class EintragFormular extends Activity {
             return "0"+ String.valueOf(timeDateInput);
         }
     }
+
+    public void showBZValueNullDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(getString(R.string.cancel_Update_Entry));
+
+        builder.setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+
+                // Return to MainScreen if user cancels updating the entry
+                Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+
+                Toast toast= Toast.makeText(getApplicationContext(),"Änderungen verworfen.", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+                toast.show();
+            }
+        });
+
+        builder.show();
+    } // End Dialog
+
+
+
+
+
 
     @Override
     protected void onStart() {
