@@ -69,11 +69,11 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
 
             if(i.getBloodSugarValue() < lower_bound) {
                 colorView.setImageResource(R.drawable.red_picture);
-            } else if(i.getBloodSugarValue() >= lower_bound && i.getBloodSugarValue() <= upper_bound-(2*(upper_bound/3))) {
-                colorView.setImageResource(R.drawable.yellow_picture);
-            } else if(i.getBloodSugarValue() >= lower_bound && i.getBloodSugarValue() <= upper_bound) {
+            } else if(i.getBloodSugarValue() >= lower_bound && i.getBloodSugarValue() <=120) {
                 colorView.setImageResource(R.drawable.green_picture);
-            } else if(i.getBloodSugarValue() > upper_bound) {
+            } else if(i.getBloodSugarValue() > 120 && i.getBloodSugarValue() <= upper_bound) {
+                colorView.setImageResource(R.drawable.yellow_picture);
+            } else if(i.getBloodSugarValue() >= upper_bound) {
                 colorView.setImageResource(R.drawable.red_picture);
             }
 
