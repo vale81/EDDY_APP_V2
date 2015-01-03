@@ -91,7 +91,14 @@ public class EintragFormular extends Activity {
         saveNewEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // First check if user entered a bloodsugar value, required
+                if (currentBloodsugarlevel.getText().toString().length() == 0)
+                {
+                    currentBloodsugarlevel.setError("Bitte geben Sie einen Blutzuckerwert ein.");
+                }
+                // Validation passed, execute operations
+                else
+                {
                 int bloodSugarValue = Integer.valueOf(currentBloodsugarlevel.getText().toString());
                 String currentBolus = currentBolusInsulin.getText().toString();
                 String baseInsulin = currentBaseInsulin.getText().toString();
@@ -114,16 +121,17 @@ public class EintragFormular extends Activity {
                 entry = myDataHandler.insertNewData(bloodSugarValue,currentBolus,
                         baseInsulin,mealCarbAmount, currTime , currDate , spinnerSelectedValue, eventSpinnerSelectedValue,new Date().getTime());
 
+                    // Return to main screen and clear stack via flag
+                    Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
 
-                // Toast for user feedback
-                Toast toast=Toast.makeText(getApplicationContext(),"Eintrag gespeichert.", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
-                toast.show();
+                    // Toast for user feedback
+                    Toast toast=Toast.makeText(getApplicationContext(),"Eintrag gespeichert.", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+                    toast.show();
+                }
 
-                // Return to main screen and clear stack via flag
-                Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
             }
         }); // End onClick saveButton
 
@@ -258,37 +266,6 @@ public class EintragFormular extends Activity {
             return "0"+ String.valueOf(timeDateInput);
         }
     }
-
-    public void showBZValueNullDialog()
-    {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        builder.setMessage(getString(R.string.cancel_Update_Entry));
-
-        builder.setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-
-                // Return to MainScreen if user cancels updating the entry
-                Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-
-                Toast toast= Toast.makeText(getApplicationContext(),"Änderungen verworfen.", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
-                toast.show();
-            }
-        });
-
-        builder.show();
-    } // End Dialog
-
-
-
-
-
 
     @Override
     protected void onStart() {
