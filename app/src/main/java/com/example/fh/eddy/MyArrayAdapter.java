@@ -89,7 +89,7 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
 
             if(!(i.getActivity().startsWith("Keine Aktivität"))) {
 
-                activityView.setImageResource(R.drawable.s_picture);
+                activityView.setImageResource(R.drawable.activity_picture);
                 activityView.setAlpha(255F);
             } else {
                 activityView.setImageResource(R.drawable.black_picture);
@@ -98,7 +98,7 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
 
             if(!(i.getEvent().startsWith("Kein Ereignis"))) {
 
-                eventView.setImageResource(R.drawable.e_picture);
+                eventView.setImageResource(R.drawable.event_picture);
                 eventView.setAlpha(255F);
             } else {
                 eventView.setImageResource(R.drawable.black_picture);
