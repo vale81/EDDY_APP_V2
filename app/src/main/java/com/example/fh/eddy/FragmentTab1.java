@@ -51,7 +51,7 @@ public class FragmentTab1 extends ListFragment {
         entryDataList = myDataHandler.getEveryEntry();
 
         //entryDataAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, entryDataList);
-        myDataAdapter= new MyArrayAdapter(getActivity(),entryDataList);
+        myDataAdapter= new MyArrayAdapter<EintragDaten>(getActivity(),entryDataList);
         setListAdapter(myDataAdapter);
         //setListAdapter(entryDataAdapter);
 

@@ -8,14 +8,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Fabian on 03.01.2015.
  */
-public class MyArrayAdapter extends ArrayAdapter<EintragDaten> {
+public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
     private final Context context;
-    private List<EintragDaten> values;
+    private List<EintragDaten> values= new ArrayList<EintragDaten>();
 
     public MyArrayAdapter(Context context, List<EintragDaten> values) {
         super(context, R.layout.rowlayout, values);
@@ -44,6 +45,7 @@ public class MyArrayAdapter extends ArrayAdapter<EintragDaten> {
 		 * Therefore, i refers to the current Item object.
 		 */
         EintragDaten i = values.get(position);
+        int size=values.size();
 
         if (i != null) {
 
@@ -59,7 +61,19 @@ public class MyArrayAdapter extends ArrayAdapter<EintragDaten> {
             // check to see if each individual textview is null.
             // if not, assign some text!
 
-            //bloodView.setText(i.getBloodSugarValue());
+
+            bloodView.setText(i.getBloodSugarValue()+"");
+
+            dateView.setText(i.getTheDate()+" "+i.getDaytime());
+
+            if(i.getActivity().equals("Keine Aktivität")) {
+
+                activityView.setImageResource(android.R.color.transparent);
+            }
+            if(i.getEvent().equals("Kein Ereignis")) {
+
+                eventView.setImageResource(android.R.color.transparent);
+            }
         }
 
         // the view must be returned to our activity
