@@ -63,9 +63,16 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
             // check to see if each individual textview is null.
             // if not, assign some text!
 
+            int lower_bound;
+            int upper_bound;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-            int lower_bound=Integer.parseInt(sharedPrefs.getString("untere_blutzuckergrenze", "40"));
-            int upper_bound=Integer.parseInt(sharedPrefs.getString("obere_blutzuckergrenze", "170"));
+            try {
+                lower_bound = Integer.parseInt(sharedPrefs.getString("untere_blutzuckergrenze", "75"));
+                upper_bound = Integer.parseInt(sharedPrefs.getString("obere_blutzuckergrenze", "200"));
+            } catch(Exception e) {
+                lower_bound=75;
+                upper_bound=200;
+            }
 
             if(i.getBloodSugarValue() < lower_bound) {
                 colorView.setImageResource(R.drawable.red_picture);
