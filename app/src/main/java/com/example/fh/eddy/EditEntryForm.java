@@ -95,35 +95,44 @@ public class EditEntryForm extends Activity {
         updateEntryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // First check if user entered a bloodsugar value, required
+                if (currentBloodsugarlevel.getText().toString().length() == 0)
+                {
+                    currentBloodsugarlevel.setError(getString(R.string.error_message_if_bloodsugar_empty));
+                    currentBloodsugarlevel.requestFocus();
+                }
+                else
+                {
+                    // Validation passed, execute operations
+                    int bloodSugarValue = Integer.valueOf(currentBloodsugarlevel.getText().toString());
+                    String currentBolus = currentBolusInsulin.getText().toString();
+                    String baseInsulin = currentBaseInsulin.getText().toString();
+                    String mealCarbAmount = currentMealCarbAmount.getText().toString();
+                    String currTime = the_time.getText().toString();
+                    String currDate = the_date.getText().toString();
 
-                int bloodSugarValue = Integer.valueOf(currentBloodsugarlevel.getText().toString());
-                String currentBolus = currentBolusInsulin.getText().toString();
-                String baseInsulin = currentBaseInsulin.getText().toString();
-                String mealCarbAmount = currentMealCarbAmount.getText().toString();
-                String currTime = the_time.getText().toString();
-                String currDate = the_date.getText().toString();
+                    // Get the spinner value for the activity spinner
+                    String spinnerSelectedValue = ((Spinner) findViewById(
+                            R.id.aktivitaet_spinner)).getSelectedItem().toString();
 
-                // Get the spinner value for the activity spinner
-                String spinnerSelectedValue = ((Spinner) findViewById(
-                        R.id.aktivitaet_spinner)).getSelectedItem().toString();
+                    // Get the spinner value for the event spinner
+                    String eventSpinnerSelectedValue = ((Spinner) findViewById(
+                            R.id.event_spinner)).getSelectedItem().toString();
 
-                // Get the spinner value for the event spinner
-                String eventSpinnerSelectedValue = ((Spinner) findViewById(
-                        R.id.event_spinner)).getSelectedItem().toString();
+                    // Database update
+                    myDataHandler.updateSingleEntry(current_Edit_Entry.getId(), bloodSugarValue, currentBolus,
+                            baseInsulin, mealCarbAmount, currTime, currDate, spinnerSelectedValue, eventSpinnerSelectedValue);
 
-                // Database update
-                myDataHandler.updateSingleEntry(current_Edit_Entry.getId(), bloodSugarValue, currentBolus,
-                        baseInsulin, mealCarbAmount, currTime, currDate, spinnerSelectedValue, eventSpinnerSelectedValue);
+                    // Toast for user feedback
+                    Toast toast = Toast.makeText(getApplicationContext(), "Eintrag geändert.", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
 
-                // Toast for user feedback
-                Toast toast = Toast.makeText(getApplicationContext(), "Eintrag geändert.", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                toast.show();
-
-                // Return to main screen and clear stack via flag
-                Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                    // Return to main screen and clear stack via flag
+                    Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
             }
         }); // End onClick saveButton
 
