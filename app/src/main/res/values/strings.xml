@@ -76,6 +76,7 @@
     <string name="bolus_insulin">Bolus Insulin</string>
     <string name="compensation_factor">Korrekturfaktor</string>
     <string name="delete_all">Möchten sie ALLE gespeicherten Einstellungen und Einträge wirklich löschen? Achtung, diese Aktion kann nicht rückgängig gemacht werden!</string>
+    <string name="error_message_if_bloodsugar_empty">Bitte geben Sie einen Blutzuckerwert ein.</string>
 
 
 </resources>

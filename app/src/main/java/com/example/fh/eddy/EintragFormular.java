@@ -94,7 +94,7 @@ public class EintragFormular extends Activity {
                 // First check if user entered a bloodsugar value, required
                 if (currentBloodsugarlevel.getText().toString().length() == 0)
                 {
-                    currentBloodsugarlevel.setError("Bitte geben Sie einen Blutzuckerwert ein.");
+                    currentBloodsugarlevel.setError(getString(R.string.error_message_if_bloodsugar_empty));
                 }
                 // Validation passed, execute operations
                 else
