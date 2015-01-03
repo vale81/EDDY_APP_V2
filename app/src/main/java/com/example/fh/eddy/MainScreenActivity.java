@@ -44,7 +44,6 @@ public class MainScreenActivity extends Activity {
         tab2.setTabListener(new MyTabListener(fragmentTab2));
         tab3.setTabListener(new MyTabListener(fragmentTab3));
 
-
         actionBar.addTab(tab1);
         actionBar.addTab(tab2);
         actionBar.addTab(tab3);
@@ -80,7 +79,6 @@ public class MainScreenActivity extends Activity {
 
     @Override
     protected void onPause() {
-       // myDataHandler.closeDatabase();
         super.onPause();
     }
 }

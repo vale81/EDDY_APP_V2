@@ -42,6 +42,7 @@ public class EintragFormular extends Activity {
     // Init fields globally so they can be manipulated
     TextView the_date;
     TextView the_time;
+    TextView mealUnitText;
     EditText currentBloodsugarlevel;
     EditText currentMealCarbAmount;
     EditText currentBolusInsulin;
@@ -50,6 +51,7 @@ public class EintragFormular extends Activity {
     // Init buttons
     ImageButton saveNewEntry;
     ImageButton cancelNewEntry;
+    // Entry object
     EintragDaten entry;
 
     @Override
@@ -57,8 +59,14 @@ public class EintragFormular extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.eintrag_formular);
         // The activity is being created.
+
+        // Database operations
+        myDataHandler = new DataHandler(getBaseContext());
+        myDataHandler.open();
+
         the_date = (TextView)findViewById(R.id.date_currentDate_textView);
         the_time = (TextView) findViewById(R.id.time_currentTime_textView);
+        mealUnitText = (TextView) findViewById(R.id.kohlenhydratMenge_textView);
         currentBloodsugarlevel = (EditText) findViewById(R.id.BZ_editText);
         currentMealCarbAmount = (EditText) findViewById(R.id.mahlzeit_EditText);
         currentBolusInsulin =(EditText) findViewById(R.id.bolus_editText);
@@ -75,6 +83,8 @@ public class EintragFormular extends Activity {
         int currentMinute = c.get(Calendar.MINUTE);
         // Calling helper method to correctly set 0-padding
         the_time.setText(nullPad(currentHour) + ":" + nullPad(currentMinute));
+
+        setMealUnitText();
 
 
         // Filling the activity spinner with selectable activities and adding listener
@@ -116,9 +126,7 @@ public class EintragFormular extends Activity {
                 String eventSpinnerSelectedValue = ((Spinner)findViewById(
                         R.id.event_spinner)).getSelectedItem().toString();
 
-                // Database operations
-                myDataHandler = new DataHandler(getBaseContext());
-                myDataHandler.open();
+                // Insert new data into database
                 entry = myDataHandler.insertNewData(bloodSugarValue,currentBolus,
                         baseInsulin,mealCarbAmount, currTime , currDate , spinnerSelectedValue, eventSpinnerSelectedValue,new Date().getTime());
 
@@ -266,6 +274,13 @@ public class EintragFormular extends Activity {
         {
             return "0"+ String.valueOf(timeDateInput);
         }
+    }
+
+    public void setMealUnitText ()
+    {
+        SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String s = myPrefs.getString("mahlzeit_angabe", "KH");
+        mealUnitText.setText(s);
     }
 
     @Override

@@ -41,6 +41,7 @@ public class EditEntryForm extends Activity {
     // Same fields as in EntryForm
     TextView the_date;
     TextView the_time;
+    TextView mealUnitText;
     EditText currentBloodsugarlevel;
     EditText currentMealCarbAmount;
     EditText currentBolusInsulin;
@@ -67,10 +68,14 @@ public class EditEntryForm extends Activity {
 
         the_date = (TextView)findViewById(R.id.date_currentDate_textView);
         the_time = (TextView) findViewById(R.id.time_currentTime_textView);
+        mealUnitText = (TextView) findViewById(R.id.kohlenhydratMenge_textView);
         currentBloodsugarlevel = (EditText) findViewById(R.id.BZ_editText);
         currentMealCarbAmount = (EditText) findViewById(R.id.mahlzeit_EditText);
         currentBolusInsulin =(EditText) findViewById(R.id.bolus_editText);
         currentBaseInsulin = (EditText) findViewById(R.id.basis_editText);
+
+        // Set meal unit textView according to stored preference
+        setMealUnitText();
 
         // Preset the forms fields with values received from entry selected in ListView
         currentBloodsugarlevel.setText(String.valueOf(current_Edit_Entry.getBloodSugarValue()));
@@ -316,6 +321,13 @@ public class EditEntryForm extends Activity {
 
         builder.show();
     } //End showCancelDialog
+
+    public void setMealUnitText ()
+    {
+        SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String s = myPrefs.getString("mahlzeit_angabe", "KH");
+        mealUnitText.setText(s);
+    }
 
 
     @Override
