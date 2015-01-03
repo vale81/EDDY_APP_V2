@@ -42,14 +42,14 @@
                 android:key="obere_blutzuckergrenze"
                 android:inputType="number"
                 android:numeric="integer"
-                android:defaultValue="170"/>
+                android:defaultValue="200"/>
 
             <EditTextPreference
                 android:title="Untere Blutzuckergrenze"
                 android:key="untere_blutzuckergrenze"
                 android:inputType="number"
                 android:numeric="integer"
-                android:defaultValue="40"/>
+                android:defaultValue="75"/>
 
             </PreferenceScreen>
 
