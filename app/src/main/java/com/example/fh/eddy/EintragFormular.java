@@ -95,6 +95,7 @@ public class EintragFormular extends Activity {
                 if (currentBloodsugarlevel.getText().toString().length() == 0)
                 {
                     currentBloodsugarlevel.setError(getString(R.string.error_message_if_bloodsugar_empty));
+                    currentBloodsugarlevel.requestFocus();
                 }
                 // Validation passed, execute operations
                 else
