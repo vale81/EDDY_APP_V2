@@ -1,6 +1,8 @@
 package com.example.fh.eddy;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +63,19 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
             // check to see if each individual textview is null.
             // if not, assign some text!
 
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+            int lower_bound=Integer.parseInt(sharedPrefs.getString("untere_blutzuckergrenze", "40"));
+            int upper_bound=Integer.parseInt(sharedPrefs.getString("obere_blutzuckergrenze", "170"));
+
+            if(i.getBloodSugarValue() < lower_bound) {
+                colorView.setImageResource(R.drawable.red_picture);
+            } else if(i.getBloodSugarValue() >= lower_bound && i.getBloodSugarValue() <= upper_bound-(2*(upper_bound/3))) {
+                colorView.setImageResource(R.drawable.yellow_picture);
+            } else if(i.getBloodSugarValue() >= lower_bound && i.getBloodSugarValue() <= upper_bound) {
+                colorView.setImageResource(R.drawable.green_picture);
+            } else if(i.getBloodSugarValue() > upper_bound) {
+                colorView.setImageResource(R.drawable.red_picture);
+            }
 
             bloodView.setText(i.getBloodSugarValue()+"");
 
