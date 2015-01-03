@@ -90,15 +90,19 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
             if(!(i.getActivity().startsWith("Keine Aktivität"))) {
 
                 activityView.setImageResource(R.drawable.s_picture);
+                activityView.setAlpha(255F);
             } else {
-                activityView.setImageResource(android.R.color.transparent);
+                activityView.setImageResource(R.drawable.black_picture);
+                activityView.setAlpha(0F);
             }
 
             if(!(i.getEvent().startsWith("Kein Ereignis"))) {
 
                 eventView.setImageResource(R.drawable.e_picture);
+                eventView.setAlpha(255F);
             } else {
-                eventView.setImageResource(android.R.color.transparent);
+                eventView.setImageResource(R.drawable.black_picture);
+                eventView.setAlpha(0F);
             }
         }
 
