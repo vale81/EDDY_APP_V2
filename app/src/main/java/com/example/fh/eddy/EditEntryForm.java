@@ -134,7 +134,7 @@ public class EditEntryForm extends Activity {
                     startActivity(intent);
                 }
             }
-        }); // End onClick saveButton
+        }); // end onClick saveButton
 
         // Init cancel button and setting cancel button listener
         discardUpdateButton = (ImageButton) findViewById(R.id.cancel_Button);
