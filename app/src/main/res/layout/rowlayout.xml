@@ -52,7 +52,7 @@
             android:layout_marginLeft="10px"
             android:layout_marginRight="5px"
             android:layout_marginTop="4px"
-            android:src="@drawable/s_picture" >
+             >
         </ImageView>
 
         <ImageView
@@ -62,7 +62,7 @@
             android:layout_marginLeft="5px"
             android:layout_marginRight="10px"
             android:layout_marginTop="4px"
-            android:src="@drawable/e_picture" >
+             >
         </ImageView>
 
     </LinearLayout>

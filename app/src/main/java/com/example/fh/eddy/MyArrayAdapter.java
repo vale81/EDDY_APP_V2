@@ -47,7 +47,6 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
 		 * Therefore, i refers to the current Item object.
 		 */
         EintragDaten i = values.get(position);
-        int size=values.size();
 
         if (i != null) {
 
@@ -88,12 +87,17 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
 
             dateView.setText(i.getTheDate()+" "+i.getDaytime());
 
-            if(i.getActivity().equals("Keine Aktivität")) {
+            if(!(i.getActivity().startsWith("Keine Aktivität"))) {
 
+                activityView.setImageResource(R.drawable.s_picture);
+            } else {
                 activityView.setImageResource(android.R.color.transparent);
             }
-            if(i.getEvent().equals("Kein Ereignis")) {
 
+            if(!(i.getEvent().startsWith("Kein Ereignis"))) {
+
+                eventView.setImageResource(R.drawable.e_picture);
+            } else {
                 eventView.setImageResource(android.R.color.transparent);
             }
         }
