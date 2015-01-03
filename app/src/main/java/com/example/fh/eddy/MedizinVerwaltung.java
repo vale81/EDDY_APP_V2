@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -122,6 +123,14 @@ public class MedizinVerwaltung extends Activity {
         editor.commit();
         adapter.notifyDataSetChanged();
 
+        // Clear focus from editText
+        textfield.clearFocus();
+        // Force hide of keyboard
+        InputMethodManager myInputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        myInputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        // Clear text in editText
+        textfield.setText("");
+        // Toast for user feedback
         Toast toast=Toast.makeText(getApplicationContext(), getString(R.string.medicin)+ " " + activity + " " +getString(R.string.saved), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
         toast.show();
