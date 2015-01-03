@@ -80,25 +80,25 @@ public class ResetActivity extends Activity {
         builder.append("\n");
 
         builder.append(getString(R.string.name)+": \n");
-        builder.append(sharedPrefs.getString("user_name", "NULL"));
+        builder.append(sharedPrefs.getString("user_name", ""));
         builder.append("\n");
         builder.append(getString(R.string.meal_display)+": \n");
-        builder.append(sharedPrefs.getString("mahlzeit_angabe", "NULL"));
+        builder.append(sharedPrefs.getString("mahlzeit_angabe", ""));
         builder.append("\n");
         builder.append(getString(R.string.upper_bloodsuger_bound)+": \n");
-        builder.append(sharedPrefs.getString("obere_blutzuckergrenze", "NULL"));
+        builder.append(sharedPrefs.getString("obere_blutzuckergrenze", ""));
         builder.append("\n");
         builder.append(getString(R.string.lower_bloodsuger_bound)+": \n");
-        builder.append(sharedPrefs.getString("untere_blutzuckergrenze", "NULL"));
+        builder.append(sharedPrefs.getString("untere_blutzuckergrenze", ""));
         builder.append("\n");
         builder.append(getString(R.string.basis_insulin)+": \n");
-        builder.append(sharedPrefs.getString("basis_insulin", "NULL"));
+        builder.append(sharedPrefs.getString("basis_insulin", ""));
         builder.append("\n");
         builder.append(getString(R.string.bolus_insulin)+": \n");
-        builder.append(sharedPrefs.getString("bolus_insulin", "NULL"));
+        builder.append(sharedPrefs.getString("bolus_insulin", ""));
         builder.append("\n");
         builder.append(getString(R.string.compensation_factor)+": \n");
-        builder.append(sharedPrefs.getString("korrektur_factor", "NULL"));
+        builder.append(sharedPrefs.getString("korrektur_factor", ""));
         builder.append("\n");
 
 
