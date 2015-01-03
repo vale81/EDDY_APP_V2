@@ -27,6 +27,7 @@ public class FragmentTab1 extends ListFragment {
     DataHandler myDataHandler;
 
     ArrayAdapter<EintragDaten> entryDataAdapter;
+    MyArrayAdapter myDataAdapter;
 
     List<EintragDaten> entryDataList = new ArrayList<>();
 
@@ -49,9 +50,10 @@ public class FragmentTab1 extends ListFragment {
         // Getting all entries in database
         entryDataList = myDataHandler.getEveryEntry();
 
-        entryDataAdapter = new ArrayAdapter<>(
-                getActivity(), android.R.layout.simple_list_item_1, entryDataList);
-        setListAdapter(entryDataAdapter);
+        //entryDataAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, entryDataList);
+        myDataAdapter= new MyArrayAdapter(getActivity(),entryDataList);
+        setListAdapter(myDataAdapter);
+        //setListAdapter(entryDataAdapter);
 
         getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -103,7 +105,8 @@ public class FragmentTab1 extends ListFragment {
 
 
                 myDataHandler.deleteSingleEntry(eintragDaten);
-                entryDataAdapter.remove(eintragDaten);
+                //entryDataAdapter.remove(eintragDaten);
+                myDataAdapter.remove(eintragDaten);
 
                 Toast toast = Toast.makeText(getActivity().getBaseContext(), getString(R.string.delete_Single_Entry_Toast), Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
