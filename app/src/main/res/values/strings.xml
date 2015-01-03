@@ -48,6 +48,8 @@
     <string name="delete_Event">Möchten Sie dieses Event wirklich löschen? </string>
     <string name="delete_Medicin">Möchten Sie diese Medizin wirklich löschen? </string>
     <string name="cancel_Update_Entry">Wirklich abbrechen?</string>
+    <string name="delete_Single_Entry_From_ListView">Eintrag wirklich löschen?</string>
+    <string name="delete_Single_Entry_Toast">Eintrag gelöscht.</string>
 
     <string name="be_verwaltung_button">BE-Faktor speichern</string>
     <string name="be_verwaltung_text">Neuen BE-Faktor angeben</string>

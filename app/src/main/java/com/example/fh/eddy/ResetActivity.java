@@ -19,6 +19,7 @@ import java.util.Set;
  */
 public class ResetActivity extends Activity {
 
+    DataHandler myDataHandler;
     SharedPreferences sharedPrefs;
     Context context;
 
@@ -123,6 +124,9 @@ public class ResetActivity extends Activity {
                         .clear()
                         .commit();
                 PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
+                myDataHandler = new DataHandler(getBaseContext());
+                myDataHandler.open();
+                myDataHandler.deleteAllEntries();
                 restartThis();
 
                 dialog.dismiss();

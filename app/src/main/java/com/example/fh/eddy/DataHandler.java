@@ -119,6 +119,11 @@ public class DataHandler {
         eddy_db.delete(DATABASE_TABLE_NAME, ROW_ID + " = " + id, null);
     }
 
+    public void deleteAllEntries()
+    {
+        eddy_db.delete(DATABASE_TABLE_NAME,null,null);
+    }
+
 
  public EintragDaten getSingleEntry (long id)
  {
