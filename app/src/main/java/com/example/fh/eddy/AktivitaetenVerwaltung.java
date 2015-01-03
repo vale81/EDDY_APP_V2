@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,7 +31,6 @@ public class AktivitaetenVerwaltung extends Activity {
 
     SharedPreferences sharedPrefs;
     SharedPreferences.Editor editor;
-
     Set<String> s;
     ListView listview;
     ArrayList<String> list;
@@ -169,9 +169,19 @@ public class AktivitaetenVerwaltung extends Activity {
         editor.putStringSet("activities",s);
         editor.commit();
         adapter.notifyDataSetChanged();
+
+        // Clear focus from editText
+        textfield.clearFocus();
+        // Force hide of keyboard
+        InputMethodManager myInputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        myInputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        // Clear text in editText
+        textfield.setText("");
+        // Toast for user feedback
         Toast toast=Toast.makeText(getApplicationContext(), getString(R.string.activity)+" " + activity + " "+getString(R.string.saved), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
         toast.show();
+
 
         //AlertDialog.Builder alert=new AlertDialog.Builder(this);
         //alert.setTitle("Aktivität gespeichert").setMessage("Aktivität "+activity+" gespeichert").show();
