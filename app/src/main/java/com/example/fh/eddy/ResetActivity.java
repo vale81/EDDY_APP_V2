@@ -53,11 +53,12 @@ public class ResetActivity extends Activity {
         s = sharedPrefs.getStringSet("events", new HashSet<String>());
         builder.append(getString(R.string.events)+": \n");
         it= s.iterator();
-        while(it.hasNext()) {
-            String item=(String)it.next();
-            builder.append(item+", ");
-        }
-        builder.append("\n");
+
+        while (it.hasNext()) {
+            String item = (String) it.next();
+            builder.append(item + ", ");
+            }
+            builder.append("\n");
 
         s = sharedPrefs.getStringSet("medicines", new HashSet<String>());
         builder.append(getString(R.string.medicins)+": \n");

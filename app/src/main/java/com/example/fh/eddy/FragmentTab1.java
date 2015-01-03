@@ -84,10 +84,7 @@ public class FragmentTab1 extends ListFragment {
         i.putExtras(myBundle);
 
         startActivity(i);
-      //  myDataHandler.closeDatabase();
-        Toast.makeText(getActivity().getBaseContext(),
-                "Click ListItem Number " + position, Toast.LENGTH_LONG)
-                .show();
+
     }
 
 
