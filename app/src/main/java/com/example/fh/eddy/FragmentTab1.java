@@ -24,6 +24,7 @@ public class FragmentTab1 extends ListFragment {
     DataHandler myDataHandler;
 
     ArrayAdapter<EintragDaten> entryDataAdapter;
+    MyArrayAdapter myDataAdapter;
 
     List<EintragDaten> entryDataList = new ArrayList<>();
 
@@ -44,9 +45,10 @@ public class FragmentTab1 extends ListFragment {
 
         entryDataList = myDataHandler.getEveryEntry();
 
-        entryDataAdapter = new ArrayAdapter<>(
-                getActivity(), android.R.layout.simple_list_item_1, entryDataList);
-        setListAdapter(entryDataAdapter);
+        //entryDataAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, entryDataList);
+        myDataAdapter = new MyArrayAdapter(getActivity(),entryDataList);
+        setListAdapter(myDataAdapter);
+        //setListAdapter(entryDataAdapter);
         getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -54,7 +56,8 @@ public class FragmentTab1 extends ListFragment {
 
 
                 myDataHandler.deleteSingleEntry(eintragDaten);
-                entryDataAdapter.remove(eintragDaten);
+                //entryDataAdapter.remove(eintragDaten);
+                myDataAdapter.remove(eintragDaten);
                 return true;
             }
         });
