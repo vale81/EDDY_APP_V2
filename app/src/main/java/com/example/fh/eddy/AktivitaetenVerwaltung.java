@@ -31,11 +31,11 @@ public class AktivitaetenVerwaltung extends Activity {
 
     SharedPreferences sharedPrefs;
     SharedPreferences.Editor editor;
+
     Set<String> s;
     ListView listview;
     ArrayList<String> list;
     ArrayAdapter adapter;
-    //StableArrayAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,12 +53,6 @@ public class AktivitaetenVerwaltung extends Activity {
         listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
 
-        //Iterator it= s.iterator();
-        //while(it.hasNext()) {
-        //    list.add((String)it.next());
-        //}
-
-        //adapter = new StableArrayAdapter(this,android.R.layout.simple_list_item_1, list);
         adapter = new ArrayAdapter<String>(this,
                 R.layout.aktivitaeten_listview_layout, R.id.firstLine, list);
         listview.setAdapter(adapter);
@@ -68,19 +62,7 @@ public class AktivitaetenVerwaltung extends Activity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-
                 showDialog((String)parent.getItemAtPosition(position));
-
-
-                /*String text= (String)parent.getItemAtPosition(position);
-                list.remove(text);
-                s.remove(text);
-                editor.putStringSet("activities",s);
-                editor.commit();
-                adapter.notifyDataSetChanged();
-                Toast toast=Toast.makeText(getApplicationContext(),getString(R.string.activity)+" "+text+" "+getString(R.string.deleted), Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
-                toast.show();*/
             }
         });
 
@@ -122,37 +104,6 @@ public class AktivitaetenVerwaltung extends Activity {
         builder.show();
     }
 
-
-    private class StableArrayAdapter extends ArrayAdapter<String> {
-
-        public StableArrayAdapter(Context context, int textViewResourceId,
-                                  List<String> objects) {
-            super(context, textViewResourceId, objects);
-        }
-        /*HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
-
-        public StableArrayAdapter(Context context, int textViewResourceId,
-                                  List<String> objects) {
-            super(context, textViewResourceId, objects);
-            for (int i = 0; i < objects.size(); ++i) {
-                mIdMap.put(objects.get(i), i);
-            }
-        }
-
-        @Override
-        public long getItemId(int position) {
-            String item = getItem(position);
-            return mIdMap.get(item);
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return true;
-        }*/
-
-    }
-
-
     public void saveItem(View view) {
 
         EditText textfield= (EditText)findViewById(R.id.textfield_verwaltung);
@@ -182,9 +133,6 @@ public class AktivitaetenVerwaltung extends Activity {
         toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
         toast.show();
 
-
-        //AlertDialog.Builder alert=new AlertDialog.Builder(this);
-        //alert.setTitle("Aktivität gespeichert").setMessage("Aktivität "+activity+" gespeichert").show();
     }
 
     @Override

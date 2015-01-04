@@ -59,9 +59,6 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
             ImageView activityView = (ImageView) rowView.findViewById(R.id.activity);
             ImageView eventView = (ImageView) rowView.findViewById(R.id.event);
 
-            // check to see if each individual textview is null.
-            // if not, assign some text!
-
             int lower_bound;
             int upper_bound;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -108,22 +105,5 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
 
         // the view must be returned to our activity
         return rowView;
-
-
-        /*LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
-
-        ImageView colorView = (ImageView) rowView.findViewById(R.id.color);
-        TextView bloodView = (TextView) rowView.findViewById(R.id.blood);
-        TextView dateView = (TextView) rowView.findViewById(R.id.date);
-        ImageView activityView = (ImageView) rowView.findViewById(R.id.activity);
-        ImageView eventView = (ImageView) rowView.findViewById(R.id.event);
-
-        bloodView.setText("Test");
-        bloodView.setText(values.get(position).getBloodSugarValue());
-
-
-        return rowView;*/
     }
 }

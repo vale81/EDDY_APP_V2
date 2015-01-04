@@ -36,7 +36,6 @@ public class EventVerwaltung extends Activity {
     ListView listview;
     ArrayList<String> list;
     ArrayAdapter adapter;
-    //StableArrayAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
