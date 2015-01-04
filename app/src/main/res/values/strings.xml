@@ -42,6 +42,7 @@
     <string name="be_factors">Be-Faktoren</string>
     <string name="confirm">Ja</string>
     <string name="cancel">Nein</string>
+    <string name="reset">Zurücksetzen</string>
 
     <string name="delete_Activity">Möchten Sie diese Aktivität wirklich löschen? </string>
     <string name="delete_Be">Möchten Sie diesen Be-Faktor wirklich löschen? </string>

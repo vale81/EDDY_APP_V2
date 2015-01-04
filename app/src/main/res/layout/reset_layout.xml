@@ -23,7 +23,7 @@
         android:layout_height="0dp"
         android:layout_weight=".10"
         android:id="@+id/reset_button"
-        android:text="Reset"
+        android:text="@string/reset"
         android:textColor="#ffffffff"
         android:onClick="showDialog"
         android:background="@android:color/holo_blue_dark"/>
