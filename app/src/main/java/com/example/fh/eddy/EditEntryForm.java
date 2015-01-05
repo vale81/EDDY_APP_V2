@@ -227,8 +227,7 @@ public class EditEntryForm extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                String activitySpinnerItemPicked = activitySpinner.getSelectedItem().toString();
-
+                // Nothing done here
             }
 
             @Override
@@ -249,8 +248,7 @@ public class EditEntryForm extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                String eventSpinnerItemPicked = eventSpinner.getSelectedItem().toString();
-
+                // Nothing done here
             }
 
             @Override
