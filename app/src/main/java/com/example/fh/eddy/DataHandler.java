@@ -138,7 +138,6 @@ public class DataHandler {
              singleEntry.setActivity(cursor.getString(7));
              singleEntry.setEvent(cursor.getString(8));
              singleEntry.setUnix_time(cursor.getLong(9));
-             //cursor.moveToNext();
      }
 
      cursor.close();
@@ -176,7 +175,7 @@ public class DataHandler {
             everyEntry.add(eintrag);
             cursor.moveToNext();
         }
-        // make sure to close the cursor
+        // Make sure to close the cursor
         cursor.close();
         return everyEntry;
     }
@@ -193,7 +192,7 @@ public class DataHandler {
             everyEntry.add(eintrag);
             cursor.moveToNext();
         }
-        // make sure to close the cursor
+        // Make sure to close the cursor
         cursor.close();
         return everyEntry;
     }
@@ -213,7 +212,7 @@ public class DataHandler {
             everyEntry.add(eintrag);
             cursor.moveToNext();
         }
-        // make sure to close the cursor
+        // Make sure to close the cursor
         cursor.close();
         return everyEntry;
     }

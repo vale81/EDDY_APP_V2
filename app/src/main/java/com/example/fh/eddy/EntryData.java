@@ -9,11 +9,10 @@ import java.io.Serializable;
 public class EntryData implements Serializable{
     //Row-ID
     private long id;
-    //Blutzuckerwert
     private int bloodSugarValue;
-    //Menge Bolusinsulin
+    // Bolus insulin amount
     private String bolus;
-    //Menge Basisinsulin
+    // Base insulin amount
     private String baseInsulin;
     private String event;
     private String activity;
@@ -128,4 +127,4 @@ public class EntryData implements Serializable{
         return Integer.toString(bloodSugarValue) + " " + theDate + " " + daytime + "\n " + "Event: " + event + " Activity: " + activity;
     }
 
-} // Ende Klasse EntryData
+} // End EntryData
