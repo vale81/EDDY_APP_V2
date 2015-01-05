@@ -61,8 +61,9 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:textColor="#ff000000"
-                android:background="#fff9ff5a" />
+                android:textColor="#ffffffff"
+                android:textSize="20sp"
+                android:background="#00fff6fe" />
 
             <TextView
                 android:layout_width="100dp"
@@ -73,8 +74,9 @@
                 android:layout_alignBottom="@+id/time_currentTime_textView"
                 android:layout_alignLeft="@+id/date_textView"
                 android:layout_alignStart="@+id/date_textView"
-                android:background="#fff9ff5a"
-                android:textColor="#ff000000" />
+                android:background="#00fefff9"
+                android:textSize="20sp"
+                android:textColor="#ffffffff" />
 
 
 
