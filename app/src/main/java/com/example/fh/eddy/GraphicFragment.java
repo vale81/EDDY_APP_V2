@@ -34,6 +34,7 @@ public class GraphicFragment extends PreferenceFragment {
                              Bundle savedInstanceState){
 
         view = inflater.inflate(R.layout.graphic_tab, container, false);
+
         final Button button1 = (Button) view.findViewById(R.id.one_week);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -67,6 +68,13 @@ public class GraphicFragment extends PreferenceFragment {
         return view;
     }
 
+    /**
+     * Populates the Graph View with Data
+     * Retrieves needed Data and specifies Graph Values
+     *
+     * @param date_Format Format of the Date
+     * @param dateoffset specifies the range from Now till Now-dateoffset
+     */
     private void custom_populateGraphView(View view,String date_Format,long dateoffset) {
 
         int maxvalue=0;
@@ -79,6 +87,7 @@ public class GraphicFragment extends PreferenceFragment {
         myDataHandler.closeDatabase();
         int num = entryDataListe.size();
 
+        //Populates the GraphView Data and searches Min/Max Values
         GraphView.GraphViewData[] data = new GraphView.GraphViewData[num];
         for(int i=0;i<num;i++) {
             data[i]=new GraphView.GraphViewData(entryDataListe.get(i).getUnix_time(), entryDataListe.get(i).getBloodSugarValue());

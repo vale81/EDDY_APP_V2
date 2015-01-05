@@ -45,6 +45,7 @@ public class MedicineManager extends Activity {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPrefs.edit();
 
+        //Retrieve the Items of the specified Preference
         s = new HashSet<String>(sharedPrefs.getStringSet("medicines", new HashSet<String>()));
         ListView listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
@@ -66,6 +67,10 @@ public class MedicineManager extends Activity {
 
     }
 
+    /**
+     * Creates and Shows the AlertDialog when the User attempts to Delete an Item
+     * @param text Item that should be deleted
+     */
     public void showDialog(final String text)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -102,6 +107,11 @@ public class MedicineManager extends Activity {
         builder.show();
     }
 
+    /**
+     * Method that gets called when the user presses the Save Button
+     * Adds the entered Data to the Preferences
+     *
+     */
     public void saveItem(View view) {
 
         EditText textfield= (EditText)findViewById(R.id.textfield_verwaltung);

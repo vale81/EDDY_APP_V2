@@ -31,6 +31,10 @@ public class ResetActivity extends Activity {
         showUserSettings(textview);
     }
 
+    /**
+     * Retrieves the Data of all the Preferences and Displays them
+     *
+     */
     private void showUserSettings(TextView txtview) {
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -105,7 +109,11 @@ public class ResetActivity extends Activity {
         txtview.setText(builder.toString());
     }
 
-
+    /**
+     * Creates and Shows the AlertDialog when the User attempts to Reset all Data
+     * If the User accepts, every Preference will be deleted and Default Values are loaded
+     *
+     */
     public void showDialog(View view)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -145,6 +153,7 @@ public class ResetActivity extends Activity {
         builder.show();
     }
 
+    //Finishes the Reset Process of the Preferences and Displays the Activity again
     private void restartThis() {
         finish();
         overridePendingTransition(0, 0);
