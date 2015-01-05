@@ -89,6 +89,7 @@ public class MealFactorManager extends Activity {
                 editor.putStringSet("be_factor",s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
+                // Toast for user feedback
                 Toast toast=Toast.makeText(getApplicationContext(),getString(R.string.be_factor)+" "+text+" "+getString(R.string.deleted), Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();

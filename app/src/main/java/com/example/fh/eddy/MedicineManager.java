@@ -87,6 +87,7 @@ public class MedicineManager extends Activity {
                 editor.putStringSet("medicines",s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
+                // Toast for user feedback
                 Toast toast= Toast.makeText(getApplicationContext(),getString(R.string.medicin)+ " " +text+" "+getString(R.string.deleted), Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();

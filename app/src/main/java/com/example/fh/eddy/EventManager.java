@@ -86,6 +86,7 @@ public class EventManager extends Activity {
                 editor.putStringSet("events",s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
+                // Toast for user feedback
                 Toast toast=Toast.makeText(getApplicationContext(),getString(R.string.event)+" "+text+" "+getString(R.string.deleted), Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
