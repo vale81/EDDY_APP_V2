@@ -34,7 +34,7 @@ public class GraphicFragment extends PreferenceFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
 
-        view = inflater.inflate(R.layout.grafik_tab, container, false);
+        view = inflater.inflate(R.layout.graphic_tab, container, false);
         final Button button1 = (Button) view.findViewById(R.id.one_week);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -76,18 +76,18 @@ public class GraphicFragment extends PreferenceFragment {
         myDataHandler.open();
 
         long now = new Date().getTime();
-        final List<EintragDaten> eintragDatenListe = new ArrayList<>(myDataHandler.getEntryUntil(now-(dateoffset)));
+        final List<EntryData> entryDataListe = new ArrayList<>(myDataHandler.getEntryUntil(now-(dateoffset)));
         myDataHandler.closeDatabase();
-        int num = eintragDatenListe.size();
+        int num = entryDataListe.size();
 
         GraphView.GraphViewData[] data = new GraphView.GraphViewData[num];
         for(int i=0;i<num;i++) {
-            data[i]=new GraphView.GraphViewData(eintragDatenListe.get(i).getUnix_time(),eintragDatenListe.get(i).getBloodSugarValue());
-            if(eintragDatenListe.get(i).getBloodSugarValue()>maxvalue) {
-                maxvalue=eintragDatenListe.get(i).getBloodSugarValue();
+            data[i]=new GraphView.GraphViewData(entryDataListe.get(i).getUnix_time(), entryDataListe.get(i).getBloodSugarValue());
+            if(entryDataListe.get(i).getBloodSugarValue()>maxvalue) {
+                maxvalue= entryDataListe.get(i).getBloodSugarValue();
             }
-            if(eintragDatenListe.get(i).getBloodSugarValue()<minvalue) {
-                minvalue=eintragDatenListe.get(i).getBloodSugarValue();
+            if(entryDataListe.get(i).getBloodSugarValue()<minvalue) {
+                minvalue= entryDataListe.get(i).getBloodSugarValue();
             }
 
         }

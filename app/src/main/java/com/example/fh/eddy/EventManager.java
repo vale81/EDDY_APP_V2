@@ -25,7 +25,7 @@ import java.util.Set;
 /**
  * Created by Fabian on 21.11.2014.
  */
-public class MedizinVerwaltung extends Activity {
+public class EventManager extends Activity {
 
     SharedPreferences sharedPrefs;
     SharedPreferences.Editor editor;
@@ -38,22 +38,21 @@ public class MedizinVerwaltung extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.verwaltungs_layout);
+        setContentView(R.layout.management_layout);
         TextView txtview = (TextView) findViewById(R.id.textview_verwaltung);
-        txtview.setText(R.string.medizin_verwaltung_text);
+        txtview.setText(R.string.event_verwaltung_text);
         Button button=(Button)findViewById(R.id.new_Item);
-        button.setText(R.string.medizin_verwaltung_button);
+        button.setText(R.string.event_verwaltung_button);
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPrefs.edit();
 
-        s = new HashSet<String>(sharedPrefs.getStringSet("medicines", new HashSet<String>()));
+        s = new HashSet<String>(sharedPrefs.getStringSet("events", new HashSet<String>()));
         listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
 
-
         adapter = new ArrayAdapter<String>(this,
-                R.layout.aktivitaeten_listview_layout, R.id.firstLine, list);
+                R.layout.activity_listview_layout, R.id.firstLine, list);
         listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -72,7 +71,7 @@ public class MedizinVerwaltung extends Activity {
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setMessage(getString(R.string.delete_Medicin) +" "+ text);
+        builder.setMessage(getString(R.string.delete_Event) +" "+ text);
 
         builder.setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener()
         {
@@ -81,10 +80,10 @@ public class MedizinVerwaltung extends Activity {
             {
                 list.remove(text);
                 s.remove(text);
-                editor.putStringSet("medicines",s);
+                editor.putStringSet("events",s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
-                Toast toast= Toast.makeText(getApplicationContext(),getString(R.string.medicin)+ " " +text+" "+getString(R.string.deleted), Toast.LENGTH_LONG);
+                Toast toast=Toast.makeText(getApplicationContext(),getString(R.string.event)+" "+text+" "+getString(R.string.deleted), Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
 
@@ -117,7 +116,7 @@ public class MedizinVerwaltung extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("medicines",s);
+        editor.putStringSet("events",s);
         editor.commit();
         adapter.notifyDataSetChanged();
 
@@ -128,10 +127,11 @@ public class MedizinVerwaltung extends Activity {
         myInputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         // Clear text in editText
         textfield.setText("");
-        // Toast for user feedback
-        Toast toast=Toast.makeText(getApplicationContext(), getString(R.string.medicin)+ " " + activity + " " +getString(R.string.saved), Toast.LENGTH_SHORT);
+
+        Toast toast=Toast.makeText(getApplicationContext(), getString(R.string.event)+" " + activity + " "+getString(R.string.saved), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
         toast.show();
+
     }
 
     @Override
@@ -143,7 +143,7 @@ public class MedizinVerwaltung extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("medicines",s);
+        editor.putStringSet("events",s);
         editor.commit();
         adapter.notifyDataSetChanged();
 

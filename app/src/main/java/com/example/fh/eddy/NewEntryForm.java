@@ -1,8 +1,6 @@
 package com.example.fh.eddy;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,7 +28,7 @@ import java.util.Set;
 /**
  * Created by Tim  Nov. 2014.
  */
-public class EintragFormular extends Activity {
+public class NewEntryForm extends Activity {
 
     // Database object with helper
     private DataHandler myDataHandler;
@@ -52,12 +50,12 @@ public class EintragFormular extends Activity {
     ImageButton saveNewEntry;
     ImageButton cancelNewEntry;
     // Entry object
-    EintragDaten entry;
+    EntryData entry;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.eintrag_formular);
+        setContentView(R.layout.entry_form);
         // The activity is being created.
 
         // Database operations

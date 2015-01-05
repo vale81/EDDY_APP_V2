@@ -5,14 +5,14 @@
         android:summary="Verwalten Sie Ihre Aktivitäten">
         <intent
             android:targetPackage="com.example.fh.eddy"
-            android:targetClass="com.example.fh.eddy.AktivitaetenVerwaltung"/>
+            android:targetClass="com.example.fh.eddy.Activity_Manager"/>
     </Preference>
 
     <Preference android:title="Events"
         android:summary="Verwalten Sie Ihre Events">
         <intent
             android:targetPackage="com.example.fh.eddy"
-            android:targetClass="com.example.fh.eddy.EventVerwaltung"/>
+            android:targetClass="com.example.fh.eddy.EventManager"/>
     </Preference>
 
     <PreferenceScreen
@@ -82,7 +82,7 @@
             android:summary="Geben Sie Ihre BE-Faktoren an">
             <intent
                 android:targetPackage="com.example.fh.eddy"
-                android:targetClass="com.example.fh.eddy.BEFaktorVerwaltung"/>
+                android:targetClass="com.example.fh.eddy.MealFactorManager"/>
         </Preference>
 
         <Preference
@@ -90,7 +90,7 @@
             android:summary="Tragen Sie Ihre Medizin ein">
             <intent
                 android:targetPackage="com.example.fh.eddy"
-                android:targetClass="com.example.fh.eddy.MedizinVerwaltung"/>
+                android:targetClass="com.example.fh.eddy.MedicineManager"/>
         </Preference>
 
     </PreferenceScreen>

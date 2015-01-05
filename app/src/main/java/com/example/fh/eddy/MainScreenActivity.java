@@ -1,27 +1,19 @@
 package com.example.fh.eddy;
-import android.app.ListActivity;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-import android.widget.ArrayAdapter;
-
-import java.util.List;
-
 
 
 public class MainScreenActivity extends Activity {
 
     ActionBar.Tab tab1, tab2, tab3;
-    Fragment fragmentTab1 = new FragmentTab1();
+    Fragment fragmentTab1 = new FragmentTabOne();
     //Fragment fragmentTab2 = new FragmentTab2();
     Fragment fragmentTab2 = new GraphicFragment();
     Fragment fragmentTab3= new SettingsFragment();
@@ -73,7 +65,7 @@ public class MainScreenActivity extends Activity {
     }
 
     public void sendMessage(View view) {
-        Intent intent = new Intent(this, EintragFormular.class);
+        Intent intent = new Intent(this, NewEntryForm.class);
         startActivity(intent);
     }
 

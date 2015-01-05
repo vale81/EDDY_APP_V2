@@ -4,14 +4,12 @@ import android.app.AlertDialog;
 import android.app.ListFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,19 +20,19 @@ import java.util.List;
  * Created by Fabian on 09.11.2014.
  * Edited by Tim Dez. 2014.
  */
-public class FragmentTab1 extends ListFragment {
+public class FragmentTabOne extends ListFragment {
 
     DataHandler myDataHandler;
 
     MyArrayAdapter myDataAdapter;
 
-    List<EintragDaten> entryDataList = new ArrayList<>();
+    List<EntryData> entryDataList = new ArrayList<>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
 
-        View view = inflater.inflate(R.layout.eintrag_tab, container, false);
+        View view = inflater.inflate(R.layout.entry_tab, container, false);
         return view;
     }
 
@@ -49,18 +47,16 @@ public class FragmentTab1 extends ListFragment {
         // Getting all entries in database
         entryDataList = myDataHandler.getEveryEntry();
 
-        //entryDataAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, entryDataList);
-        myDataAdapter= new MyArrayAdapter<EintragDaten>(getActivity(),entryDataList);
+        myDataAdapter= new MyArrayAdapter<EntryData>(getActivity(),entryDataList);
         setListAdapter(myDataAdapter);
-        //setListAdapter(entryDataAdapter);
 
         getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-            EintragDaten eintragDaten = (EintragDaten) getListView().getItemAtPosition(position);
+            EntryData entryData = (EntryData) getListView().getItemAtPosition(position);
 
-            showCancelDialog(eintragDaten);
+            showCancelDialog(entryData);
 
             return true;
 
@@ -71,11 +67,10 @@ public class FragmentTab1 extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
-        EintragDaten eintragDaten = (EintragDaten)l.getItemAtPosition(position);
-        long theId = eintragDaten.getId();
+        EntryData entryData = (EntryData)l.getItemAtPosition(position);
+        long theId = entryData.getId();
 
-        EintragDaten usedEntry = myDataHandler.getSingleEntry(theId);
-        //super.onListItemClick(l, v, position, id);
+        EntryData usedEntry = myDataHandler.getSingleEntry(theId);
 
         Intent i = new Intent(getActivity().getBaseContext(), EditEntryForm.class);
 
@@ -89,7 +84,7 @@ public class FragmentTab1 extends ListFragment {
 
 
 
-    public void showCancelDialog(final EintragDaten eintragDaten)
+    public void showCancelDialog(final EntryData entryData)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -100,8 +95,8 @@ public class FragmentTab1 extends ListFragment {
             public void onClick(DialogInterface dialog, int which) {
 
 
-                myDataHandler.deleteSingleEntry(eintragDaten);
-                myDataAdapter.remove(eintragDaten);
+                myDataHandler.deleteSingleEntry(entryData);
+                myDataAdapter.remove(entryData);
 
                 Toast toast = Toast.makeText(getActivity().getBaseContext(), getString(R.string.delete_Single_Entry_Toast), Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);

@@ -9,11 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Created by Tim on 17.11.2014.
@@ -21,7 +18,7 @@ import java.util.Locale;
  * for database manipulation. Since the helper is only needed when a
  * database is needed it is included in this class. Only a
  * Datahandler object needs to be instantiated.
- * A separate helper object is not needed.
+ * A separate helper object in external class is not needed.
  */
 public class DataHandler {
 
@@ -78,9 +75,9 @@ public class DataHandler {
         dbHelper.close();
     }
 
-    // Methode to insert new data
+    // Method to insert new data
     // Content = KeyValue Pairs Key = Column Value = Contents in Column
-    public EintragDaten insertNewData(int new_blood_sugar_value, String new_bolus, String new_base, String new_carb_amount,
+    public EntryData insertNewData(int new_blood_sugar_value, String new_bolus, String new_base, String new_carb_amount,
                                       String curr_time, String curr_date , String new_activity, String curr_event, long created)
     {
         ContentValues content = new ContentValues();
@@ -96,25 +93,23 @@ public class DataHandler {
         content.put(CREATED,created);
 
 
-        // Einfuege ID erstellen und Content-insert
+        // Create entry row id, insert content into database
         long newEntryID = eddy_db.insert(DATABASE_TABLE_NAME, null, content);
-        // Alle Spalten in Cursorobjekt geladen, Cursor dann uebergeben
-        // Jeder neue Eintrag bekommt eigene ID
-        // EintragID an Cursorstelle 0
+
         Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME,
                 allColumns, ROW_ID + " = " + newEntryID, null,
                 null, null, null);
         cursor.moveToFirst();
         // Daten in das EintragDatenobjekt geschrieben ueber cursorToValues und ein neuer Eintrag returned
-        EintragDaten newEntry = cursorToValues(cursor);
+        EntryData newEntry = cursorToValues(cursor);
         cursor.close();
         return newEntry;
 
     }
     // Loescht einzelne Eintraege
-    public void deleteSingleEntry(EintragDaten eintragDaten)
+    public void deleteSingleEntry(EntryData entryData)
     {
-        long id = eintragDaten.getId();
+        long id = entryData.getId();
         System.out.println("Eintrag mit ID " + id + "wurde geloescht.");
         eddy_db.delete(DATABASE_TABLE_NAME, ROW_ID + " = " + id, null);
     }
@@ -125,9 +120,9 @@ public class DataHandler {
     }
 
 
- public EintragDaten getSingleEntry (long id)
+ public EntryData getSingleEntry (long id)
  {
-     EintragDaten singleEntry = new EintragDaten();
+     EntryData singleEntry = new EntryData();
 
      Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME, allColumns, ROW_ID + " = " + id, null, null, null, null);
 
@@ -169,15 +164,15 @@ public class DataHandler {
 
     }
     // Alle Eintraege holen und in Liste packen von Adapter fuer ListView genutzt
-    public List<EintragDaten> getEveryEntry() {
-        List<EintragDaten> everyEntry = new ArrayList<EintragDaten>();
+    public List<EntryData> getEveryEntry() {
+        List<EntryData> everyEntry = new ArrayList<EntryData>();
 
         Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME,
                 allColumns, null, null, null, null, CREATED + " DESC");
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            EintragDaten eintrag = cursorToValues(cursor);
+            EntryData eintrag = cursorToValues(cursor);
             everyEntry.add(eintrag);
             cursor.moveToNext();
         }
@@ -186,15 +181,15 @@ public class DataHandler {
         return everyEntry;
     }
 
-    public List<EintragDaten> getEveryEntryUnsorted() {
-        List<EintragDaten> everyEntry = new ArrayList<EintragDaten>();
+    public List<EntryData> getEveryEntryUnsorted() {
+        List<EntryData> everyEntry = new ArrayList<EntryData>();
 
         Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME,
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            EintragDaten eintrag = cursorToValues(cursor);
+            EntryData eintrag = cursorToValues(cursor);
             everyEntry.add(eintrag);
             cursor.moveToNext();
         }
@@ -203,8 +198,8 @@ public class DataHandler {
         return everyEntry;
     }
 
-    public List<EintragDaten> getEntryUntil(long until) {
-        List<EintragDaten> everyEntry = new ArrayList<EintragDaten>();
+    public List<EntryData> getEntryUntil(long until) {
+        List<EntryData> everyEntry = new ArrayList<EntryData>();
 
         String whereClause = "created >= ?";
         String[] whereArgs = new String[] {String.valueOf(until)};
@@ -214,7 +209,7 @@ public class DataHandler {
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            EintragDaten eintrag = cursorToValues(cursor);
+            EntryData eintrag = cursorToValues(cursor);
             everyEntry.add(eintrag);
             cursor.moveToNext();
         }
@@ -224,9 +219,9 @@ public class DataHandler {
     }
 
     // Methode um Werte an der Stelle des Cursors zu holen und damit Eintragsdaten setzen
-    private EintragDaten cursorToValues(Cursor cursor)
+    private EntryData cursorToValues(Cursor cursor)
     {
-        EintragDaten entry = new EintragDaten();
+        EntryData entry = new EntryData();
 
         entry.setId(cursor.getLong(0));
         entry.setBloodSugarValue(cursor.getInt(1));

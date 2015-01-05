@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Tim on 21.11.2014.
  * This class models the entries made by the user.
  */
-public class EintragDaten implements Serializable{
+public class EntryData implements Serializable{
     //Row-ID
     private long id;
     //Blutzuckerwert
@@ -128,4 +128,4 @@ public class EintragDaten implements Serializable{
         return Integer.toString(bloodSugarValue) + " " + theDate + " " + daytime + "\n " + "Event: " + event + " Activity: " + activity;
     }
 
-} // Ende Klasse EintragDaten
+} // Ende Klasse EntryData

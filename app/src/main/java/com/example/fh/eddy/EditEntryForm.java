@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
@@ -19,8 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -64,7 +61,7 @@ public class EditEntryForm extends Activity {
         setContentView(R.layout.edit_entry_form_layout);
 
         // Get the passed extras via getIntent()
-        final EintragDaten current_Edit_Entry = (EintragDaten)getIntent().getSerializableExtra("passedVar");
+        final EntryData current_Edit_Entry = (EntryData)getIntent().getSerializableExtra("passedVar");
 
         the_date = (TextView)findViewById(R.id.date_currentDate_textView);
         the_time = (TextView) findViewById(R.id.time_currentTime_textView);

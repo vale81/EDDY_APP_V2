@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.fh.eddy.EintragFormular"
+            android:name=".NewEntryForm"
             android:label="@string/app_name"
             android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
             <meta-data
@@ -25,7 +25,7 @@
                 android:value="com.example.fh.eddy.MainScreenActivity" />
         </activity>
         <activity
-            android:name="com.example.fh.eddy.AktivitaetenVerwaltung"
+            android:name=".Activity_Manager"
             android:label="@string/app_name"
             android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
             <meta-data
@@ -33,7 +33,7 @@
                 android:value="com.example.fh.eddy.MainScreenActivity" />
         </activity>
         <activity
-            android:name="com.example.fh.eddy.EventVerwaltung"
+            android:name=".EventManager"
             android:label="@string/app_name"
             android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
             <meta-data
@@ -41,7 +41,7 @@
                 android:value="com.example.fh.eddy.MainScreenActivity" />
         </activity>
         <activity
-            android:name="com.example.fh.eddy.MedizinVerwaltung"
+            android:name=".MedicineManager"
             android:label="@string/app_name"
             android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
             <meta-data
@@ -49,7 +49,7 @@
                 android:value="com.example.fh.eddy.MainScreenActivity" />
         </activity>
         <activity
-            android:name="com.example.fh.eddy.BEFaktorVerwaltung"
+            android:name=".MealFactorManager"
             android:label="@string/app_name"
             android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
             <meta-data

@@ -16,11 +16,11 @@ import java.util.List;
 /**
  * Created by Fabian on 03.01.2015.
  */
-public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
+public class MyArrayAdapter<E> extends ArrayAdapter<EntryData> {
     private final Context context;
-    private List<EintragDaten> values= new ArrayList<EintragDaten>();
+    private List<EntryData> values= new ArrayList<EntryData>();
 
-    public MyArrayAdapter(Context context, List<EintragDaten> values) {
+    public MyArrayAdapter(Context context, List<EntryData> values) {
         super(context, R.layout.rowlayout, values);
         this.context = context;
         this.values = values;
@@ -46,7 +46,7 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EintragDaten> {
 		 *
 		 * Therefore, i refers to the current Item object.
 		 */
-        EintragDaten i = values.get(position);
+        EntryData i = values.get(position);
 
         if (i != null) {
 
