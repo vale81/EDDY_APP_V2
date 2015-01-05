@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -102,6 +103,11 @@ public class EditEntryForm extends Activity {
                 {
                     currentBloodsugarlevel.setError(getString(R.string.error_message_if_bloodsugar_empty));
                     currentBloodsugarlevel.requestFocus();
+                    /* Show the keyboard after edit text is refocused because of error
+                    /* Necessary because keyboard does not automatically reappear if user hits
+                       Save button on empty form */
+                    InputMethodManager myInputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    myInputMethodManager.showSoftInput(currentBloodsugarlevel, InputMethodManager.SHOW_IMPLICIT);
                 }
                 else
                 {
