@@ -61,7 +61,7 @@ public class DataHandler {
         dbHelper = new DatabaseHelper(ctx);
     }
 
-    // Method to open database
+    // Method to open writable database
     public DataHandler open() throws SQLiteException
     {
         dbHelper = new DatabaseHelper(ctx);
@@ -106,7 +106,7 @@ public class DataHandler {
         return newEntry;
 
     }
-    // Loescht einzelne Eintraege
+    // Delete a single entry from the database
     public void deleteSingleEntry(EntryData entryData)
     {
         long id = entryData.getId();
@@ -163,7 +163,7 @@ public class DataHandler {
         eddy_db.update(DATABASE_TABLE_NAME, updatedContent, ROW_ID + " = " + id, null);
 
     }
-    // Alle Eintraege holen und in Liste packen von Adapter fuer ListView genutzt
+    // Get all entries , put in List, used by Adapter in ListView
     public List<EntryData> getEveryEntry() {
         List<EntryData> everyEntry = new ArrayList<EntryData>();
 
@@ -218,7 +218,7 @@ public class DataHandler {
         return everyEntry;
     }
 
-    // Methode um Werte an der Stelle des Cursors zu holen und damit Eintragsdaten setzen
+    // Setting entry data based on cursor position
     private EntryData cursorToValues(Cursor cursor)
     {
         EntryData entry = new EntryData();
@@ -240,7 +240,7 @@ public class DataHandler {
     //  Begin inner class
     private static class DatabaseHelper extends SQLiteOpenHelper
     {
-        //Constructor inner Class
+        //Constructor inner class
         //Init Database
         public DatabaseHelper(Context ctx )
         {
@@ -248,7 +248,7 @@ public class DataHandler {
         }
 
         @Override
-        // Once databse is created the create table is executed
+        // Once database is created the create table is executed
         public void onCreate(SQLiteDatabase sqLiteDatabase) {
             try
             {
