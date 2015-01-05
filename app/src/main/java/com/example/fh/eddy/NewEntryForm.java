@@ -141,7 +141,7 @@ public class NewEntryForm extends Activity {
                     startActivity(intent);
 
                     // Toast for user feedback
-                    Toast toast=Toast.makeText(getApplicationContext(),"Eintrag gespeichert.", Toast.LENGTH_LONG);
+                    Toast toast=Toast.makeText(getApplicationContext(),getString(R.string.toast_new_entry_saved), Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
                     toast.show();
                 }
