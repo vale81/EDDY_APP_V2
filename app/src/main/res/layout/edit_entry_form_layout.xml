@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:weightSum="1">
     <ScrollView
         android:layout_width="match_parent"
@@ -74,6 +76,9 @@
                 android:background="#ffffffff"
                 android:textColor="#ff000000" />
 
+
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,6 +89,9 @@
                 android:layout_alignLeft="@id/zeit_textView"
                 android:layout_below="@id/time_currentTime_textView"
                 android:layout_marginLeft="10dp" />
+
+
+
 
             <EditText
                 android:layout_width="100dp"
@@ -124,6 +132,7 @@
                 android:id="@+id/mahlzeit_EditText"
                 android:inputType="number"
                 android:layout_below="@id/mahlzeit_textView"
+                android:imeOptions="actionNext"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:background="#ffffffff"
@@ -157,6 +166,7 @@
                 android:inputType="number"
                 android:layout_below="@id/insulin_textView"
                 android:layout_marginLeft="10dp"
+                android:imeOptions="actionNext"
                 android:layout_marginTop="10dp"
                 android:background="#ffffffff"
                 android:textColor="#ff000000" />
@@ -179,6 +189,7 @@
                 android:inputType="number"
                 android:layout_toRightOf="@id/bolus_textView"
                 android:layout_alignBaseline="@id/bolus_editText"
+                android:imeOptions="actionDone"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:background="#ffffffff"
