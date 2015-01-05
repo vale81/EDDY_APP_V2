@@ -78,6 +78,8 @@
     <string name="compensation_factor">Korrekturfaktor</string>
     <string name="delete_all">Möchten sie ALLE gespeicherten Einstellungen und Einträge wirklich löschen? Achtung, diese Aktion kann nicht rückgängig gemacht werden!</string>
     <string name="error_message_if_bloodsugar_empty">Bitte geben Sie einen Blutzuckerwert ein.</string>
+    <string name="toast_edit_entry_form_discarded_changes">Änderungen verworfen.</string>
+    <string name="toast_edit_entry_form_entry_updated_and_saved">Eintrag geändert.</string>
 
 
 </resources>
