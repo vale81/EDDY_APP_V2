@@ -27,11 +27,9 @@ import java.util.Set;
  */
 public class Activity_Manager extends Activity {
 
-    private SharedPreferences sharedPrefs;
     private SharedPreferences.Editor editor;
 
     private Set<String> s;
-    private ListView listview;
     private ArrayList<String> list;
     private ArrayAdapter adapter;
 
@@ -44,11 +42,11 @@ public class Activity_Manager extends Activity {
         Button button=(Button)findViewById(R.id.new_Item);
         button.setText(R.string.activity_verwaltung_button);
 
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPrefs.edit();
 
         s = new HashSet<String>(sharedPrefs.getStringSet("activities", new HashSet<String>()));
-        listview = (ListView) findViewById(R.id.listView);
+        ListView listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
 
         adapter = new ArrayAdapter<String>(this,
@@ -60,7 +58,7 @@ public class Activity_Manager extends Activity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                showDialog((String)parent.getItemAtPosition(position));
+                showDialog((String) parent.getItemAtPosition(position));
             }
         });
 

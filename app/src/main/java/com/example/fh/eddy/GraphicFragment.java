@@ -29,7 +29,6 @@ public class GraphicFragment extends PreferenceFragment {
 
     private String head="";
     private View view;
-    private DataHandler myDataHandler;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
@@ -72,11 +71,11 @@ public class GraphicFragment extends PreferenceFragment {
 
         int maxvalue=0;
         int minvalue=999;
-        myDataHandler = new DataHandler(getActivity().getBaseContext());
+        DataHandler myDataHandler = new DataHandler(getActivity().getBaseContext());
         myDataHandler.open();
 
         long now = new Date().getTime();
-        final List<EntryData> entryDataListe = new ArrayList<>(myDataHandler.getEntryUntil(now-(dateoffset)));
+        final List<EntryData> entryDataListe = new ArrayList<>(myDataHandler.getEntryUntil(now - (dateoffset)));
         myDataHandler.closeDatabase();
         int num = entryDataListe.size();
 

@@ -12,11 +12,13 @@ import android.view.View;
 
 public class MainScreenActivity extends Activity {
 
-    ActionBar.Tab tab1, tab2, tab3;
-    Fragment fragmentTab1 = new FragmentTabOne();
+    private ActionBar.Tab tab1;
+    private ActionBar.Tab tab2;
+    private ActionBar.Tab tab3;
+    private Fragment fragmentTab1 = new FragmentTabOne();
     //Fragment fragmentTab2 = new FragmentTab2();
-    Fragment fragmentTab2 = new GraphicFragment();
-    Fragment fragmentTab3= new SettingsFragment();
+    private Fragment fragmentTab2 = new GraphicFragment();
+    private Fragment fragmentTab3= new SettingsFragment();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
