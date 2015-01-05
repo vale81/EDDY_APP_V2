@@ -84,12 +84,12 @@ public class EditEntryForm extends Activity {
         the_time.setText(String.valueOf(current_Edit_Entry.getDaytime()));
 
         // Filling the activity spinner with selectable activities and adding listener
-        fillActivitySpinner();
+        fillActivitySpinner(current_Edit_Entry.getActivity());
         addListenerToActivitySpinner();
         activitySpinner.setSelection(getActivitySpinnerIndex(activitySpinner, current_Edit_Entry.getActivity()));
 
         // Filling the event spinner with events and adding listener
-        fillEventSpinner();
+        fillEventSpinner(current_Edit_Entry.getEvent());
         addListenerToEventSpinner();
         eventSpinner.setSelection(getEventSpinnerIndex(eventSpinner, current_Edit_Entry.getEvent()));
 
@@ -157,7 +157,7 @@ public class EditEntryForm extends Activity {
     } // End onCreate()
 
     // Method for filling the activity spinner with activities
-    public void fillActivitySpinner()
+    public void fillActivitySpinner(String entry_item)
     {
         SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -177,6 +177,9 @@ public class EditEntryForm extends Activity {
             String item=(String)it.next();
             list.add(item);
         }
+        if(!list.contains(entry_item)) {
+            list.add(entry_item);
+        }
         // Adapter for spinner contents
         ArrayAdapter<String> activitySpinnerAdapter =
                 new ArrayAdapter<String>(this,
@@ -188,7 +191,7 @@ public class EditEntryForm extends Activity {
     } // End fillActivitySpinner()
 
     // Method for filling the event spinner with events
-    public void fillEventSpinner()
+    public void fillEventSpinner(String entry_item)
     {
         SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -207,6 +210,9 @@ public class EditEntryForm extends Activity {
         while(it.hasNext()) {
             String item=(String)it.next();
             list.add(item);
+        }
+        if(!list.contains(entry_item)) {
+            list.add(entry_item);
         }
         // Adapter for spinner contents
         ArrayAdapter<String> eventSpinnerAdapter =
