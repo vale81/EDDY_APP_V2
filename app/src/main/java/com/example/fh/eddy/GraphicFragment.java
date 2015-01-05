@@ -27,9 +27,9 @@ import java.util.List;
  */
 public class GraphicFragment extends PreferenceFragment {
 
-    String head="";
-    View view;
-    DataHandler myDataHandler;
+    private String head="";
+    private View view;
+    private DataHandler myDataHandler;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){

@@ -69,8 +69,4 @@ public class MainScreenActivity extends Activity {
         startActivity(intent);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
 }

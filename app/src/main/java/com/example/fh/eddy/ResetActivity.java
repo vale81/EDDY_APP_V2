@@ -19,9 +19,8 @@ import java.util.Set;
  */
 public class ResetActivity extends Activity {
 
-    DataHandler myDataHandler;
-    SharedPreferences sharedPrefs;
-    Context context;
+    private DataHandler myDataHandler;
+    private Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,7 @@ public class ResetActivity extends Activity {
 
     private void showUserSettings(TextView txtview) {
 
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         StringBuilder builder = new StringBuilder();
 

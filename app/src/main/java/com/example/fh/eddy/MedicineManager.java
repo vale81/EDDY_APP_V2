@@ -27,13 +27,11 @@ import java.util.Set;
  */
 public class MedicineManager extends Activity {
 
-    SharedPreferences sharedPrefs;
-    SharedPreferences.Editor editor;
+    private SharedPreferences.Editor editor;
 
-    Set<String> s;
-    ListView listview;
-    ArrayList<String> list;
-    ArrayAdapter adapter;
+    private Set<String> s;
+    private ArrayList<String> list;
+    private ArrayAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,11 +42,11 @@ public class MedicineManager extends Activity {
         Button button=(Button)findViewById(R.id.new_Item);
         button.setText(R.string.medizin_verwaltung_button);
 
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPrefs.edit();
 
         s = new HashSet<String>(sharedPrefs.getStringSet("medicines", new HashSet<String>()));
-        listview = (ListView) findViewById(R.id.listView);
+        ListView listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
 
 
@@ -61,7 +59,7 @@ public class MedicineManager extends Activity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                showDialog((String)parent.getItemAtPosition(position));
+                showDialog((String) parent.getItemAtPosition(position));
 
             }
         });

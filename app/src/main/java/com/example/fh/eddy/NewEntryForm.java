@@ -286,11 +286,4 @@ public class NewEntryForm extends Activity {
         mealUnitText.setText(s);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // The activity is about to become visible.
-    }
-
-
 }

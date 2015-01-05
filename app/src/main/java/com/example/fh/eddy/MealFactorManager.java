@@ -28,13 +28,13 @@ import java.util.Set;
  */
 public class MealFactorManager extends Activity {
 
-    SharedPreferences sharedPrefs;
-    SharedPreferences.Editor editor;
+    private SharedPreferences sharedPrefs;
+    private SharedPreferences.Editor editor;
 
-    Set<String> s;
-    ListView listview;
-    ArrayList<String> list;
-    ArrayAdapter adapter;
+    private Set<String> s;
+    private ListView listview;
+    private ArrayList<String> list;
+    private ArrayAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
