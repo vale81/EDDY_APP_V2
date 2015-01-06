@@ -10,7 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 /**
- *
+ * Main Activity
+ * Create the Fragments and populate the Action Bar Tabs
+ * @author Fabian Tim
  */
 public class MainScreenActivity extends Activity {
 
@@ -18,15 +20,19 @@ public class MainScreenActivity extends Activity {
     private ActionBar.Tab tab2;
     private ActionBar.Tab tab3;
     private Fragment fragmentTab1 = new FragmentTabOne();
-    //Fragment fragmentTab2 = new FragmentTab2();
     private Fragment fragmentTab2 = new GraphicFragment();
     private Fragment fragmentTab3= new SettingsFragment();
 
+    /**
+     * Initialise the Tab Fragments and add them to the Action Bar,
+     * load the default Values for Preferences
+     *
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-
+        //Initialise Default Values of Preferences
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         ActionBar actionBar = getActionBar();
@@ -45,6 +51,10 @@ public class MainScreenActivity extends Activity {
         actionBar.addTab(tab3);
     }
 
+    /**
+     * Initialize the Menu
+     * Load Layout for the Menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -52,14 +62,15 @@ public class MainScreenActivity extends Activity {
         return true;
     }
 
+    /**
+     * Handle Selection of Menu Items
+     * Switches to Settings Fragment if Settings was selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //Select the Settings Fragment if Settings was pressed
         if (id == R.id.action_settings) {
             tab3.select();
             return true;
@@ -68,6 +79,10 @@ public class MainScreenActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Handle the on Click Event of the Button,
+     * and Start the NewEntryForm Activity
+     */
     public void sendMessage(View view) {
         Intent intent = new Intent(this, NewEntryForm.class);
         startActivity(intent);

@@ -15,7 +15,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Created by Fabian on 02.01.2015.
+ *
+ * @author Fabian Tim
  */
 public class ResetActivity extends Activity {
 

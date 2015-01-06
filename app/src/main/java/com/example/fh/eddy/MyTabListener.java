@@ -5,7 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 
 /**
- * Created by Tim on 18.11.2014.
+ * Tab Listener to handle Tab Selection
+ * @author Fabian Tim
  */
 public class MyTabListener implements ActionBar.TabListener {
     private Fragment fragment;
