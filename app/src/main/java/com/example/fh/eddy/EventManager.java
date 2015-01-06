@@ -87,6 +87,7 @@ public class EventManager extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
+                //Delete Item from List and Preference
                 list.remove(text);
                 s.remove(text);
                 editor.putStringSet(getString(R.string.event_preference_key),s);
@@ -120,17 +121,20 @@ public class EventManager extends Activity {
      */
     public void saveItem(View view) {
 
+        //Get User input (the New item)
         EditText textfield= (EditText)findViewById(R.id.textfield_verwaltung);
         String activity=textfield.getText().toString();
 
+        //Add the new Item
         s.add(activity);
-
+        //Reload List
         list.clear();
         Iterator it= s.iterator();
         while(it.hasNext()) {
             list.add((String)it.next());
         }
 
+        //Save the updated Items to the Preferences
         editor.putStringSet(getString(R.string.event_preference_key),s);
         editor.commit();
         adapter.notifyDataSetChanged();
@@ -149,6 +153,9 @@ public class EventManager extends Activity {
 
     }
 
+    /**
+     * Reload the List on Start to display correct Values
+     */
     @Override
     protected void onStart() {
 
