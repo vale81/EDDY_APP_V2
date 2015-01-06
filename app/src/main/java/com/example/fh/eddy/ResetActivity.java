@@ -40,13 +40,13 @@ public class ResetActivity extends Activity {
 
 
 
-        username.setText(sharedPrefs.getString("user_name", ""));
-        carbSetting.setText(sharedPrefs.getString("mahlzeit_angabe", ""));
-        upperBloodsugarBound.setText(sharedPrefs.getString("obere_blutzuckergrenze", ""));
-        lowerBloodsugarBound.setText(sharedPrefs.getString("untere_blutzuckergrenze", ""));
-        bolusInsulin.setText(sharedPrefs.getString("bolus_insulin", ""));
-        baseInsulin.setText(sharedPrefs.getString("basis_insulin", ""));
-        correctionFactor.setText(sharedPrefs.getString("korrektur_factor", ""));
+        username.setText(sharedPrefs.getString(getString(R.string.user_name_preference_key), ""));
+        carbSetting.setText(sharedPrefs.getString(getString(R.string.mahlzeit_angabe_preference_key), ""));
+        upperBloodsugarBound.setText(sharedPrefs.getString(getString(R.string.obere_blutzuckergrenze_preference_key), ""));
+        lowerBloodsugarBound.setText(sharedPrefs.getString(getString(R.string.untere_blutzuckergrenze_preference_key), ""));
+        bolusInsulin.setText(sharedPrefs.getString(getString(R.string.bolus_insulin_preference_key), ""));
+        baseInsulin.setText(sharedPrefs.getString(getString(R.string.basis_insulin_preference_key), ""));
+        correctionFactor.setText(sharedPrefs.getString(getString(R.string.korrektur_factor_preference_key), ""));
 
 
 
@@ -72,7 +72,7 @@ public class ResetActivity extends Activity {
 
         StringBuilder builder = new StringBuilder();
 
-        Set<String> s = sharedPrefs.getStringSet("activities", new HashSet<String>());
+        Set<String> s = sharedPrefs.getStringSet(getString(R.string.activity_preference_key), new HashSet<String>());
         Iterator it= s.iterator();
 
            while (it.hasNext())
@@ -90,7 +90,7 @@ public class ResetActivity extends Activity {
 
         StringBuilder builder = new StringBuilder();
 
-        Set<String> s = sharedPrefs.getStringSet("events", new HashSet<String>());
+        Set<String> s = sharedPrefs.getStringSet(getString(R.string.event_preference_key), new HashSet<String>());
         Iterator it= s.iterator();
 
         while (it.hasNext())
@@ -108,7 +108,7 @@ public class ResetActivity extends Activity {
 
         StringBuilder builder = new StringBuilder();
 
-        Set<String> s = sharedPrefs.getStringSet("medicines", new HashSet<String>());
+        Set<String> s = sharedPrefs.getStringSet(getString(R.string.medicin_preference_key), new HashSet<String>());
         Iterator it= s.iterator();
 
         while (it.hasNext())
@@ -126,7 +126,7 @@ public class ResetActivity extends Activity {
 
         StringBuilder builder = new StringBuilder();
 
-        Set<String> s = sharedPrefs.getStringSet("be_factor", new HashSet<String>());
+        Set<String> s = sharedPrefs.getStringSet(getString(R.string.befactor_preference_key), new HashSet<String>());
         Iterator it= s.iterator();
 
         while (it.hasNext())

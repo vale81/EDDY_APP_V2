@@ -46,7 +46,7 @@ public class MedicineManager extends Activity {
         editor = sharedPrefs.edit();
 
         //Retrieve the Items of the specified Preference
-        s = new HashSet<String>(sharedPrefs.getStringSet("medicines", new HashSet<String>()));
+        s = new HashSet<String>(sharedPrefs.getStringSet(getString(R.string.medicin_preference_key), new HashSet<String>()));
         ListView listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
 
@@ -84,7 +84,7 @@ public class MedicineManager extends Activity {
             {
                 list.remove(text);
                 s.remove(text);
-                editor.putStringSet("medicines",s);
+                editor.putStringSet(getString(R.string.medicin_preference_key),s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
                 // Toast for user feedback
@@ -126,7 +126,7 @@ public class MedicineManager extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("medicines",s);
+        editor.putStringSet(getString(R.string.medicin_preference_key),s);
         editor.commit();
         adapter.notifyDataSetChanged();
 
@@ -152,7 +152,7 @@ public class MedicineManager extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("medicines",s);
+        editor.putStringSet(getString(R.string.medicin_preference_key),s);
         editor.commit();
         adapter.notifyDataSetChanged();
 

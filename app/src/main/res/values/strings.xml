@@ -107,5 +107,18 @@
     <string name="reset_CarbFactor_textView">Ihre Kohlenhydratfaktoren:</string>
     <string name="resetCarbFactor_placeholder">Faktoren:</string>
 
+    <string name="activity_preference_key">activities</string>
+    <string name="event_preference_key">events</string>
+    <string name="befactor_preference_key">be_factor</string>
+    <string name="medicin_preference_key">medicines</string>
+    <string name="user_name_preference_key">user_name</string>
+    <string name="mahlzeit_angabe_preference_key">mahlzeit_angabe</string>
+    <string name="obere_blutzuckergrenze_preference_key">obere_blutzuckergrenze</string>
+    <string name="untere_blutzuckergrenze_preference_key">untere_blutzuckergrenze</string>
+    <string name="bolus_insulin_preference_key">bolus_insulin</string>
+    <string name="basis_insulin_preference_key">basis_insulin</string>
+    <string name="korrektur_factor_preference_key">korrektur_factor</string>
+
+
 
 </resources>

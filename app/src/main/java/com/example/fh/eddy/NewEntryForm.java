@@ -174,7 +174,7 @@ public class NewEntryForm extends Activity {
 
         List<String> list = new ArrayList<String>();
 
-        Set<String> s = myPrefs.getStringSet("activities", new HashSet<String>());
+        Set<String> s = myPrefs.getStringSet(getString(R.string.activity_preference_key), new HashSet<String>());
 
         Iterator it= s.iterator();
 
@@ -205,7 +205,7 @@ public class NewEntryForm extends Activity {
 
         List<String> list = new ArrayList<String>();
 
-        Set<String> s = myPrefs.getStringSet("events", new HashSet<String>());
+        Set<String> s = myPrefs.getStringSet(getString(R.string.event_preference_key), new HashSet<String>());
 
         Iterator it= s.iterator();
 
@@ -282,7 +282,7 @@ public class NewEntryForm extends Activity {
     public void setMealUnitText ()
     {
         SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String s = myPrefs.getString("mahlzeit_angabe", "KH");
+        String s = myPrefs.getString(getString(R.string.mahlzeit_angabe_preference_key), "KH");
         mealUnitText.setText(s);
     }
 

@@ -63,8 +63,8 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EntryData> {
             int upper_bound;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             try {
-                lower_bound = Integer.parseInt(sharedPrefs.getString("untere_blutzuckergrenze", "75"));
-                upper_bound = Integer.parseInt(sharedPrefs.getString("obere_blutzuckergrenze", "200"));
+                lower_bound = Integer.parseInt(sharedPrefs.getString(getContext().getString(R.string.untere_blutzuckergrenze_preference_key), "75"));
+                upper_bound = Integer.parseInt(sharedPrefs.getString(getContext().getString(R.string.obere_blutzuckergrenze_preference_key), "200"));
             } catch(Exception e) {
                 lower_bound=75;
                 upper_bound=200;

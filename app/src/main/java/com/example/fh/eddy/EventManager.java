@@ -46,7 +46,7 @@ public class EventManager extends Activity {
         editor = sharedPrefs.edit();
 
         //Retrieve the Items of the specified Preference
-        s = new HashSet<String>(sharedPrefs.getStringSet("events", new HashSet<String>()));
+        s = new HashSet<String>(sharedPrefs.getStringSet(getString(R.string.event_preference_key), new HashSet<String>()));
         ListView listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
 
@@ -83,7 +83,7 @@ public class EventManager extends Activity {
             {
                 list.remove(text);
                 s.remove(text);
-                editor.putStringSet("events",s);
+                editor.putStringSet(getString(R.string.event_preference_key),s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
                 // Toast for user feedback
@@ -125,7 +125,7 @@ public class EventManager extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("events",s);
+        editor.putStringSet(getString(R.string.event_preference_key),s);
         editor.commit();
         adapter.notifyDataSetChanged();
 
@@ -152,7 +152,7 @@ public class EventManager extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("events",s);
+        editor.putStringSet(getString(R.string.event_preference_key),s);
         editor.commit();
         adapter.notifyDataSetChanged();
 

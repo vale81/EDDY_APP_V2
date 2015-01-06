@@ -46,7 +46,7 @@ public class Activity_Manager extends Activity {
         editor = sharedPrefs.edit();
 
         //Retrieve the Items of the specified Preference
-        s = new HashSet<String>(sharedPrefs.getStringSet("activities", new HashSet<String>()));
+        s = new HashSet<String>(sharedPrefs.getStringSet(getString(R.string.activity_preference_key), new HashSet<String>()));
         ListView listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
 
@@ -82,7 +82,7 @@ public class Activity_Manager extends Activity {
             {
                 list.remove(text);
                 s.remove(text);
-                editor.putStringSet("activities",s);
+                editor.putStringSet(getString(R.string.activity_preference_key),s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
                 // Toast for user feedback
@@ -124,7 +124,7 @@ public class Activity_Manager extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("activities",s);
+        editor.putStringSet(getString(R.string.activity_preference_key),s);
         editor.commit();
         adapter.notifyDataSetChanged();
 
@@ -151,7 +151,7 @@ public class Activity_Manager extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("activities",s);
+        editor.putStringSet(getString(R.string.activity_preference_key),s);
         editor.commit();
         adapter.notifyDataSetChanged();
 

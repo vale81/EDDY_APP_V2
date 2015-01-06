@@ -50,7 +50,7 @@ public class MealFactorManager extends Activity {
         editor = sharedPrefs.edit();
 
         //Retrieve the Items of the specified Preference
-        s = new HashSet<String>(sharedPrefs.getStringSet("be_factor", new HashSet<String>()));
+        s = new HashSet<String>(sharedPrefs.getStringSet(getString(R.string.befactor_preference_key), new HashSet<String>()));
         ListView listview = (ListView) findViewById(R.id.listView);
         list = new ArrayList<String>();
 
@@ -86,7 +86,7 @@ public class MealFactorManager extends Activity {
             {
                 list.remove(text);
                 s.remove(text);
-                editor.putStringSet("be_factor",s);
+                editor.putStringSet(getString(R.string.befactor_preference_key),s);
                 editor.commit();
                 adapter.notifyDataSetChanged();
                 // Toast for user feedback
@@ -128,7 +128,7 @@ public class MealFactorManager extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("be_factor",s);
+        editor.putStringSet(getString(R.string.befactor_preference_key),s);
         editor.commit();
         adapter.notifyDataSetChanged();
         // Clear focus from editText
@@ -153,7 +153,7 @@ public class MealFactorManager extends Activity {
             list.add((String)it.next());
         }
 
-        editor.putStringSet("be_factor",s);
+        editor.putStringSet(getString(R.string.befactor_preference_key),s);
         editor.commit();
         adapter.notifyDataSetChanged();
 
