@@ -4,11 +4,13 @@ package com.example.fh.eddy;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 import com.jjoe64.graphview.CustomLabelFormatter;
@@ -35,6 +37,7 @@ public class GraphicFragment extends PreferenceFragment {
 
         view = inflater.inflate(R.layout.graphic_tab, container, false);
 
+        //Button for 1 Week
         final Button button1 = (Button) view.findViewById(R.id.one_week);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -42,7 +45,7 @@ public class GraphicFragment extends PreferenceFragment {
                 custom_populateGraphView(view,"E H:m",7*60*60*24*1000);
             }
         });
-
+        //Button for 1 Month
         final Button button2 = (Button) view.findViewById(R.id.one_month);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -51,7 +54,7 @@ public class GraphicFragment extends PreferenceFragment {
                 custom_populateGraphView(view,"d. H 'Uhr'",offset);
             }
         });
-
+        //Button for 3 Months
         final Button button3 = (Button) view.findViewById(R.id.three_months);
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -61,7 +64,7 @@ public class GraphicFragment extends PreferenceFragment {
             }
         });
 
-
+        //As default display 1 Week
         head=getString(R.string.week);
         custom_populateGraphView(view,"E H:m",7*60*60*24*1000);
 
@@ -72,7 +75,7 @@ public class GraphicFragment extends PreferenceFragment {
      * Populates the Graph View with Data
      * Retrieves needed Data and specifies Graph Values
      *
-     * @param date_Format Format of the Date
+     * @param date_Format Format of the Date on X Axis
      * @param dateoffset specifies the range from Now till Now-dateoffset
      */
     private void custom_populateGraphView(View view,String date_Format,long dateoffset) {
@@ -107,6 +110,7 @@ public class GraphicFragment extends PreferenceFragment {
                 , head // heading
         );
 
+        //Sets the X Axis of the Graph in the specified Date Format
         final SimpleDateFormat dateFormat = new SimpleDateFormat(date_Format);
         graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
             @Override
@@ -122,11 +126,12 @@ public class GraphicFragment extends PreferenceFragment {
             }
         });
 
-        graphView.addSeries(exampleSeries); // data
+        //Adds Data
+        graphView.addSeries(exampleSeries);
+        //Enables the drawing of Data Points
         graphView.setDrawDataPoints(true);
 
-
-        // optional - activate scaling / zooming
+        //optional - activate scaling / zooming
         graphView.setScalable(true);
         graphView.setScrollable(true);
 
@@ -137,7 +142,15 @@ public class GraphicFragment extends PreferenceFragment {
         try {
             LinearLayout layout = (LinearLayout) view.findViewById(R.id.graph1);
             layout.removeAllViews();
-            layout.addView(graphView);
+            //If not enough Entries exist, the Graph can not be displayed
+            if(num<2) {
+                //Show Message to the User that not enough Entries exist to display the Graph
+                Toast toast=Toast.makeText(getActivity(), getString(R.string.not_enough_entries), Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+                toast.show();
+            } else {
+                layout.addView(graphView);
+            }
         } catch (NullPointerException e) {
             // something to handle the NPE.
         }

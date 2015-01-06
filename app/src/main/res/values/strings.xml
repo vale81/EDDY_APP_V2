@@ -64,6 +64,7 @@
     <string name="week">1 Woche</string>
     <string name="month">1 Monat</string>
     <string name="months">3 Monate</string>
+    <string name="not_enough_entries">Leider existieren nicht genug Einträge um den Verlauf darzustellen</string>
 
     <string name="event_spinner_textView">Ereignis</string>
     <string name="edit_entry_form_headerTextview">Eintrag Bearbeiten</string>
