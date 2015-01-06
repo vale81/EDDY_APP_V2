@@ -22,11 +22,11 @@ import java.util.List;
  */
 public class FragmentTabOne extends ListFragment {
 
-    DataHandler myDataHandler;
+    private DataHandler myDataHandler;
 
-    MyArrayAdapter myDataAdapter;
+    private MyArrayAdapter myDataAdapter;
 
-    List<EntryData> entryDataList = new ArrayList<>();
+    private List<EntryData> entryDataList = new ArrayList<>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
