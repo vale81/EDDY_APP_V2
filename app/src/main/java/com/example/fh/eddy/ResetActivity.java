@@ -21,67 +21,130 @@ public class ResetActivity extends Activity {
 
     private DataHandler myDataHandler;
     private Context context;
+    SharedPreferences sharedPrefs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reset_layout);
         context=this;
-        TextView textview = (TextView) findViewById(R.id.reset_text);
-        showUserSettings(textview);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        TextView username = (TextView) findViewById(R.id.reset_userName_text);
+        TextView carbSetting = (TextView) findViewById(R.id.reset_carbSetting_text);
+        TextView upperBloodsugarBound = (TextView) findViewById(R.id.reset_upperBloodSugarValue_text);
+        TextView lowerBloodsugarBound = (TextView) findViewById(R.id.reset_lowerBloodSugarValue_text);
+        TextView bolusInsulin = (TextView) findViewById(R.id.reset_BolusInsulinValue_text);
+        TextView baseInsulin = (TextView) findViewById(R.id.reset_BaseInsulinValue_text);
+        TextView correctionFactor = (TextView) findViewById(R.id.reset_CorrectionFactorValue_textView);
+
+
+
+        username.setText(sharedPrefs.getString("user_name", ""));
+        carbSetting.setText(sharedPrefs.getString("mahlzeit_angabe", ""));
+        upperBloodsugarBound.setText(sharedPrefs.getString("obere_blutzuckergrenze", ""));
+        lowerBloodsugarBound.setText(sharedPrefs.getString("untere_blutzuckergrenze", ""));
+        bolusInsulin.setText(sharedPrefs.getString("bolus_insulin", ""));
+        baseInsulin.setText(sharedPrefs.getString("basis_insulin", ""));
+        correctionFactor.setText(sharedPrefs.getString("korrektur_factor", ""));
+
+
+
+
+        TextView activity = (TextView) findViewById(R.id.reset_activity_texts);
+        TextView event = (TextView) findViewById(R.id.reset_event_texts);
+        TextView medicine = (TextView) findViewById(R.id.reset_medicine_texts);
+        TextView factor = (TextView) findViewById(R.id.reset_factor_texts);
+
+        showActivityUserSettings(activity);
+        showEventUserSettings(event);
+        showMedicineUserSettings(medicine);
+        showFactorUserSettings(factor);
     }
 
     /**
      * Retrieves the Data of all the Preferences and Displays them
      *
      */
-    private void showUserSettings(TextView txtview) {
+    private void showActivityUserSettings(TextView txtview) {
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         StringBuilder builder = new StringBuilder();
 
-        builder.append(getString(R.string.overview)+"\n\n");
-
-
         Set<String> s = sharedPrefs.getStringSet("activities", new HashSet<String>());
-        builder.append(getString(R.string.activities)+": \n");
         Iterator it= s.iterator();
-        while(it.hasNext()) {
+
+           while (it.hasNext())
+           {
+                    String item=(String)it.next();
+                    builder.append(item+" ");
+                    builder.append("\n");
+
+           }
+        txtview.setText(builder.toString());
+    }
+    private void showEventUserSettings(TextView txtview) {
+
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        StringBuilder builder = new StringBuilder();
+
+        Set<String> s = sharedPrefs.getStringSet("events", new HashSet<String>());
+        Iterator it= s.iterator();
+
+        while (it.hasNext())
+        {
             String item=(String)it.next();
-            builder.append(item+", ");
-        }
-        builder.append("\n");
-
-        s = sharedPrefs.getStringSet("events", new HashSet<String>());
-        builder.append(getString(R.string.events)+": \n");
-        it= s.iterator();
-
-        while (it.hasNext()) {
-            String item = (String) it.next();
-            builder.append(item + ", ");
-            }
+            builder.append(item+" ");
             builder.append("\n");
 
-        s = sharedPrefs.getStringSet("medicines", new HashSet<String>());
-        builder.append(getString(R.string.medicins)+": \n");
-        it= s.iterator();
-        while(it.hasNext()) {
-            String item=(String)it.next();
-            builder.append(item+", ");
         }
-        builder.append("\n");
+        txtview.setText(builder.toString());
+    }
+    private void showMedicineUserSettings(TextView txtview) {
 
-        s = sharedPrefs.getStringSet("be_factor", new HashSet<String>());
-        builder.append(getString(R.string.be_factors)+": \n");
-        it= s.iterator();
-        while(it.hasNext()) {
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        StringBuilder builder = new StringBuilder();
+
+        Set<String> s = sharedPrefs.getStringSet("medicines", new HashSet<String>());
+        Iterator it= s.iterator();
+
+        while (it.hasNext())
+        {
             String item=(String)it.next();
-            builder.append(item+", ");
-        }
-        builder.append("\n");
+            builder.append(item+" ");
+            builder.append("\n");
 
-        builder.append("\n");
+        }
+        txtview.setText(builder.toString());
+    }
+    private void showFactorUserSettings(TextView txtview) {
+
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        StringBuilder builder = new StringBuilder();
+
+        Set<String> s = sharedPrefs.getStringSet("be_factor", new HashSet<String>());
+        Iterator it= s.iterator();
+
+        while (it.hasNext())
+        {
+            String item=(String)it.next();
+            builder.append(item+" ");
+            builder.append("\n");
+
+        }
+        txtview.setText(builder.toString());
+    }
+
+     /*
+
+
+
+
+
 
         builder.append(getString(R.string.name)+": \n");
         builder.append(sharedPrefs.getString("user_name", ""));
@@ -104,10 +167,10 @@ public class ResetActivity extends Activity {
         builder.append(getString(R.string.compensation_factor)+": \n");
         builder.append(sharedPrefs.getString("korrektur_factor", ""));
         builder.append("\n");
+*/
 
-
-        txtview.setText(builder.toString());
-    }
+  //      txtview.setText(builder.toString());
+   // }
 
     /**
      * Creates and Shows the AlertDialog when the User attempts to Reset all Data

@@ -8,20 +8,323 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".90">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_userName_Textview"
+                android:text="Ihr Name:"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_userName_text"
+                android:layout_toRightOf="@+id/reset_userName_Textview"
+                android:layout_alignBaseline="@+id/reset_userName_Textview"
+                android:text="Name:"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/reset_userName_Textview"
+                android:id="@+id/reset_separator_name"
+                android:background="#ff08c4ff" />
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_carbSetting_Textview"
+                android:text="Ihre Berechnungseinheit:"
+                android:layout_below="@+id/reset_separator_name"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_carbSetting_text"
+                android:layout_toRightOf="@+id/reset_carbSetting_Textview"
+                android:layout_alignBaseline="@+id/reset_carbSetting_Textview"
+                android:text="Einheit:"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/reset_carbSetting_Textview"
+                android:id="@+id/reset_separator_carbSetting"
+                android:background="#ff08c4ff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_upperBloodSugar_Textview"
+                android:text="Ihre Blutzuckergrenzen:"
+                android:layout_below="@+id/reset_separator_carbSetting"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Placeholder"
-            android:textSize="18sp"
-            android:id="@+id/reset_text"/>
+            android:id="@+id/reset_upperBloodSugar_text"
+            android:layout_below="@+id/reset_upperBloodSugar_Textview"
+            android:text="Obere Grenze:"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_upperBloodSugarValue_text"
+                android:layout_toRightOf="@+id/reset_upperBloodSugar_text"
+                android:layout_alignBaseline="@+id/reset_upperBloodSugar_text"
+                android:text="Placeholder"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_lowerBloodSugar_text"
+                android:layout_toRightOf="@+id/reset_upperBloodSugarValue_text"
+                android:layout_alignBaseline="@+id/reset_upperBloodSugar_text"
+                android:text="Untere Grenze:"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_lowerBloodSugarValue_text"
+                android:layout_toRightOf="@+id/reset_lowerBloodSugar_text"
+                android:layout_alignBaseline="@+id/reset_upperBloodSugar_text"
+                android:text="Placeholder2:"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/reset_upperBloodSugar_text"
+                android:id="@+id/reset_bloodsugar_separator"
+                android:background="#ff08c4ff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_Insulin_Textview"
+                android:text="Ihre Insulinsorten:"
+                android:layout_below="@+id/reset_bloodsugar_separator"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_bolusinsulin_text"
+                android:layout_below="@+id/reset_Insulin_Textview"
+                android:text="Bolus:"
+                android:textSize="17sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_BolusInsulinValue_text"
+                android:layout_toRightOf="@+id/reset_bolusinsulin_text"
+                android:layout_alignBaseline="@+id/reset_bolusinsulin_text"
+                android:text="Placeholder"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_baseInsulin_text"
+                android:layout_toRightOf="@+id/reset_BolusInsulinValue_text"
+                android:layout_alignBaseline="@+id/reset_bolusinsulin_text"
+                android:text="Basis:"
+                android:textSize="17sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_BaseInsulinValue_text"
+                android:layout_toRightOf="@+id/reset_baseInsulin_text"
+                android:layout_alignBaseline="@+id/reset_bolusinsulin_text"
+                android:text="Placeholder2:"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/reset_bolusinsulin_text"
+                android:id="@+id/reset_insulin_separator"
+                android:background="#ff08c4ff" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_CorrectionFactor_textView"
+                android:layout_below="@+id/reset_insulin_separator"
+                android:text="Ihr Korrekturfaktor:"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_CorrectionFactorValue_textView"
+                android:layout_toRightOf="@+id/reset_CorrectionFactor_textView"
+                android:layout_alignBaseline="@+id/reset_CorrectionFactor_textView"
+                android:text="Placeholder:"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/reset_CorrectionFactor_textView"
+                android:id="@+id/reset_correctionFactor_separator"
+                android:background="#ff08c4ff" />
+
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/reset_activity_Textview"
+               android:text="Ihre Aktivitäten:"
+               android:layout_below="@+id/reset_CorrectionFactor_textView"
+               android:textSize="20sp"
+               android:layout_marginTop="5dp"
+               android:layout_marginLeft="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_activity_texts"
+                android:layout_below="@+id/reset_activity_Textview"
+                android:text="Aktivitäten:"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/reset_activity_texts"
+                android:id="@+id/reset_separator_one"
+                android:background="#ff08c4ff" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_event_Textview"
+                android:text="Ihre Ereignisse:"
+                android:layout_below="@+id/reset_separator_one"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_event_texts"
+                android:layout_below="@+id/reset_event_Textview"
+                android:text="Ereignisse:"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/reset_event_texts"
+                android:id="@+id/reset_separator_two"
+                android:background="#ff08c4ff" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_medicine_Textview"
+                android:text="Ihre Medikamente:"
+                android:layout_below="@+id/reset_separator_two"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_medicine_texts"
+                android:layout_below="@+id/reset_medicine_Textview"
+                android:text="Medikamente:"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/reset_medicine_texts"
+                android:id="@+id/reset_separator_three"
+                android:background="#ff08c4ff" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_factor_Textview"
+                android:text="Ihre Kohlenhydratfaktoren:"
+                android:layout_below="@+id/reset_separator_three"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_factor_texts"
+                android:layout_below="@+id/reset_factor_Textview"
+                android:text="Faktoren:"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/reset_factor_texts"
+                android:id="@+id/reset_separator_four"
+                android:background="#ff08c4ff" />
+
+
+
+
+            </RelativeLayout>
+
 
     </ScrollView>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".10"
+        android:layout_weight=".11"
         android:id="@+id/reset_button"
         android:text="@string/reset"
         android:textColor="#ffffffff"
