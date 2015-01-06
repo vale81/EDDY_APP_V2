@@ -39,19 +39,19 @@ public class NewEntryForm extends Activity {
     private Spinner eventSpinner;
     private Spinner activitySpinner;
     // Init fields globally so they can be manipulated
-    TextView the_date;
-    TextView the_time;
-    TextView mealUnitText;
-    EditText currentBloodsugarlevel;
-    EditText currentMealCarbAmount;
-    EditText currentBolusInsulin;
-    EditText currentBaseInsulin;
+    private TextView the_date;
+    private TextView the_time;
+    private TextView mealUnitText;
+    private EditText currentBloodsugarlevel;
+    private EditText currentMealCarbAmount;
+    private EditText currentBolusInsulin;
+    private EditText currentBaseInsulin;
 
     // Init buttons
-    ImageButton saveNewEntry;
-    ImageButton cancelNewEntry;
+    private ImageButton saveNewEntry;
+    private ImageButton cancelNewEntry;
     // Entry object
-    EntryData entry;
+    private EntryData entry;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

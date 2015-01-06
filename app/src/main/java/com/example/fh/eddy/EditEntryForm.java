@@ -37,16 +37,16 @@ public class EditEntryForm extends Activity {
     private Spinner eventSpinner;
     private Spinner activitySpinner;
     // Same fields as in EntryForm
-    TextView the_date;
-    TextView the_time;
-    TextView mealUnitText;
-    EditText currentBloodsugarlevel;
-    EditText currentMealCarbAmount;
-    EditText currentBolusInsulin;
-    EditText currentBaseInsulin;
+    private TextView the_date;
+    private TextView the_time;
+    private TextView mealUnitText;
+    private EditText currentBloodsugarlevel;
+    private EditText currentMealCarbAmount;
+    private EditText currentBolusInsulin;
+    private EditText currentBaseInsulin;
     // Init buttons
-    ImageButton updateEntryButton;
-    ImageButton discardUpdateButton;
+    private ImageButton updateEntryButton;
+    private ImageButton discardUpdateButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
