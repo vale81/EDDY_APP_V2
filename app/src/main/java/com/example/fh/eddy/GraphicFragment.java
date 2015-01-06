@@ -25,13 +25,21 @@ import java.util.List;
 
 
 /**
- * Created by Fabian on 09.11.2014.
+ * Graphic Fragment
+ * This Fragment is responsible for the Graph,
+ * it sets the desired Data for the Graph and displays it.
+ * @author Fabian
  */
 public class GraphicFragment extends PreferenceFragment {
 
     private String head="";
     private View view;
 
+    /**
+     * Initialisation Method that is called when the View gets Created
+     * Loads the Layout, sets Click Listeners for the Buttons
+     * and displays the One Week Graph as Default
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
 
@@ -85,12 +93,13 @@ public class GraphicFragment extends PreferenceFragment {
         DataHandler myDataHandler = new DataHandler(getActivity().getBaseContext());
         myDataHandler.open();
 
+        //Load the Data from Database (From Now until the specified Time offset)
         long now = new Date().getTime();
         final List<EntryData> entryDataListe = new ArrayList<>(myDataHandler.getEntryUntil(now - (dateoffset)));
         myDataHandler.closeDatabase();
         int num = entryDataListe.size();
 
-        //Populates the GraphView Data and searches Min/Max Values
+        //Populate the GraphView Data and search Min/Max Values
         GraphView.GraphViewData[] data = new GraphView.GraphViewData[num];
         for(int i=0;i<num;i++) {
             data[i]=new GraphView.GraphViewData(entryDataListe.get(i).getUnix_time(), entryDataListe.get(i).getBloodSugarValue());
@@ -110,7 +119,7 @@ public class GraphicFragment extends PreferenceFragment {
                 , head // heading
         );
 
-        //Sets the X Axis of the Graph in the specified Date Format
+        //Set the X Axis of the Graph in the specified Date Format
         final SimpleDateFormat dateFormat = new SimpleDateFormat(date_Format);
         graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
             @Override

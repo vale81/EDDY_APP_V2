@@ -23,7 +23,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Created by Fabian on 21.11.2014.
+ * Activity Manager Class
+ * Allows the User to manage his Activities
+ * @author Fabian
  */
 public class Activity_Manager extends Activity {
 

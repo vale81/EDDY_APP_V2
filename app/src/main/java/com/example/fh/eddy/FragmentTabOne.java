@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Fabian on 09.11.2014.
- * Edited by Tim Dez. 2014.
+ * Entry Overview Fragment
+ * This Fragment displays the Entry List
+ * @author Tim
  */
 public class FragmentTabOne extends ListFragment {
 

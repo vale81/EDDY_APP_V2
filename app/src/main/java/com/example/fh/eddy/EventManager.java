@@ -23,7 +23,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Created by Fabian on 21.11.2014.
+ * Event Manager Class
+ * Allows the User to manage his Events
+ * @author Fabian
  */
 public class EventManager extends Activity {
 
