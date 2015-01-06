@@ -35,6 +35,10 @@ public class Activity_Manager extends Activity {
     private ArrayList<String> list;
     private ArrayAdapter adapter;
 
+    /**
+     * On Create Method initialises the Activity
+     * Load the Layout, get Preferences, set ClickListener
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

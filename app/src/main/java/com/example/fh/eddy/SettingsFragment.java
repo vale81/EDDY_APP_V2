@@ -5,7 +5,8 @@ import android.preference.PreferenceFragment;
 
 
 /**
- * Created by Fabian on 09.11.2014.
+ * Setting Fragment
+ * Load the Preference from XML Resource
  */
 public class SettingsFragment extends PreferenceFragment {
 

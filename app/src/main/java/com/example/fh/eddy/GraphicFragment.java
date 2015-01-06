@@ -28,6 +28,7 @@ import java.util.List;
  * Graphic Fragment
  * This Fragment is responsible for the Graph,
  * it sets the desired Data for the Graph and displays it.
+ * Uses the GraphView Library
  * @author Fabian
  */
 public class GraphicFragment extends PreferenceFragment {

@@ -28,6 +28,11 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EntryData> {
         this.values = values;
     }
 
+    /**
+     * Edit the current Row according to the Entry
+     * Set Values of the Layout with the Values of the current Entry
+     * @param position Current Entry of the List
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
