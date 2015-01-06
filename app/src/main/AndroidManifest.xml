@@ -18,59 +18,31 @@
         </activity>
         <activity
             android:name=".NewEntryForm"
-            android:label="@string/app_name"
-            android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fh.eddy.MainScreenActivity" />
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name=".Activity_Manager"
-            android:label="@string/app_name"
-            android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fh.eddy.MainScreenActivity" />
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name=".EventManager"
-            android:label="@string/app_name"
-            android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fh.eddy.MainScreenActivity" />
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name=".MedicineManager"
-            android:label="@string/app_name"
-            android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fh.eddy.MainScreenActivity" />
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name=".MealFactorManager"
-            android:label="@string/app_name"
-            android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fh.eddy.MainScreenActivity" />
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name="com.example.fh.eddy.EditEntryForm"
-            android:label="@string/app_name"
-            android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fh.eddy.MainScreenActivity" />
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name="com.example.fh.eddy.ResetActivity"
-            android:label="@string/app_name"
-            android:parentActivityName="com.example.fh.eddy.MainScreenActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fh.eddy.MainScreenActivity" />
+            android:label="@string/app_name">
         </activity>
     </application>
 
