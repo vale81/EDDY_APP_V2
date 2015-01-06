@@ -16,7 +16,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_userName_Textview"
-                android:text="Ihr Name:"
+                android:text="@string/reset_user_name_textView"
                 android:textSize="20sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"/>
@@ -26,7 +26,7 @@
                 android:id="@+id/reset_userName_text"
                 android:layout_toRightOf="@+id/reset_userName_Textview"
                 android:layout_alignBaseline="@+id/reset_userName_Textview"
-                android:text="Name:"
+                android:text="@string/reset_name_placeholder"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"/>
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_carbSetting_Textview"
-                android:text="Ihre Berechnungseinheit:"
+                android:text="@string/reset_meal_calc_unit"
                 android:layout_below="@+id/reset_separator_name"
                 android:textSize="20sp"
                 android:layout_marginTop="5dp"
@@ -53,7 +53,7 @@
                 android:id="@+id/reset_carbSetting_text"
                 android:layout_toRightOf="@+id/reset_carbSetting_Textview"
                 android:layout_alignBaseline="@+id/reset_carbSetting_Textview"
-                android:text="Einheit:"
+                android:text="@string/reset_meal_unit_placeholder"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"/>
@@ -69,20 +69,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_upperBloodSugar_Textview"
-                android:text="Ihre Blutzuckergrenzen:"
+                android:text="@string/reset_bloodsugar_bounds_textview"
                 android:layout_below="@+id/reset_separator_carbSetting"
                 android:textSize="20sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"/>
             <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/reset_upperBloodSugar_text"
-            android:layout_below="@+id/reset_upperBloodSugar_Textview"
-            android:text="Obere Grenze:"
-            android:textSize="15sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset_upperBloodSugar_text"
+                android:layout_below="@+id/reset_upperBloodSugar_Textview"
+                android:text="@string/reset_upperBound_textView"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                 android:id="@+id/reset_upperBloodSugarValue_text"
                 android:layout_toRightOf="@+id/reset_upperBloodSugar_text"
                 android:layout_alignBaseline="@+id/reset_upperBloodSugar_text"
-                android:text="Placeholder"
+                android:text="@string/reset_upperBound_Value_placeholder"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"/>
@@ -101,7 +101,7 @@
                 android:id="@+id/reset_lowerBloodSugar_text"
                 android:layout_toRightOf="@+id/reset_upperBloodSugarValue_text"
                 android:layout_alignBaseline="@+id/reset_upperBloodSugar_text"
-                android:text="Untere Grenze:"
+                android:text="@string/reset_lowerBloodSugarBound_textView"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"/>
@@ -111,7 +111,7 @@
                 android:id="@+id/reset_lowerBloodSugarValue_text"
                 android:layout_toRightOf="@+id/reset_lowerBloodSugar_text"
                 android:layout_alignBaseline="@+id/reset_upperBloodSugar_text"
-                android:text="Placeholder2:"
+                android:text="@string/reset_lowerBloodSugarBound_placeholder"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"/>
@@ -128,7 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_Insulin_Textview"
-                android:text="Ihre Insulinsorten:"
+                android:text="@string/reset_insulinType_textView"
                 android:layout_below="@+id/reset_bloodsugar_separator"
                 android:textSize="20sp"
                 android:layout_marginTop="5dp"
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_bolusinsulin_text"
                 android:layout_below="@+id/reset_Insulin_Textview"
-                android:text="Bolus:"
+                android:text="@string/reset_Bolus_Insulin_textView"
                 android:textSize="17sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"/>
@@ -149,7 +149,7 @@
                 android:id="@+id/reset_BolusInsulinValue_text"
                 android:layout_toRightOf="@+id/reset_bolusinsulin_text"
                 android:layout_alignBaseline="@+id/reset_bolusinsulin_text"
-                android:text="Placeholder"
+                android:text="@string/reset_Bolus_placeholder"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"/>
@@ -160,7 +160,7 @@
                 android:id="@+id/reset_baseInsulin_text"
                 android:layout_toRightOf="@+id/reset_BolusInsulinValue_text"
                 android:layout_alignBaseline="@+id/reset_bolusinsulin_text"
-                android:text="Basis:"
+                android:text="@string/reset_Base_Insulin_textView"
                 android:textSize="17sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"/>
@@ -170,7 +170,7 @@
                 android:id="@+id/reset_BaseInsulinValue_text"
                 android:layout_toRightOf="@+id/reset_baseInsulin_text"
                 android:layout_alignBaseline="@+id/reset_bolusinsulin_text"
-                android:text="Placeholder2:"
+                android:text="@string/reset_base_insulin_placeholder"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"/>
@@ -187,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_CorrectionFactor_textView"
                 android:layout_below="@+id/reset_insulin_separator"
-                android:text="Ihr Korrekturfaktor:"
+                android:text="@string/reset_correction_Factor_textView"
                 android:textSize="20sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"/>
@@ -197,7 +197,7 @@
                 android:id="@+id/reset_CorrectionFactorValue_textView"
                 android:layout_toRightOf="@+id/reset_CorrectionFactor_textView"
                 android:layout_alignBaseline="@+id/reset_CorrectionFactor_textView"
-                android:text="Placeholder:"
+                android:text="@string/reset_correction_Factor_placeholder"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"/>
@@ -215,7 +215,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:id="@+id/reset_activity_Textview"
-               android:text="Ihre Aktivitäten:"
+               android:text="@string/reset_Activity_textView"
                android:layout_below="@+id/reset_CorrectionFactor_textView"
                android:textSize="20sp"
                android:layout_marginTop="5dp"
@@ -226,7 +226,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_activity_texts"
                 android:layout_below="@+id/reset_activity_Textview"
-                android:text="Aktivitäten:"
+                android:text="@string/resetActivity_placeholder"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"/>
@@ -241,7 +241,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_event_Textview"
-                android:text="Ihre Ereignisse:"
+                android:text="@string/reset_Event_textView"
                 android:layout_below="@+id/reset_separator_one"
                 android:textSize="20sp"
                 android:layout_marginTop="5dp"
@@ -251,7 +251,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_event_texts"
                 android:layout_below="@+id/reset_event_Textview"
-                android:text="Ereignisse:"
+                android:text="@string/resetEvent_placeholder"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"/>
@@ -266,7 +266,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_medicine_Textview"
-                android:text="Ihre Medikamente:"
+                android:text="@string/reset_Medicine_textView"
                 android:layout_below="@+id/reset_separator_two"
                 android:textSize="20sp"
                 android:layout_marginTop="5dp"
@@ -276,7 +276,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_medicine_texts"
                 android:layout_below="@+id/reset_medicine_Textview"
-                android:text="Medikamente:"
+                android:text="@string/resetMedicine_placeholder"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"/>
@@ -291,7 +291,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_factor_Textview"
-                android:text="Ihre Kohlenhydratfaktoren:"
+                android:text="@string/reset_CarbFactor_textView"
                 android:layout_below="@+id/reset_separator_three"
                 android:textSize="20sp"
                 android:layout_marginTop="5dp"
@@ -301,7 +301,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/reset_factor_texts"
                 android:layout_below="@+id/reset_factor_Textview"
-                android:text="Faktoren:"
+                android:text="@string/resetCarbFactor_placeholder"
                 android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"/>

@@ -98,6 +98,7 @@
                 android:layout_marginLeft="10dp"
                 android:background="#ffffffff"
                 android:textColor="#ff000000"
+                android:maxLength="3"
                 android:layout_marginTop="10dp" />
 
             <TextView
@@ -131,6 +132,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:background="#ffffffff"
+                android:maxLength="3"
                 android:textColor="#ff000000" />
 
             <TextView
@@ -164,6 +166,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:background="#ffffffff"
+                android:maxLength="3"
                 android:textColor="#ff000000" />
 
             <TextView
@@ -188,6 +191,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:background="#ffffffff"
+                android:maxLength="3"
                 android:textColor="#ff000000" />
 
             <TextView

@@ -81,7 +81,30 @@
     <string name="toast_edit_entry_form_discarded_changes">Änderungen verworfen.</string>
     <string name="toast_edit_entry_form_entry_updated_and_saved">Eintrag geändert.</string>
     <string name="toast_new_entry_saved">Eintrag gespeichert.</string>
-
+    <string name="reset_user_name_textView">Ihr Name:</string>
+    <string name="reset_name_placeholder">Name:</string>
+    <string name="reset_meal_calc_unit">Ihre Berechnungseinheit:</string>
+    <string name="reset_meal_unit_placeholder">Einheit:</string>
+    <string name="reset_bloodsugar_bounds_textview">Ihre Blutzuckergrenzen:</string>
+    <string name="reset_upperBound_textView">Obere Grenze:</string>
+    <string name="reset_upperBound_Value_placeholder">Placeholder</string>
+    <string name="reset_lowerBloodSugarBound_textView">Untere Grenze:</string>
+    <string name="reset_lowerBloodSugarBound_placeholder">Placeholder2:</string>
+    <string name="reset_insulinType_textView">Ihre Insulinsorten:</string>
+    <string name="reset_Bolus_Insulin_textView">Bolus:</string>
+    <string name="reset_Bolus_placeholder">Placeholder</string>
+    <string name="reset_Base_Insulin_textView">Basis:</string>
+    <string name="reset_base_insulin_placeholder">Placeholder2:</string>
+    <string name="reset_correction_Factor_textView">Ihr Korrekturfaktor:</string>
+    <string name="reset_correction_Factor_placeholder">Placeholder:</string>
+    <string name="reset_Activity_textView">Ihre Aktivitäten:</string>
+    <string name="resetActivity_placeholder">Aktivitäten:</string>
+    <string name="reset_Event_textView">Ihre Ereignisse:</string>
+    <string name="resetEvent_placeholder">Ereignisse:</string>
+    <string name="reset_Medicine_textView">Ihre Medikamente:</string>
+    <string name="resetMedicine_placeholder">Medikamente:</string>
+    <string name="reset_CarbFactor_textView">Ihre Kohlenhydratfaktoren:</string>
+    <string name="resetCarbFactor_placeholder">Faktoren:</string>
 
 
 </resources>
