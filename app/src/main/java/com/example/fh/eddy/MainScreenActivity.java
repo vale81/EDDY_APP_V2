@@ -52,7 +52,7 @@ public class MainScreenActivity extends Activity {
         actionBar.addTab(tab2);
         actionBar.addTab(tab3);
 
-        exampleDataCreation();
+        //exampleDataCreation();
     }
 
     /**
