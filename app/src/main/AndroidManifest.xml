@@ -44,6 +44,10 @@
             android:name="com.example.fh.eddy.ResetActivity"
             android:label="@string/app_name">
         </activity>
+        <activity
+            android:name="com.example.fh.eddy.UserDataOverview"
+            android:label="@string/app_name">
+        </activity>
     </application>
 
 </manifest>

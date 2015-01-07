@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference android:title="Aktivitäten"
-        android:summary="Verwalten Sie Ihre Aktivitäten">
+    <Preference android:title="@string/prefTitleActivity"
+        android:summary="@string/prefSummaryActivity">
         <intent
             android:targetPackage="com.example.fh.eddy"
             android:targetClass="com.example.fh.eddy.Activity_Manager"/>
     </Preference>
 
-    <Preference android:title="Events"
-        android:summary="Verwalten Sie Ihre Events">
+    <Preference android:title="@string/prefEventTitle"
+        android:summary="@string/prefEventSummary">
         <intent
             android:targetPackage="com.example.fh.eddy"
             android:targetClass="com.example.fh.eddy.EventManager"/>
     </Preference>
 
     <PreferenceScreen
-        android:title="Person"
-        android:summary="Geben Sie Daten zu Ihrer Person an">
+        android:title="@string/prefScreenPersonTitle"
+        android:summary="@string/prefScreenPersonSummary">
 
         <EditTextPreference
-            android:title="Name"
-            android:summary="Geben Sie Ihren Namen an"
+            android:title="@string/editPrefName"
+            android:summary="@string/editPrefNameSummary"
             android:key="user_name" />
 
         <ListPreference
-            android:title="Mahlzeit Angabe"
-            android:summary="Angabe der Mahlzeit in KH oder BE"
+            android:title="@string/listPrefMealUnitTypeTitle"
+            android:summary="@string/listPrefMealUnitTypeSummary"
             android:key="mahlzeit_angabe"
             android:dialogTitle="Angabe"
             android:entries="@array/mahlzeit_angabe"
@@ -34,11 +34,11 @@
             android:defaultValue="KH"/>
 
         <PreferenceScreen
-            android:title="Blutzuckergrenzwerte"
-            android:summary="Angabe oberer/unterer Blutzuckergrenze">
+            android:title="@string/prefScreenBloodsugarboundTitle"
+            android:summary="@string/prefScreenBSBoundSummary">
 
             <EditTextPreference
-                android:title="Obere Blutzuckergrenze"
+                android:title="@string/editPrefUpperBloodSugarBoundTitle"
                 android:key="obere_blutzuckergrenze"
                 android:inputType="number"
                 android:numeric="integer"
@@ -46,7 +46,7 @@
                 android:maxLength="3"/>
 
             <EditTextPreference
-                android:title="Untere Blutzuckergrenze"
+                android:title="@string/editPrefLowerBloodSugarBoundTitle"
                 android:key="untere_blutzuckergrenze"
                 android:inputType="number"
                 android:numeric="integer"
@@ -56,31 +56,31 @@
             </PreferenceScreen>
 
         <PreferenceScreen
-            android:title="Insulin Sorten"
-            android:summary="Geben Sie Ihre Insulin Sorten an">
+            android:title="@string/prefScreenInsType"
+            android:summary="@string/prefScreenInsTypeSummary">
 
             <EditTextPreference
-                android:title="Basis Insulin"
+                android:title="@string/editPrefBaseInsulinTitle"
                 android:summary=""
                 android:key="basis_insulin"
                 android:inputType="text"/>
 
             <EditTextPreference
-                android:title="Bolus Insulin"
+                android:title="@string/editPrefBolusInsTypeTitle"
                 android:key="bolus_insulin"
                 android:inputType="text"/>
 
         </PreferenceScreen>
 
         <EditTextPreference
-            android:title="Korrekturfaktor"
+            android:title="@string/editPrefCorrectionFactorTitle"
             android:summary="Geben Sie Ihren Korrekturfaktor an"
             android:key="korrektur_factor"
             android:inputType="numberDecimal"
             android:numeric="decimal"/>
 
         <Preference
-            android:title="BE-Faktor"
+            android:title="@string/prefUnitFactorTitle"
             android:summary="Geben Sie Ihre BE-Faktoren an">
             <intent
                 android:targetPackage="com.example.fh.eddy"
@@ -88,8 +88,8 @@
         </Preference>
 
         <Preference
-            android:title="Medikamente"
-            android:summary="Tragen Sie Ihre Medizin ein">
+            android:title="@string/prefMedTitle"
+            android:summary="@string/prefMedSummary">
             <intent
                 android:targetPackage="com.example.fh.eddy"
                 android:targetClass="com.example.fh.eddy.MedicineManager"/>
@@ -98,12 +98,22 @@
     </PreferenceScreen>
 
     <Preference
-        android:title="Reset"
-        android:summary="Löschen sie alle angegebenen Daten">
+        android:title="@string/prefUserDataTitle"
+        android:summary="@string/prefUserDataSummary">
+        <intent
+            android:targetPackage="com.example.fh.eddy"
+            android:targetClass="com.example.fh.eddy.UserDataOverview"/>
+    </Preference>
+
+    <Preference
+        android:title="@string/prefResetTitle"
+        android:summary="@string/prefResetSummary">
         <intent
             android:targetPackage="com.example.fh.eddy"
             android:targetClass="com.example.fh.eddy.ResetActivity"/>
     </Preference>
+
+
 
 
 </PreferenceScreen>

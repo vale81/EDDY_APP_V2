@@ -64,7 +64,7 @@
     <string name="week">1 Woche</string>
     <string name="month">1 Monat</string>
     <string name="months">3 Monate</string>
-    <string name="not_enough_entries">Leider existieren nicht genug Einträge um den Verlauf darzustellen</string>
+    <string name="not_enough_entries">Leider existieren nicht genug Einträge um den Verlauf darzustellen.</string>
 
     <string name="event_spinner_textView">Ereignis</string>
     <string name="edit_entry_form_headerTextview">Eintrag Bearbeiten</string>
@@ -80,7 +80,7 @@
     <string name="delete_all">Möchten sie ALLE gespeicherten Einstellungen und Einträge wirklich löschen? Achtung, diese Aktion kann nicht rückgängig gemacht werden!</string>
     <string name="error_message_if_bloodsugar_empty">Bitte geben Sie einen Blutzuckerwert ein.</string>
     <string name="toast_edit_entry_form_discarded_changes">Änderungen verworfen.</string>
-    <string name="toast_edit_entry_form_entry_updated_and_saved">Eintrag geändert.</string>
+    <string name="toast_edit_entry_form_entry_updated_and_saved">Eintrag wurde geändert.</string>
     <string name="toast_new_entry_saved">Eintrag gespeichert.</string>
     <string name="reset_user_name_textView">Ihr Name:</string>
     <string name="reset_name_placeholder">Name:</string>
@@ -118,7 +118,34 @@
     <string name="bolus_insulin_preference_key">bolus_insulin</string>
     <string name="basis_insulin_preference_key">basis_insulin</string>
     <string name="korrektur_factor_preference_key">korrektur_factor</string>
-
+    <string name="cancel_new_entry">Eintrag wirklich verwerfen?</string>
+    <string name="cancel_new_entry_toast">Eintrag verworfen.</string>
+    <string name="prefTitleActivity">Aktivitäten</string>
+    <string name="prefSummaryActivity">Verwalten Sie Ihre Aktivitäten</string>
+    <string name="prefEventTitle">Events</string>
+    <string name="prefEventSummary">Verwalten Sie Ihre Events</string>
+    <string name="prefScreenPersonTitle">Person</string>
+    <string name="prefScreenPersonSummary">Geben Sie Daten zu Ihrer Person an</string>
+    <string name="editPrefName">Name</string>
+    <string name="editPrefNameSummary">Geben Sie Ihren Namen an</string>
+    <string name="listPrefMealUnitTypeTitle">Mahlzeit Angabe</string>
+    <string name="listPrefMealUnitTypeSummary">Angabe der Mahlzeit in KH oder BE</string>
+    <string name="prefScreenBloodsugarboundTitle">Blutzuckergrenzwerte</string>
+    <string name="prefScreenBSBoundSummary">Angabe oberer/unterer Blutzuckergrenze</string>
+    <string name="editPrefUpperBloodSugarBoundTitle">Obere Blutzuckergrenze</string>
+    <string name="editPrefLowerBloodSugarBoundTitle">Untere Blutzuckergrenze</string>
+    <string name="prefScreenInsType">Insulin Sorten</string>
+    <string name="prefScreenInsTypeSummary">Geben Sie Ihre Insulin Sorten an</string>
+    <string name="editPrefBaseInsulinTitle">Basis Insulin</string>
+    <string name="editPrefBolusInsTypeTitle">Bolus Insulin</string>
+    <string name="editPrefCorrectionFactorTitle">Korrekturfaktor</string>
+    <string name="prefUnitFactorTitle">BE-Faktor</string>
+    <string name="prefMedTitle">Medikamente</string>
+    <string name="prefMedSummary">Tragen Sie Ihre Medizin ein</string>
+    <string name="prefUserDataTitle">Meine Daten</string>
+    <string name="prefUserDataSummary">Übersicht aller angegebenen Daten</string>
+    <string name="prefResetTitle">Reset</string>
+    <string name="prefResetSummary">Löschen sie alle angegebenen Daten</string>
 
 
 </resources>

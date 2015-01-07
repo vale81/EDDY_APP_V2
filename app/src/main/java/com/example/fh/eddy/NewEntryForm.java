@@ -1,6 +1,8 @@
 package com.example.fh.eddy;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -154,9 +156,8 @@ public class NewEntryForm extends Activity {
         cancelNewEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+
+                showCancelDialog();
 
             }
         }); // End onClick CancelButton
@@ -278,6 +279,42 @@ public class NewEntryForm extends Activity {
             return "0"+ String.valueOf(timeDateInput);
         }
     }
+
+    public void showCancelDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(getString(R.string.cancel_new_entry));
+
+        builder.setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+
+                // Return to MainScreen if user cancels updating the entry
+                Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+
+                Toast toast= Toast.makeText(getApplicationContext(),getString(R.string.cancel_new_entry_toast), Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+                toast.show();
+            }
+        });
+
+        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                // Simply dismiss the dialog on negative user choice
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
+    } //End showCancelDialog
 
     public void setMealUnitText ()
     {

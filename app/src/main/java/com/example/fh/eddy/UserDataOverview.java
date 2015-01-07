@@ -1,13 +1,9 @@
 package com.example.fh.eddy;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.View;
 import android.widget.TextView;
 
 import java.util.HashSet;
@@ -15,20 +11,16 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- *
- * @author Fabian Tim
+ * Created by Tim on 07.01.2015.
  */
-public class ResetActivity extends Activity {
+public class UserDataOverview extends Activity {
 
-    private DataHandler myDataHandler;
-    private Context context;
     SharedPreferences sharedPrefs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reset_layout);
-        context=this;
+        setContentView(R.layout.overview_layout);
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         TextView username = (TextView) findViewById(R.id.reset_userName_text);
@@ -71,13 +63,13 @@ public class ResetActivity extends Activity {
         Set<String> s = sharedPrefs.getStringSet(getString(R.string.activity_preference_key), new HashSet<String>());
         Iterator it= s.iterator();
 
-           while (it.hasNext())
-           {
-                    String item=(String)it.next();
-                    builder.append(item+" ");
-                    builder.append("\n");
+        while (it.hasNext())
+        {
+            String item=(String)it.next();
+            builder.append(item+" ");
+            builder.append("\n");
 
-           }
+        }
         txtview.setText(builder.toString());
     }
     private void showEventUserSettings(TextView txtview) {
@@ -135,57 +127,8 @@ public class ResetActivity extends Activity {
         txtview.setText(builder.toString());
     }
 
-    /**
-     * Creates and Shows the AlertDialog when the User attempts to Reset all Data
-     * If the User accepts, every Preference will be deleted and Default Values are loaded
-     *
-     */
-    public void showDialog(View view)
-    {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setMessage(getString(R.string.delete_all));
 
-        builder.setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-
-                PreferenceManager
-                        .getDefaultSharedPreferences(context)
-                        .edit()
-                        .clear()
-                        .commit();
-                PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
-                myDataHandler = new DataHandler(getBaseContext());
-                myDataHandler.open();
-                myDataHandler.deleteAllEntries();
-                restartThis();
-
-                dialog.dismiss();
-            }
-        });
-
-        builder.setNegativeButton(getString(R.string.abort), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-                dialog.dismiss();
-            }
-        });
-
-        builder.show();
-    }
-
-    //Finishes the Reset Process of the Preferences and Displays the Activity again
-    private void restartThis() {
-        finish();
-        overridePendingTransition(0, 0);
-        startActivity(getIntent());
-        overridePendingTransition(0, 0);
-    }
 
 
 }

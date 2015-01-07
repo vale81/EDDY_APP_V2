@@ -305,19 +305,12 @@
                 android:background="#ff08c4ff" />
 
 
-            </RelativeLayout>
+
+
+        </RelativeLayout>
 
 
     </ScrollView>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".11"
-        android:id="@+id/reset_button"
-        android:text="@string/reset"
-        android:textColor="#ffffffff"
-        android:onClick="showDialog"
-        android:background="@android:color/holo_blue_dark"/>
 
 </LinearLayout>
