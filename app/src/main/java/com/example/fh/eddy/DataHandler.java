@@ -204,7 +204,7 @@ public class DataHandler {
         String[] whereArgs = new String[] {String.valueOf(until)};
 
         Cursor cursor = eddy_db.query(DATABASE_TABLE_NAME,
-                allColumns, whereClause, whereArgs, null, null, null);
+                allColumns, whereClause, whereArgs, null, null, CREATED + " ASC");
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
