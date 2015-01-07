@@ -23,25 +23,25 @@ import java.util.ArrayList;
 public class DataHandler {
 
     // Table fields
-    public static final String BLOODSUGAR = "blood_sugar_value";
-    public static final String BOLUSINSULIN = "bolus";
-    public static final String BASEINSULIN = "base";
-    public static final String CARBAMOUNT = "carb_amount";
-    public static final String ACTIVITY = "activity";
-    public static final String EVENT = "event";
-    public static final String THE_DATE = "curr_Date";
-    public static final String THE_TIME = "curr_Time";
-    public static final String CREATED = "created";
+    private static final String BLOODSUGAR = "blood_sugar_value";
+    private static final String BOLUSINSULIN = "bolus";
+    private static final String BASEINSULIN = "base";
+    private static final String CARBAMOUNT = "carb_amount";
+    private static final String ACTIVITY = "activity";
+    private static final String EVENT = "event";
+    private static final String THE_DATE = "curr_Date";
+    private static final String THE_TIME = "curr_Time";
+    private static final String CREATED = "created";
 
 
 
-    public static final String ROW_ID = "_id";
+    private static final String ROW_ID = "_id";
 
     // Database creation fields
-    public static final String DATABASE_NAME = "eddydb";
-    public static final String DATABASE_TABLE_NAME = "eddy_table";
-    public static final int DATABASE_VERSION = 5;
-    public static final String DATABASE_CREATE_TABLE = "create table eddy_table (_id integer primary key autoincrement, blood_sugar_value numeric not null," +
+    private static final String DATABASE_NAME = "eddydb";
+    private static final String DATABASE_TABLE_NAME = "eddy_table";
+    private static final int DATABASE_VERSION = 5;
+    private static final String DATABASE_CREATE_TABLE = "create table eddy_table (_id integer primary key autoincrement, blood_sugar_value numeric not null," +
             "bolus text, base text, carb_amount numeric, curr_Date numeric, curr_Time numeric, activity text, event text, created long);";
 
     // String-array holds columns of table

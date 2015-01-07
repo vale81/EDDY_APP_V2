@@ -22,7 +22,7 @@ public class ResetActivity extends Activity {
 
     private DataHandler myDataHandler;
     private Context context;
-    SharedPreferences sharedPrefs;
+    private SharedPreferences sharedPrefs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class UserDataOverview extends Activity {
 
-    SharedPreferences sharedPrefs;
+    private SharedPreferences sharedPrefs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
