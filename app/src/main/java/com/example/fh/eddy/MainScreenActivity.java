@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.Date;
+
 /**
  * Main Activity
  * Create the Fragments and populate the Action Bar Tabs
@@ -49,6 +51,8 @@ public class MainScreenActivity extends Activity {
         actionBar.addTab(tab1);
         actionBar.addTab(tab2);
         actionBar.addTab(tab3);
+
+        exampleDataCreation();
     }
 
     /**
@@ -86,6 +90,30 @@ public class MainScreenActivity extends Activity {
     public void sendMessage(View view) {
         Intent intent = new Intent(this, NewEntryForm.class);
         startActivity(intent);
+    }
+
+    /**
+     * Creates Sample Data
+     * DO NOT USE IN FINAL VERSION
+     */
+    private void exampleDataCreation(){
+
+        long now=new Date().getTime();
+
+        DataHandler myDataHandler;
+        myDataHandler = new DataHandler(this);
+        myDataHandler.open();
+
+        int quantity=100;
+        for(int i=0;i<quantity;i++) {
+
+            int bloodSugarValue= i;
+            String j=String.valueOf(i);
+            long timestamp=now-i*(long)(60*60*24*1000);
+            myDataHandler.insertNewData(bloodSugarValue,j,j,j,j,j,j,j,timestamp);
+        }
+
+        myDataHandler.closeDatabase();
     }
 
 }
