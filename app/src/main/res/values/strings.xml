@@ -69,6 +69,9 @@
     <string name="event_spinner_textView">Ereignis</string>
     <string name="edit_entry_form_headerTextview">Eintrag Bearbeiten</string>
 
+    <string name="no_activity">Keine Aktivität</string>
+    <string name="no_event">Kein Ereignis</string>
+
     <string name="overview">Übersicht</string>
     <string name="name">Name</string>
     <string name="meal_display">Mahlzeit Angabe</string>

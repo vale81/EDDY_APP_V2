@@ -6,13 +6,13 @@
     </array>
 
     <array name="default_activities">
-        <item>Keine Aktivität</item>
+        <item>@string/no_activity</item>
         <item>Kraftsport</item>
         <item>Ausdauersport</item>
     </array>
 
     <array name="default_events">
-        <item>Kein Ereignis</item>
+        <item>@string/no_event</item>
         <item>Krankheit</item>
         <item>Unterzuckerung</item>
         <item>Unfall</item>

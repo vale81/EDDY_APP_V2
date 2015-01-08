@@ -89,7 +89,7 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EntryData> {
 
             //Show the Activity Picture if the Entry has a Activity
             //If not show an Transparent(Invisible) Picture
-            if(!(i.getActivity().startsWith("Keine Aktivität"))) {
+            if(!(i.getActivity().startsWith(getContext().getString(R.string.no_activity)))) {
 
                 activityView.setImageResource(R.drawable.activity_picture);
                 activityView.setAlpha(255F);
@@ -100,7 +100,7 @@ public class MyArrayAdapter<E> extends ArrayAdapter<EntryData> {
 
             //Show the Event Picture if the Entry has a Event
             //If not show an Transparent(Invisible) Picture
-            if(!(i.getEvent().startsWith("Kein Ereignis"))) {
+            if(!(i.getEvent().startsWith(getContext().getString(R.string.no_event)))) {
 
                 eventView.setImageResource(R.drawable.event_picture);
                 eventView.setAlpha(255F);
