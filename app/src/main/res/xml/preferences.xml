@@ -74,14 +74,14 @@
 
         <EditTextPreference
             android:title="@string/editPrefCorrectionFactorTitle"
-            android:summary="Geben Sie Ihren Korrekturfaktor an"
+            android:summary="@string/editPrefCorrectionFactorSummary"
             android:key="korrektur_factor"
             android:inputType="numberDecimal"
             android:numeric="decimal"/>
 
         <Preference
             android:title="@string/prefUnitFactorTitle"
-            android:summary="Geben Sie Ihre BE-Faktoren an">
+            android:summary="@string/prefUnitFactorSummary">
             <intent
                 android:targetPackage="com.example.fh.eddy"
                 android:targetClass="com.example.fh.eddy.MealFactorManager"/>
