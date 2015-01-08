@@ -152,12 +152,14 @@ public class ResetActivity extends Activity {
             public void onClick(DialogInterface dialog, int which)
             {
 
+                //Reset all Preferences
                 PreferenceManager
                         .getDefaultSharedPreferences(context)
                         .edit()
                         .clear()
                         .commit();
                 PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
+                //Delete all Entries in the Database
                 myDataHandler = new DataHandler(getBaseContext());
                 myDataHandler.open();
                 myDataHandler.deleteAllEntries();
@@ -179,7 +181,9 @@ public class ResetActivity extends Activity {
         builder.show();
     }
 
-    //Finishes the Reset Process of the Preferences and Displays the Activity again
+    /**
+     * Finishes the Reset Process of the Preferences and Displays the Activity again
+     */
     private void restartThis() {
         finish();
         overridePendingTransition(0, 0);
