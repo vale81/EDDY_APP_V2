@@ -51,7 +51,7 @@ public class GraphicFragment extends PreferenceFragment {
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 head=getString(R.string.week);
-                custom_populateGraphView(view,"E H:m",7*60*60*24*1000);
+                custom_populateGraphView(view,"E H:mm",7*60*60*24*1000);
             }
         });
         //Button for 1 Month
@@ -75,7 +75,7 @@ public class GraphicFragment extends PreferenceFragment {
 
         //As default display 1 Week
         head=getString(R.string.week);
-        custom_populateGraphView(view,"E H:m",7*60*60*24*1000);
+        custom_populateGraphView(view,"E H:mm",7*60*60*24*1000);
 
         return view;
     }
