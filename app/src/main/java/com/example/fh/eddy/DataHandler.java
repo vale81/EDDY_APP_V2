@@ -13,12 +13,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Created by Tim on 17.11.2014.
  * This class handles database creation as well as providing a helper
  * for database manipulation. Since the helper is only needed when a
  * database is needed it is included in this class. Only a
  * Datahandler object needs to be instantiated.
  * A separate helper object in external class is not needed.
+ * Created by Tim on 17.11.2014.
+ * @author Tim
  */
 public class DataHandler {
 
@@ -61,7 +62,10 @@ public class DataHandler {
         dbHelper = new DatabaseHelper(ctx);
     }
 
-    // Method to open writable database
+    /**
+     * Method to open writable database
+     */
+
     public DataHandler open() throws SQLiteException
     {
         dbHelper = new DatabaseHelper(ctx);
@@ -69,14 +73,27 @@ public class DataHandler {
         return this;
     }
 
-    // Method for closing the database
-    public void closeDatabase()
+    /**
+     * Method to close the database
+     */    public void closeDatabase()
     {
         dbHelper.close();
     }
 
-    // Method to insert new data
-    // Content = KeyValue Pairs Key = Column Value = Contents in Column
+    /**
+     *  Method to insert new data
+     *  Content = KeyValue Pairs Key = Column Value = Contents in Column
+     * @param new_blood_sugar_value
+     * @param new_bolus
+     * @param new_base
+     * @param new_carb_amount
+     * @param curr_time
+     * @param curr_date
+     * @param new_activity
+     * @param curr_event
+     * @param created
+     * @return EntryData object
+     */
     public EntryData insertNewData(int new_blood_sugar_value, String new_bolus, String new_base, String new_carb_amount,
                                       String curr_time, String curr_date , String new_activity, String curr_event, long created)
     {
@@ -106,7 +123,12 @@ public class DataHandler {
         return newEntry;
 
     }
-    // Delete a single entry from the database
+
+    /**
+     * Method to delete one entry from the database
+     * Entry is deleted based on passed object's ID
+     * @param entryData
+     */
     public void deleteSingleEntry(EntryData entryData)
     {
         long id = entryData.getId();
@@ -119,7 +141,15 @@ public class DataHandler {
         eddy_db.delete(DATABASE_TABLE_NAME,null,null);
     }
 
-
+    /**
+     * Method to get a single entry based on ID
+     * Receives ID and then queries the Database based on this ID
+     * Sets the values in the new entry object based on the query
+     * This new object is later passed into the EditEntryForm activity where
+     * the object's stored values are then extracted
+     * @param id
+     * @return EntryData object
+     */
  public EntryData getSingleEntry (long id)
  {
      EntryData singleEntry = new EntryData();
@@ -145,6 +175,20 @@ public class DataHandler {
      return singleEntry;
  }
 
+    /**
+     * Method to update a single entry object in the database
+     * The received values are stored in ContentValues and then updated
+     * in the database via the .update call
+     * @param id
+     * @param new_blood_sugar_value
+     * @param new_bolus
+     * @param new_base
+     * @param new_carb_amount
+     * @param curr_time
+     * @param curr_date
+     * @param new_activity
+     * @param curr_event
+     */
     public void updateSingleEntry (long id, int new_blood_sugar_value, String new_bolus, String new_base, String new_carb_amount,
                                            String curr_time, String curr_date , String new_activity, String curr_event)
     {
@@ -162,7 +206,14 @@ public class DataHandler {
         eddy_db.update(DATABASE_TABLE_NAME, updatedContent, ROW_ID + " = " + id, null);
 
     }
-    // Get all entries , put in List, used by Adapter in ListView
+
+    /**
+     * Method to get all entries
+     * Returns a List which is used by the ListView to display all entries
+     * The entries are sorted according to the created timestamp in descending order
+     * so that the newest entries are displayed first
+     * @return List
+     */
     public List<EntryData> getEveryEntry() {
         List<EntryData> everyEntry = new ArrayList<EntryData>();
 
@@ -197,6 +248,11 @@ public class DataHandler {
         return everyEntry;
     }
 
+    /**
+     * Method used by GraphView to display entries based on time offset
+     * @param until
+     * @return List
+     */
     public List<EntryData> getEntryUntil(long until) {
         List<EntryData> everyEntry = new ArrayList<EntryData>();
 
@@ -217,7 +273,11 @@ public class DataHandler {
         return everyEntry;
     }
 
-    // Setting entry data based on cursor position
+    /**
+     * Method to set entry values based on cursor values at the cursor's position
+     * @param cursor
+     * @return Entry object
+     */
     private EntryData cursorToValues(Cursor cursor)
     {
         EntryData entry = new EntryData();
@@ -236,7 +296,9 @@ public class DataHandler {
         return entry;
     }
 
-    //  Begin inner class
+    /**
+     * Class DatabaseHelper makes manipulation of the databse possible
+     */
     private static class DatabaseHelper extends SQLiteOpenHelper
     {
         //Constructor inner class
@@ -266,7 +328,7 @@ public class DataHandler {
             onCreate(sqLiteDatabase);
         }
 
-    } // Ende inner class DataBaseHelper
+    } // End inner class DataBaseHelper
 
 
 } // End class DataHandler

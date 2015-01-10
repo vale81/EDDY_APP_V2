@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Main Activity
@@ -52,7 +53,7 @@ public class MainScreenActivity extends Activity {
         actionBar.addTab(tab2);
         actionBar.addTab(tab3);
 
-        //exampleDataCreation();
+     //   exampleDataCreation();
     }
 
     /**
@@ -103,11 +104,12 @@ public class MainScreenActivity extends Activity {
         DataHandler myDataHandler;
         myDataHandler = new DataHandler(this);
         myDataHandler.open();
+        Random r = new Random();
 
-        int quantity=100;
-        for(int i=0;i<quantity;i++) {
+        int quantity=75;
+        for(int i=20;i<quantity;i++) {
 
-            int bloodSugarValue= i;
+            int bloodSugarValue= r.nextInt(i*3+10);
             String j=String.valueOf(i);
             long timestamp=now-i*(long)(60*60*24*1000);
             myDataHandler.insertNewData(bloodSugarValue,j,j,j,j,j,j,j,timestamp);

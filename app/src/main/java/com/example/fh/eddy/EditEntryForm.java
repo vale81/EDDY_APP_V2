@@ -25,9 +25,13 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by Tim on 30.12.2014.
  * This class is basically a copy of the EntryForm with
  * values set according to the database.
+ *
+ * Values are passed in via getIntent() and then extracted
+ *
+ * Created by Tim on 30.12.2014.
+ * @author Tim
  */
 public class EditEntryForm extends Activity {
 
@@ -61,7 +65,11 @@ public class EditEntryForm extends Activity {
 
         setContentView(R.layout.edit_entry_form_layout);
 
-        // Get the passed extras via getIntent()
+        /**
+         * Get the passed extras via getIntent()
+         * and extract values
+         */
+
         final EntryData current_Edit_Entry = (EntryData)getIntent().getSerializableExtra("passedVar");
 
         the_date = (TextView)findViewById(R.id.date_currentDate_textView);
@@ -156,7 +164,11 @@ public class EditEntryForm extends Activity {
         }); // End onClick CancelButton
     } // End onCreate()
 
-    // Method for filling the activity spinner with activities
+    /**
+     * Method for filling the activity spinner with preselected value or preference values
+     * If the user had selected a value it is preset in this form
+     * @param entry_item Currently selected item extracted from EntryData object
+     */
     public void fillActivitySpinner(String entry_item)
     {
         SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -190,7 +202,11 @@ public class EditEntryForm extends Activity {
 
     } // End fillActivitySpinner()
 
-    // Method for filling the event spinner with events
+    /**
+     * Method for filling the event spinner with preselected value or preference values
+     * If the user had selected a value it is preset in this form
+     * @param entry_item Currently selected item extracted from EntryData object
+     */
     public void fillEventSpinner(String entry_item)
     {
         SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -266,7 +282,12 @@ public class EditEntryForm extends Activity {
     } // End add listener to event spinner
 
 
-    // Helper method to correctly set event spinner entry based on entry in database
+    /**
+     * Helper method to correctly set event spinner entry based on entry in database
+     * @param spinner Current event spinner
+     * @param myString Currently selected event as stored in EntryData object that was passed
+     * @return
+     */
     private int getEventSpinnerIndex(Spinner spinner, String myString){
 
         int index = 0;
@@ -279,7 +300,12 @@ public class EditEntryForm extends Activity {
         return index;
     }
 
-    // Helper method to correctly set activity spinner entry based on entry in database
+    /**
+     * Helper method to correctly set activity spinner entry based on entry in database
+     * @param spinner Current activity spinner
+     * @param myString Currently selected activity as stored in EntryData object that was passed
+     * @return
+     */
     private int getActivitySpinnerIndex(Spinner spinner, String myString)
     {
         int index = 0;
@@ -292,7 +318,11 @@ public class EditEntryForm extends Activity {
         return index;
     }
 
-    // Method to show AlertDialog when user hits cancel button in EditEntryForm
+    /**
+     * Shows an AlertDialog if the user decides to discard changes to the entry
+     * If the user accepts a toast is displayed and the user returns to the MainScreenActivity
+     * and the changes are discarded
+     */
     public void showCancelDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -329,6 +359,10 @@ public class EditEntryForm extends Activity {
         builder.show();
     } //End showCancelDialog
 
+    /**
+      * Helper method to set the meal unit TextView's text based
+      * on user's preference setting
+      */
     public void setMealUnitText ()
     {
         SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);

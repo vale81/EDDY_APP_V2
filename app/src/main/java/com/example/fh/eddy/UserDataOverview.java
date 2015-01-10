@@ -11,7 +11,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
+ * Displays all preferences the user entered
  * Created by Tim on 07.01.2015.
+ * @author Tim
  */
 public class UserDataOverview extends Activity {
 

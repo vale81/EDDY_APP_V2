@@ -29,7 +29,9 @@ import java.util.Set;
 
 
 /**
+ * Class to allow the user to make new entries
  * Created by Tim  Nov. 2014.
+ * @author Tim
  */
 public class NewEntryForm extends Activity {
 
@@ -166,7 +168,10 @@ public class NewEntryForm extends Activity {
 
     } // end onCreate()
 
-    // Method for filling the activity spinner with activities
+    /**
+     * Method for filling the activity spinner with activities
+     * based on all activities stored in the preferences + default activities
+     */
     public void fillActivitySpinner()
     {
         SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -197,7 +202,10 @@ public class NewEntryForm extends Activity {
 
     } // End fillActivitySpinner()
 
-    // Method for filling the event spinner with events
+    /**
+     * Method for filling the event spinner with events
+     * based on all events stored in the preferences + default events
+     */
     public void fillEventSpinner()
     {
         SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -267,7 +275,11 @@ public class NewEntryForm extends Activity {
         });
     } // End add listener to event spinner
 
-    // Helper method for correctly setting 0-padding in 24-Hour format
+    /**
+     * Helper method for correctly setting 0-padding in 24-Hour format
+     * @param timeDateInput Current time and date passed in from the corresponding TextViews
+     * @return
+     */
     public String nullPad(int timeDateInput)
     {
         if(timeDateInput >= 10)
@@ -280,6 +292,10 @@ public class NewEntryForm extends Activity {
         }
     }
 
+    /**
+     * Shows an AlertDialog if the user decides to cancel making a new entry
+     * If the user accepts a toast is displayed and the user returns to the MainScreenActivity
+     */
     public void showCancelDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -316,6 +332,10 @@ public class NewEntryForm extends Activity {
         builder.show();
     } //End showCancelDialog
 
+    /**
+     * Helper method to set the meal unit TextView's text based
+     * on user's preference setting
+     */
     public void setMealUnitText ()
     {
         SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(this);

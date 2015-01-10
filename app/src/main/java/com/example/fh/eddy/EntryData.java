@@ -5,6 +5,8 @@ import java.io.Serializable;
 /**
  * Created by Tim on 21.11.2014.
  * This class models the entries made by the user.
+ * Used as data access object
+ * @author Tim
  */
 public class EntryData implements Serializable{
     //Row-ID
@@ -121,7 +123,11 @@ public class EntryData implements Serializable{
         this.unix_time = unix_time;
     }
 
-    // Used by adapter in ListView to display items
+    /**
+     * ToString used by adapter to display items in the ListView
+     * Currently not used since a custom adapter is used instead
+     * @return String
+     */
     public String toString()
     {
         return Integer.toString(bloodSugarValue) + " " + theDate + " " + daytime + "\n " + "Event: " + event + " Activity: " + activity;
